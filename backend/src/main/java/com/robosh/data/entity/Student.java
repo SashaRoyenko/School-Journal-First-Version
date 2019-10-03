@@ -1,6 +1,5 @@
 package com.robosh.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -39,7 +38,7 @@ public class Student {
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Adress adress;
+    private Address address;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Group group;

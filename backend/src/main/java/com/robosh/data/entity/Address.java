@@ -13,11 +13,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "schedule")
-public class Schedule {
+@Entity(name = "address")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,33 +28,11 @@ public class Schedule {
     @NotEmpty
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String schoolClass;
+    private String street;
 
     @NotNull
     @NotEmpty
     @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String dayOfWeek;
-
-    @NotNull
-    @NotEmpty
-    private Integer numberOfSubject;
-
-    @NotNull
-    @NotEmpty
-    //todo
-    private Subject subject;
-
-    @NotNull
-    @NotEmpty
-    //todo
-    private Teacher teacher;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String cabinet;
+    //todo add regex here
+    private String houseNumber;
 }
-
-
