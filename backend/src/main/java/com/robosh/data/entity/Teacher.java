@@ -15,48 +15,35 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "teacher")
-public class Teacher {
+@Entity
+public class Teacher extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
     @NotEmpty
+    @NotNull
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String name;
+    @Column(nullable = false)
+    private String firstName;
 
-    @NotNull
     @NotEmpty
+    @NotNull
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String surname;
+    @Column(nullable = false)
+    private String secondName;
 
-    @NotNull
     @NotEmpty
+    @NotNull
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String middleName;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
-    private String phoneNumber;
+    @Column(nullable = false)
+    private String lastName;
 
     @NotNull
     @NotEmpty
     @NotBlank
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
     private String password;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8}")
-    private String email;
 
     @NotNull
     @NotEmpty

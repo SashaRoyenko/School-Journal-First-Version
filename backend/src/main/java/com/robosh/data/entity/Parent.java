@@ -1,63 +1,72 @@
 package com.robosh.data.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
-@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Parent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Parent extends User {
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
     private String firstName1;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
     private String secondName1;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
     private String lastName1;
 
+    @NotEmpty
+    @NotBlank
+    @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String firstName2;
 
+    @NotBlank
+    @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String secondName2;
 
+    @NotEmpty
+    @NotBlank
+    @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String lastName2;
 
-    @Pattern(regexp = "[A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8}")
-    @Column(nullable = false)
-    private String email1;
-
+    @NotEmpty
+    @NotBlank
+    @Nullable
     @Pattern(regexp = "[A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8}")
     private String email2;
 
-    @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
-    @Column(nullable = false)
-    private String phone1;
-
+    @Nullable
     @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
     @Column(nullable = false)
     private String phone2;
 
-    @Column(nullable = false, length = 100)
-    private String login;
+    @OneToMany
+    private List<Student> students;
 
-    //    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
-    @Column(nullable = false)
-    private String password;
-
-
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
 }
