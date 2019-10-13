@@ -16,17 +16,17 @@ spring:
 
   # datasource
   datasource:
-#    type: com.zaxxer.hikari.HikariDataSource
+    type: com.zaxxer.hikari.HikariDataSource
     url: '@flyway.url@'
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: '@flyway.user@'
     password: '@flyway.password@'
-#    hikari:
-#      connectionTimeout: 30000
-#      maximumPoolSize: 10
-#      minimumIdle: 2
-#      transactionIsolation: TRANSACTION_READ_COMMITTED
-#      connectionTestQuery: SELECT version()
+    hikari:
+      connectionTimeout: 30000
+      maximumPoolSize: 10
+      minimumIdle: 2
+      transactionIsolation: TRANSACTION_READ_COMMITTED
+      connectionTestQuery: SELECT version()
 
   # hibernate
   jpa:

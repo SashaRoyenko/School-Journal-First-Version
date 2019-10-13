@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 
 @Data
@@ -16,6 +17,7 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Entity(name = "teacher")
 public class Teacher {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,7 +49,7 @@ public class Teacher {
     @NotNull
     @NotEmpty
     @NotBlank
-    //todo regex
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
     private String password;
 
     @NotNull
@@ -60,11 +62,17 @@ public class Teacher {
     @NotEmpty
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private Subject subject;
+    @ManyToMany
+    @JoinTable(
+            name = "teacher_subjects",
+            joinColumns = {@JoinColumn(name = "subject_id")},
+            inverseJoinColumns = {@JoinColumn(name = "teacher_id")}
+    )
+    private List<Subject> subjects;
 
     @NotNull
     @NotEmpty
     @NotBlank
-    //todo relations Colomn annotations
+    @OneToOne
     private Address address;
 }

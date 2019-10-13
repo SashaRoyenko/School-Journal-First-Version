@@ -48,7 +48,7 @@ public class Student {
 
     @Column(nullable = false, length = 100)
     private String login;
-    //    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
     @Column(nullable = false)
     private String password;
 

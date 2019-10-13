@@ -35,4 +35,10 @@ public class Address {
     @NotBlank
     //todo add regex here
     private String houseNumber;
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    //todo add regex here
+    private String roomNumber;
 }
