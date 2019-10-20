@@ -2,27 +2,35 @@ package com.robosh.data.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="class")
 public class Group {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_group")
+    private Long idGroup;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Schedule schedule;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Column(nullable = false)
+    private String codeGroup;
 
     @ManyToMany
     @JoinTable(
-            name = "class_subjects",
-            joinColumns = {@JoinColumn(name = "subject_id")},
+            name = "class_students",
+            joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "class_id")}
     )
-    private List<Subject> subjects;
+    private List<Student> subjects;
 }

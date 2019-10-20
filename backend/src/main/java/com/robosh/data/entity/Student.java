@@ -1,55 +1,46 @@
 package com.robosh.data.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.robosh.data.enumeration.Role;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.persistence.*;
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
+@ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Student extends User {
 
-    @NotEmpty
-    @NotBlank
-    @NotNull
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @Column(nullable = false)
-    private String firstName;
+    @Builder(builderMethodName = "studentBuilder")
+    public Student(Long id, String firstName,
+                   String secondName, String lastName,
+                   Date birthDate, Group group,
+                   String login, String password,
+                   String email, String phone,
+                   Parent parent, Role role,
+                   Address address, Boolean active){
+        super(id, firstName, secondName, lastName, login, password, email, phone, role, active);
+        this.birthDate = birthDate;
+        this.address = address;
+        this.group = group;
+        this.parent = parent;
+    }
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
-    private String secondName;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @Column(nullable = false)
-    private String lastName;
-
     private Date birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "id_address", nullable = false)
     private Address address;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "id_group", nullable = false)
     private Group group;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "id_person", nullable = false)
     private Parent parent;
-
 }

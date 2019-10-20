@@ -1,65 +1,38 @@
 package com.robosh.data.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.robosh.data.enumeration.Role;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.List;
 
 
-@Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
-@NoArgsConstructor
+@Data
+@Builder
+@ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Teacher extends User {
 
-    @NotEmpty
-    @NotNull
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @Column(nullable = false)
-    private String firstName;
-
-    @NotEmpty
-    @NotNull
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @Column(nullable = false)
-    private String secondName;
-
-    @NotEmpty
-    @NotNull
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @Column(nullable = false)
-    private String lastName;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
-    private String password;
-
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    @ManyToMany
-    @JoinTable(
-            name = "teacher_subjects",
-            joinColumns = {@JoinColumn(name = "subject_id")},
-            inverseJoinColumns = {@JoinColumn(name = "teacher_id")}
-    )
-    private List<Subject> subjects;
+    @Builder(builderMethodName = "teacherBuilder")
+    public Teacher(Long id, String firstName,
+                   String secondName, String lastName,
+                   String login, String password,
+                   String email, String phone, Role role,
+                   Address address, Boolean active) {
+        super(id, firstName, secondName, lastName, login, password, email, phone, role, active);
+        this.address = address;
+    }
 
     @NotNull
     @NotEmpty
     @NotBlank
     @OneToOne
+    @JoinColumn(name = "id_address")
     private Address address;
 }
