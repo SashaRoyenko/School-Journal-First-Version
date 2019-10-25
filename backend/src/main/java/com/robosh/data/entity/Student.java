@@ -29,18 +29,18 @@ public class Student extends User {
         this.parent = parent;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date birthDate;
 
     @OneToOne
-    @JoinColumn(name = "id_address", nullable = false)
+    @JoinColumn(name = "id_address", nullable = true)
     private Address address;
 
     @OneToOne
-    @JoinColumn(name = "id_group", nullable = false)
+    @JoinColumn(name = "id_group", nullable = true)
     private Group group;
 
     @OneToOne
-    @JoinColumn(name = "id_person", nullable = false)
+    @JoinColumn(name = "id_person", nullable = true)
     private Parent parent;
 }

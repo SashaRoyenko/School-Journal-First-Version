@@ -23,7 +23,7 @@ public class Schedule {
     private Long idSchedule;
 
     @OneToOne
-    @JoinColumn(name = "id_group", nullable = false)
+    @JoinColumn(name = "id_group", nullable = true)
     private Group group;
 
     @NotNull
@@ -45,12 +45,11 @@ public class Schedule {
     @NotNull
     @NotEmpty
     @OneToMany
-    @JoinColumn(name = "id_subject", nullable = false)
     private List<Subject> subjectList;
 
     @NotNull
     @NotEmpty
     @ManyToOne
-    @JoinColumn(name = "id_person", nullable = false)
+    @JoinColumn(name = "id_person", nullable = true)
     private Teacher teacher;
 }

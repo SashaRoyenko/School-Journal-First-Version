@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_person")
@@ -52,7 +52,7 @@ public abstract class User {
     @NotNull
     @NotEmpty
     @NotBlank
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
+//    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}")
     @Column(nullable = false)
     protected String password;
 
@@ -66,7 +66,7 @@ public abstract class User {
     @NotNull
     @NotEmpty
     @NotBlank
-    @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
+    @Pattern(regexp = "^\\+?3?8?(0\\d{9})$")
     @Column(nullable = false, unique = true)
     protected String phone;
 
@@ -74,5 +74,5 @@ public abstract class User {
     protected Role role;
 
     @Column(nullable = false)
-    protected Boolean active;
+    protected Boolean active = true;
 }

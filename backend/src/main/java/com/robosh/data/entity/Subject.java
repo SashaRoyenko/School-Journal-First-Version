@@ -20,6 +20,6 @@ public class Subject {
     @Column(name = "id_subject")
     private Long idSubject;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String name;
 }
