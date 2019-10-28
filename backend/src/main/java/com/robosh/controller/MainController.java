@@ -19,12 +19,11 @@ public class MainController {
 
     @GetMapping("/")
     public String getMain() {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication());
-        return "String";
+        return SecurityContextHolder.getContext().getAuthentication().toString();
     }
 
     @PostMapping("/user/save")
-    public void saveUser(){
+    public void saveUser() {
         User user = new User();
         user.setFirstName("Admin");
         user.setSecondName("Admin");

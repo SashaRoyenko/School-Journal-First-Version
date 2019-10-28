@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RestController
 public class LoginController {
 
+    private static final String TOKEN_HEADER = "Authorization";
+    private static final String TOKEN_PREFIX = "Bearer ";
+    private static final String ACCESS_CONTROL = "Access-Control-Expose-Headers";
     private final AuthenticationManager authenticationManager;
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -37,7 +39,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginDto loginDto) {
+    public void login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
         try {
             String username = loginDto.getLogin();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, loginDto.getPassword()));
@@ -47,11 +49,10 @@ public class LoginController {
                     );
             String token = jwtTokenProvider.createToken(username, user.getRole());
 
-            Map<Object, Object> response = new HashMap<>();
-            response.put("username", username);
-            response.put("token", token);
+            response.setHeader(TOKEN_HEADER,
+                    TOKEN_PREFIX + token);
+            response.setHeader(ACCESS_CONTROL, TOKEN_HEADER);
 
-            return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
         }
