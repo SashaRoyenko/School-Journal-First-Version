@@ -33,6 +33,7 @@ public class MainController {
         user.setLogin("admin");
         user.setPassword("admin");
         user.setRole(Role.ADMIN);
+
         userService.save(user);
     }
 }
