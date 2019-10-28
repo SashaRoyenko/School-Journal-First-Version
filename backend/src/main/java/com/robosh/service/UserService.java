@@ -1,8 +1,8 @@
 package com.robosh.service;
 
-import com.robosh.data.repository.UserRepository;
 import com.robosh.data.entity.User;
 import com.robosh.data.enumeration.Role;
+import com.robosh.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,11 +35,11 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    List<User> findByRole(Role role) {
+    public List<User> findByRole(Role role) {
         return userRepository.findByRole(role);
     }
 
-    List<User> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 

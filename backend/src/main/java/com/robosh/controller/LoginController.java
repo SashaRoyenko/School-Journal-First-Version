@@ -5,7 +5,6 @@ import com.robosh.data.dto.LoginDto;
 import com.robosh.data.entity.User;
 import com.robosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,6 +39,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public void login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
+        response.setHeader(TOKEN_HEADER,
+                TOKEN_PREFIX + getToken(loginDto));
+        response.setHeader(ACCESS_CONTROL, TOKEN_HEADER);
+    }
+
+    private String getToken(LoginDto loginDto) {
         try {
             String username = loginDto.getLogin();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, loginDto.getPassword()));
@@ -47,11 +52,7 @@ public class LoginController {
                     .orElseThrow(() ->
                             new UsernameNotFoundException("User with username: " + username + " not found")
                     );
-            String token = jwtTokenProvider.createToken(username, user.getRole());
-
-            response.setHeader(TOKEN_HEADER,
-                    TOKEN_PREFIX + token);
-            response.setHeader(ACCESS_CONTROL, TOKEN_HEADER);
+            return jwtTokenProvider.createToken(username, user.getRole());
 
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
