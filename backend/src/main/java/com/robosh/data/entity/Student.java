@@ -9,6 +9,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @ToString(callSuper = true, includeFieldNames = true)
 @Entity

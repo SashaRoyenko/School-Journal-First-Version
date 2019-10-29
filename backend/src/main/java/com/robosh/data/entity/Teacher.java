@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 @ToString(callSuper = true, includeFieldNames = true)
