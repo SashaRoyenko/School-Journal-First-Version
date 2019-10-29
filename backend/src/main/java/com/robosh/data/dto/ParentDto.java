@@ -2,10 +2,14 @@ package com.robosh.data.dto;
 
 import com.robosh.data.enumeration.Role;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.annotation.PostConstruct;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, includeFieldNames = true)
 public class ParentDto extends UserDto {
 
     private String firstName2;
