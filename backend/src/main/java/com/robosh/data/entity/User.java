@@ -26,21 +26,21 @@ public class User {
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
-    private String firstName;
+    protected String firstName;
 
     @NotNull
     @NotEmpty
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
-    private String secondName;
+    protected String secondName;
 
     @NotNull
     @NotEmpty
     @NotBlank
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     @Column(nullable = false)
-    private String lastName;
+    protected String lastName;
 
     @NotNull
     @NotEmpty

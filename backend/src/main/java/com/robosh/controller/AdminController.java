@@ -4,13 +4,13 @@ import com.robosh.data.dto.ParentDto;
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.dto.UserDto;
-import com.robosh.data.entity.User;
 import com.robosh.data.mapping.UserMapper;
 import com.robosh.service.ParentService;
 import com.robosh.service.StudentService;
 import com.robosh.service.TeacherService;
 import com.robosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +23,7 @@ public class AdminController {
     private TeacherService teacherService;
     private ParentService parentService;
     private StudentService studentService;
+    private UserMapper userMapper = UserMapper.INSTANCE;
 
     @Autowired
     public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService) {
@@ -32,7 +33,7 @@ public class AdminController {
         this.studentService = studentService;
     }
 
-    //todo create teacher/user/parent/student dto mapper and repositories
+    //todo create teacher/user/parent/student mapper and repositories
     @PostMapping("/teacher")
     public void saveTeacher(@RequestBody TeacherDto user) {
     }
@@ -70,19 +71,17 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public String saveAdmin(@RequestBody UserDto user) {
-        User user1 = UserMapper.INSTANCE.dtoToUser(user);
-        return user1.toString();
-//        userService.save(user1);
+    public void saveAdmin(@RequestBody UserDto user) {
+        userService.save(userMapper.dtoToUser(user));
     }
 
     @PutMapping("/{id}")
-    public void updateAdmin(@RequestBody UserDto user) {
-//        userService.save(userMapper.dtoToUser(user));
+    public UserDto updateAdmin(@RequestBody UserDto userDto) {
+        return userService.update(userDto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAdmin(@RequestBody UserDto user) {
-//        userService.delete(userMapper.dtoToUser(user));
+    public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") Long id) {
+        return userService.delete(id);
     }
 }

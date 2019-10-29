@@ -1,9 +1,13 @@
 package com.robosh.service;
 
+import com.robosh.data.dto.UserDto;
 import com.robosh.data.entity.User;
 import com.robosh.data.enumeration.Role;
+import com.robosh.data.mapping.UserMapper;
 import com.robosh.data.repository.UserRepository;
+import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private UserMapper userMapper = UserMapper.INSTANCE;
 
     @Autowired
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
@@ -26,13 +31,29 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-    public User save(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
-    public void delete(User user) {
+    public UserDto save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userMapper.userToDto(userRepository.save(user));
+    }
+
+    public ResponseEntity<?> delete(Long id) {
+        User user = findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", id)
+        );
         userRepository.delete(user);
+        return ResponseEntity.ok().build();
+    }
+
+    public UserDto update(UserDto userDto) {
+        User updateUser = userMapper.dtoToUser(userDto);
+        User user = findById(updateUser.getIdPerson()).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", updateUser.getIdPerson())
+        );
+        return userMapper.userToDto(userRepository.save(updateUser));
     }
 
     public List<User> findByRole(Role role) {

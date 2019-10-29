@@ -8,11 +8,11 @@ public class UserDto {
 
     protected Long idPerson;
 
-    private String firstName;
+    protected String firstName;
 
-    private String secondName;
+    protected String secondName;
 
-    private String lastName;
+    protected String lastName;
 
     protected String login;
 
