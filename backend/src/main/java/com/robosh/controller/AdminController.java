@@ -10,6 +10,7 @@ import com.robosh.service.StudentService;
 import com.robosh.service.TeacherService;
 import com.robosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class AdminController {
     public void saveTeacher(@RequestBody TeacherDto user) {
     }
 
-    @PutMapping("/teacher/{id}")
+    @PatchMapping("/teacher/{id}")
     public void updateTeacher(@RequestBody TeacherDto user) {
     }
 
@@ -50,7 +51,7 @@ public class AdminController {
     public void saveStudent(@RequestBody StudentDto user) {
     }
 
-    @PutMapping("/student/{id}")
+    @PatchMapping("/student/{id}")
     public void updateStudent(@RequestBody StudentDto user) {
     }
 
@@ -62,7 +63,7 @@ public class AdminController {
     public void saveParent(@RequestBody ParentDto user) {
     }
 
-    @PutMapping("/parent/{id}")
+    @PatchMapping("/parent/{id}")
     public void updateParent(@RequestBody ParentDto user) {
     }
 
@@ -71,11 +72,12 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public void saveAdmin(@RequestBody UserDto user) {
-        userService.save(userMapper.dtoToUser(user));
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto saveAdmin(@RequestBody UserDto user) {
+        return userService.save(userMapper.dtoToUser(user));
     }
-
-    @PutMapping("/{id}")
+    // todo find right variant of update
+    @PatchMapping("/{id}")
     public UserDto updateAdmin(@RequestBody UserDto userDto) {
         return userService.update(userDto);
     }

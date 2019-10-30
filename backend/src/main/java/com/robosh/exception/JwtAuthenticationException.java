@@ -1,7 +1,5 @@
 package com.robosh.exception;
 
-import javax.naming.AuthenticationException;
-
 public class JwtAuthenticationException extends RuntimeException {
 
     private static final int HTTP_CODE = 498;

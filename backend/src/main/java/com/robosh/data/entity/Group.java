@@ -32,5 +32,5 @@ public class Group {
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "class_id")}
     )
-    private List<Student> subjects;
+    private List<Student> students;
 }
