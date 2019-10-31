@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.DayOfWeek;
 import java.util.List;
 
 @Data
@@ -20,36 +21,28 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_schedule")
-    private Long idSchedule;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "id_group", nullable = true)
     private Group group;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
+    @Pattern(regexp = "[\\d]+")
     private String cabinet;
 
     @NotNull
-    @NotEmpty
-    @NotBlank
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
-    private String dayOfWeek;
+    private DayOfWeek dayOfWeek;
 
     @NotNull
-    @NotEmpty
     private Integer numberOfSubject;
 
     @NotNull
-    @NotEmpty
-    @OneToMany
-    private List<Subject> subjectList;
+    @OneToOne
+    @JoinColumn(name = "id_subject")
+    private Subject subject;
 
     @NotNull
-    @NotEmpty
-    @ManyToOne
-    @JoinColumn(name = "id_person", nullable = true)
+    @OneToOne
+    @JoinColumn(name = "id_teacher")
     private Teacher teacher;
 }

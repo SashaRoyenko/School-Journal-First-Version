@@ -24,15 +24,17 @@ public class AdminController {
     private GroupService groupService;
     private SubjectService subjectService;
     private UserMapper userMapper;
+    private ScheduleService scheduleService;
 
     @Autowired
-    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService, SubjectService subjectService) {
+    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService, SubjectService subjectService, ScheduleService scheduleService) {
         this.userService = userService;
         this.teacherService = teacherService;
         this.parentService = parentService;
         this.studentService = studentService;
         this.groupService = groupService;
         this.subjectService = subjectService;
+        this.scheduleService = scheduleService;
     }
 
     //todo create teacher/user/parent/student mapper and repositories
@@ -122,5 +124,21 @@ public class AdminController {
         return subjectService.delete(id);
     }
 
+    @PostMapping("/schedule")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ScheduleDto saveSchedule(@Valid @RequestBody ScheduleDto scheduleDto){
+        return scheduleService.save(scheduleDto);
+    }
+
+    @GetMapping("/schedule/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<ScheduleDto> getSchedule(@PathVariable Long id){
+        return scheduleService.findByGroup(id);
+    }
+
+    @DeleteMapping("/schedule/{id}")
+    public ResponseEntity<?> deleteSchedule(@PathVariable(value = "id") Long id){
+        return scheduleService.delete(id);
+    }
 
 }
