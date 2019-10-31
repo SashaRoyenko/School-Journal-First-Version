@@ -31,8 +31,10 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", id)
+        );
     }
 
     public UserDto save(User user) {
@@ -41,18 +43,13 @@ public class UserService {
     }
 
     public ResponseEntity<?> delete(Long id) {
-        User user = findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("User", "id", id)
-        );
-        userRepository.delete(user);
+        userRepository.delete(findById(id));
         return ResponseEntity.ok().build();
     }
 
     public UserDto update(UserDto userDto) {
         User updateUser = userMapper.dtoToUser(userDto);
-        User user = findById(updateUser.getIdPerson()).orElseThrow(
-                () -> new ResourceNotFoundException("User", "id", updateUser.getIdPerson())
-        );
+        findById(updateUser.getIdPerson());
         return userMapper.userToDto(userRepository.save(updateUser));
     }
 

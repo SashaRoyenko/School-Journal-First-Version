@@ -1,19 +1,16 @@
 package com.robosh.controller;
 
-import com.robosh.data.dto.ParentDto;
-import com.robosh.data.dto.StudentDto;
-import com.robosh.data.dto.TeacherDto;
-import com.robosh.data.dto.UserDto;
+import com.robosh.data.dto.*;
 import com.robosh.data.mapping.UserMapper;
-import com.robosh.service.ParentService;
-import com.robosh.service.StudentService;
-import com.robosh.service.TeacherService;
-import com.robosh.service.UserService;
+import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RestController
@@ -24,14 +21,16 @@ public class AdminController {
     private TeacherService teacherService;
     private ParentService parentService;
     private StudentService studentService;
-    private UserMapper userMapper = UserMapper.INSTANCE;
+    private GroupService groupService;
+    private UserMapper userMapper;
 
     @Autowired
-    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService) {
+    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService) {
         this.userService = userService;
         this.teacherService = teacherService;
         this.parentService = parentService;
         this.studentService = studentService;
+        this.groupService = groupService;
     }
 
     //todo create teacher/user/parent/student mapper and repositories
@@ -86,4 +85,22 @@ public class AdminController {
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") Long id) {
         return userService.delete(id);
     }
+
+    @PostMapping("/group")
+    @ResponseStatus(HttpStatus.CREATED)
+    public GroupDto saveGroup(@Valid @RequestBody GroupDto groupDto){
+        return groupService.save(groupDto);
+    }
+
+    @GetMapping("/group")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<GroupDto> getGroups(){
+        return groupService.findAll();
+    }
+
+    @DeleteMapping("/group/{id}")
+    public ResponseEntity<?> deleteGroup(@PathVariable(value = "id") Long id){
+        return groupService.delete(id);
+    }
+
 }
