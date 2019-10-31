@@ -22,15 +22,17 @@ public class AdminController {
     private ParentService parentService;
     private StudentService studentService;
     private GroupService groupService;
+    private SubjectService subjectService;
     private UserMapper userMapper;
 
     @Autowired
-    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService) {
+    public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService, SubjectService subjectService) {
         this.userService = userService;
         this.teacherService = teacherService;
         this.parentService = parentService;
         this.studentService = studentService;
         this.groupService = groupService;
+        this.subjectService = subjectService;
     }
 
     //todo create teacher/user/parent/student mapper and repositories
@@ -102,5 +104,23 @@ public class AdminController {
     public ResponseEntity<?> deleteGroup(@PathVariable(value = "id") Long id){
         return groupService.delete(id);
     }
+
+    @PostMapping("/subject")
+    @ResponseStatus(HttpStatus.CREATED)
+    public SubjectDto saveSubject(@Valid @RequestBody SubjectDto subjectDto){
+        return subjectService.save(subjectDto);
+    }
+
+    @GetMapping("/subject")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<SubjectDto> getSubject(){
+        return subjectService.findAll();
+    }
+
+    @DeleteMapping("/subject/{id}")
+    public ResponseEntity<?> deleteSubject(@PathVariable(value = "id") Long id){
+        return subjectService.delete(id);
+    }
+
 
 }
