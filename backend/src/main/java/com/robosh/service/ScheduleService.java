@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -26,10 +25,12 @@ public class ScheduleService {
         return scheduleMapper.scheduleToDto(scheduleRepository.save(scheduleMapper.dtoToSchedule(scheduleDto)));
     }
 
+    public List<ScheduleDto> save(List<ScheduleDto> scheduleDto) {
+        return scheduleMapper.schedulesToDto(scheduleRepository.saveAll(scheduleMapper.dtoToSchedules(scheduleDto)));
+    }
+
     public List<ScheduleDto> findByGroup(Long id) {
-        return scheduleRepository.findByGroupId(id).stream()
-                .map(scheduleMapper::scheduleToDto)
-                .collect(Collectors.toList());
+        return scheduleMapper.schedulesToDto(scheduleRepository.findByGroupId(id));
     }
 
     public ScheduleDto findById(Long id) {

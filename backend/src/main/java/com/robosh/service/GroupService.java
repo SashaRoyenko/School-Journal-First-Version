@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GroupService {
@@ -24,9 +23,7 @@ public class GroupService {
     }
 
     public List<GroupDto> findAll() {
-        return groupRepository.findAll().stream()
-                .map(groupMapper::groupToDto)
-                .collect(Collectors.toList());
+        return groupMapper.groupsToDto(groupRepository.findAll());
     }
 
     public GroupDto save(GroupDto groupDto) {
@@ -49,7 +46,7 @@ public class GroupService {
         ));
     }
 
-    public GroupDto findByCodeGroup(String code){
+    public GroupDto findByCodeGroup(String code) {
         return groupMapper.groupToDto(groupRepository.findByGroupCode(code).orElseThrow(
                 () -> new ResourceNotFoundException("Group", "code", code)
         ));

@@ -8,13 +8,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.annotation.PostConstruct;
 import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, includeFieldNames = true)
-public class StudentDto extends UserDto{
+public class StudentDto extends UserDto {
     private Date birthDate;
 
     private Address address;
@@ -23,8 +22,6 @@ public class StudentDto extends UserDto{
 
     private Parent parent;
 
-    @PostConstruct
-    public void changeRole() {
-        this.role = Role.STUDENT;
-    }
+    private Role role = Role.STUDENT;
+
 }

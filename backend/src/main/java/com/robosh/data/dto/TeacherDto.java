@@ -1,21 +1,19 @@
 package com.robosh.data.dto;
 
-import com.robosh.data.entity.Address;
 import com.robosh.data.enumeration.Role;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
-import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, includeFieldNames = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class TeacherDto extends UserDto {
-    private Address address;
 
-    @PostConstruct
-    public void changeRole() {
-        this.role = Role.TEACHER;
-    }
+    @NotNull
+    private AddressDto address;
+
+    private Role role = Role.TEACHER;
 }

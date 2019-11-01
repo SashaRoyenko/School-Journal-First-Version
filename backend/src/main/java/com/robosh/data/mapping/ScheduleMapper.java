@@ -8,6 +8,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ScheduleMapper {
     ScheduleMapper INSTANCE = Mappers.getMapper(ScheduleMapper.class);
@@ -24,4 +26,7 @@ public interface ScheduleMapper {
 
     @InheritInverseConfiguration
     ScheduleDto scheduleToDto(Schedule schedule);
+
+    List<Schedule> dtoToSchedules(List<ScheduleDto> schedulesDto);
+    List<ScheduleDto> schedulesToDto(List<Schedule> schedules);
 }

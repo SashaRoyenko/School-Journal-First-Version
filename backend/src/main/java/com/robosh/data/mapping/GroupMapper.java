@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface GroupMapper {
@@ -14,4 +16,6 @@ public interface GroupMapper {
     GroupDto groupToDto(Group group);
 
     Group dtoToGroup(GroupDto groupDto);
+
+    List<GroupDto> groupsToDto(List<Group> groups);
 }

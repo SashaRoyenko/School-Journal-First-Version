@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.annotation.PostConstruct;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, includeFieldNames = true)
@@ -24,9 +22,6 @@ public class ParentDto extends UserDto {
 //    todo what to do with this field?
 //    private List<StudentDto> students;
 
-    @PostConstruct
-    public void changeRole() {
-        this.role = Role.PARENT;
-    }
+    private Role role = Role.PARENT;
 
 }

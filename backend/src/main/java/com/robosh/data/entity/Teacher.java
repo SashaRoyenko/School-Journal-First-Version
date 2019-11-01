@@ -3,9 +3,7 @@ package com.robosh.data.entity;
 import com.robosh.data.enumeration.Role;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -31,9 +29,7 @@ public class Teacher extends User {
     }
 
     @NotNull
-    @NotEmpty
-    @NotBlank
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_address")
     private Address address;
 }

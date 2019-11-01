@@ -6,6 +6,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -14,10 +16,10 @@ public class GlobalExceptionHandler {
 //        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 //    }
 
-//    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-//    public ResponseEntity handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-//    }
+    @ExceptionHandler(value = {EntityNotFoundException.class})
+    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 
     @ExceptionHandler(value = {AuthenticationException.class})
     public ResponseEntity handleAuthenticationException(AuthenticationException ex){

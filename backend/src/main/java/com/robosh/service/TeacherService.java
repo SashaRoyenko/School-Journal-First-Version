@@ -1,7 +1,43 @@
 package com.robosh.service;
 
+import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.mapping.TeacherMapper;
+import com.robosh.data.repository.TeacherRepository;
+import com.robosh.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeacherService {
+
+    private TeacherRepository teacherRepository;
+    private TeacherMapper teacherMapper;
+
+    @Autowired
+    public TeacherService(TeacherRepository teacherRepository) {
+        this.teacherRepository = teacherRepository;
+        teacherMapper = TeacherMapper.INSTANCE;
+    }
+
+    public TeacherDto save(TeacherDto teacherDto) {
+        return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
+    }
+
+    public List<TeacherDto> findAll(){
+        return teacherMapper.teachersToDto(teacherRepository.findAll());
+    }
+
+    public TeacherDto findById(Long id) {
+        return teacherMapper.teacherToDto(teacherRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Teacher", "id", id)
+        ));
+    }
+
+    public ResponseEntity<?> delete(Long id){
+        teacherRepository.delete(teacherMapper.dtoToTeacher(findById(id)));
+        return ResponseEntity.ok().build();
+    }
 }
