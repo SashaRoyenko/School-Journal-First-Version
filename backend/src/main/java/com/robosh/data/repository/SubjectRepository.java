@@ -1,7 +1,6 @@
 package com.robosh.data.repository;
 
 import com.robosh.data.entity.Subject;
-import com.robosh.data.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

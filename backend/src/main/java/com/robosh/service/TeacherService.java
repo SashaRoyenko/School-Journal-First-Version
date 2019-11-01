@@ -44,4 +44,8 @@ public class TeacherService {
         teacherRepository.delete(teacherMapper.dtoToTeacher(findById(id)));
         return ResponseEntity.ok().build();
     }
+
+    public List<TeacherDto> findTeachersByGroupId(Long id){
+        return teacherMapper.teachersToDto(teacherRepository.findTeachersByGroupId(id));
+    }
 }

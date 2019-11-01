@@ -1,11 +1,11 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.SubjectDto;
-import com.robosh.data.entity.Group;
+import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.User;
 import com.robosh.data.enumeration.Role;
-import com.robosh.service.ScheduleService;
 import com.robosh.service.SubjectService;
+import com.robosh.service.TeacherService;
 import com.robosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +22,13 @@ import java.util.List;
 public class MainController {
     private UserService userService;
     private SubjectService subjectService;
+    private TeacherService teacherService;
 
     @Autowired
-    public MainController(UserService userService, SubjectService subjectService) {
+    public MainController(UserService userService, SubjectService subjectService, TeacherService teacherService) {
         this.userService = userService;
         this.subjectService = subjectService;
+        this.teacherService = teacherService;
     }
 
 
@@ -53,5 +55,10 @@ public class MainController {
     @GetMapping("/subjects/{id}")
     public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id){
         return subjectService.findSubjectsByGroupId(id);
+    }
+
+    @GetMapping("/teachers/{id}")
+    public List<TeacherDto> getGroupTeachers(@PathVariable("id") Long id){
+        return teacherService.findTeachersByGroupId(id);
     }
 }
