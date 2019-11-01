@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query(value = "SELECT * FROM `e-journal`.schedule WHERE id_group = ?1",
-    nativeQuery = true)
+            nativeQuery = true)
     List<Schedule> findByGroupId(Long id);
+
 }

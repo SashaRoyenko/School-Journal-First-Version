@@ -42,4 +42,7 @@ public class SubjectService {
         return subjectMapper.subjectsToDto(subjectRepository.findAll());
     }
 
+    public List<SubjectDto> findSubjectsByGroupId(Long id){
+        return subjectMapper.subjectsToDto(subjectRepository.findSubjectsByGroupId(id));
+    }
 }

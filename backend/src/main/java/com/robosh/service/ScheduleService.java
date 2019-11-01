@@ -1,6 +1,9 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.ScheduleDto;
+import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.entity.Group;
+import com.robosh.data.mapping.GroupMapper;
 import com.robosh.data.mapping.ScheduleMapper;
 import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.exception.ResourceNotFoundException;
@@ -45,4 +48,5 @@ public class ScheduleService {
         scheduleRepository.delete(scheduleMapper.dtoToSchedule(findById(id)));
         return ResponseEntity.ok().build();
     }
+
 }
