@@ -6,6 +6,7 @@ import com.robosh.data.repository.TeacherRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,15 +15,18 @@ import java.util.List;
 public class TeacherService {
 
     private TeacherRepository teacherRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
     private TeacherMapper teacherMapper;
 
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository) {
+    public TeacherService(TeacherRepository teacherRepository, BCryptPasswordEncoder passwordEncoder) {
         this.teacherRepository = teacherRepository;
+        this.passwordEncoder = passwordEncoder;
         teacherMapper = TeacherMapper.INSTANCE;
     }
 
     public TeacherDto save(TeacherDto teacherDto) {
+        teacherDto.setPassword(passwordEncoder.encode(teacherDto.getPassword()));
         return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
     }
 

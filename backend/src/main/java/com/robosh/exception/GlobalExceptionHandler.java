@@ -2,7 +2,6 @@ package com.robosh.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -17,12 +16,12 @@ public class GlobalExceptionHandler {
 //    }
 
     @ExceptionHandler(value = {EntityNotFoundException.class})
-    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex){
+    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(value = {AuthenticationException.class})
-    public ResponseEntity handleAuthenticationException(AuthenticationException ex){
+    public ResponseEntity handleAuthenticationException(AuthenticationException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
 }
