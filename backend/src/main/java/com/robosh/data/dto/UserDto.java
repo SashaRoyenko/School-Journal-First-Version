@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class UserDto {
 //todo add validation
-    protected Long idPerson;
+    protected Long id;
 
     protected String firstName;
 

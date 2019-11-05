@@ -19,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_person")
-    protected Long idPerson;
+    protected Long id;
 
     @NotNull
     @NotEmpty

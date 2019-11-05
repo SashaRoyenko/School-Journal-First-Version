@@ -32,7 +32,7 @@ public class ScheduleService {
         return scheduleMapper.schedulesToDto(scheduleRepository.saveAll(scheduleMapper.dtoToSchedules(scheduleDto)));
     }
 
-    public List<ScheduleDto> findByGroup(Long id) {
+    public List<ScheduleDto> findByGroupId(Long id) {
         return scheduleMapper.schedulesToDto(scheduleRepository.findByGroupId(id));
     }
 

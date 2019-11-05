@@ -59,6 +59,6 @@ public class MainController {
 
     @GetMapping("/teachers/{id}")
     public List<TeacherDto> getGroupTeachers(@PathVariable("id") Long id){
-        return teacherService.findTeachersByGroupId(id);
+        return teacherService.findTeacherByGroupId(id);
     }
 }

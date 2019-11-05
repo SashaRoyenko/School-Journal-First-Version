@@ -141,7 +141,7 @@ public class AdminController {
     @GetMapping("/schedule/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public List<ScheduleDto> getSchedule(@PathVariable Long id) {
-        return scheduleService.findByGroup(id);
+        return scheduleService.findByGroupId(id);
     }
 
     @DeleteMapping("/schedule/{id}")

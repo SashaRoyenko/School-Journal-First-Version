@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface StudentMapper {
@@ -14,4 +16,6 @@ public interface StudentMapper {
     StudentDto studentToDto(Student student);
 
     Student dtoToStudent(StudentDto studentDto);
+
+    List<StudentDto> studentsToDto(List<Student> students);
 }

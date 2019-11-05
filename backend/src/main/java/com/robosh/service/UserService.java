@@ -49,7 +49,7 @@ public class UserService {
 
     public UserDto update(UserDto userDto) {
         User updateUser = userMapper.dtoToUser(userDto);
-        findById(updateUser.getIdPerson());
+        findById(updateUser.getId());
         return userMapper.userToDto(userRepository.save(updateUser));
     }
 

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.math.BigInteger;
 import java.util.List;
 
 @Data
@@ -18,13 +19,13 @@ import java.util.List;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_group")
+    @Column(name = "id_class")
     private Long id;
 
     @NotNull
     @NotEmpty
     @NotBlank
-    @Column(nullable = true, unique = true)
+    @Column(name = "class_code", unique = true)
     @Pattern(regexp = "\\d{1,2}+[-]+[А-ЯЇ]")
     private String groupCode;
 

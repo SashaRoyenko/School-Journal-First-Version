@@ -1,6 +1,5 @@
 package com.robosh.service;
 
-
 import com.robosh.data.dto.GroupDto;
 import com.robosh.data.mapping.GroupMapper;
 import com.robosh.data.repository.GroupRepository;
@@ -50,5 +49,9 @@ public class GroupService {
         return groupMapper.groupToDto(groupRepository.findByGroupCode(code).orElseThrow(
                 () -> new ResourceNotFoundException("Group", "code", code)
         ));
+    }
+
+    public List<GroupDto> findGroupByTeacherId(Long id) {
+        return groupMapper.groupsToDto(groupRepository.findGroupByTeacherId(id));
     }
 }

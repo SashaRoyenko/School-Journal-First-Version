@@ -30,7 +30,7 @@ public class TeacherService {
         return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
     }
 
-    public List<TeacherDto> findAll(){
+    public List<TeacherDto> findAll() {
         return teacherMapper.teachersToDto(teacherRepository.findAll());
     }
 
@@ -40,12 +40,13 @@ public class TeacherService {
         ));
     }
 
-    public ResponseEntity<?> delete(Long id){
+    public ResponseEntity<?> delete(Long id) {
         teacherRepository.delete(teacherMapper.dtoToTeacher(findById(id)));
         return ResponseEntity.ok().build();
     }
 
-    public List<TeacherDto> findTeachersByGroupId(Long id){
-        return teacherMapper.teachersToDto(teacherRepository.findTeachersByGroupId(id));
+    public List<TeacherDto> findTeacherByGroupId(Long id) {
+        return teacherMapper.teachersToDto(teacherRepository.findTeacherByGroupId(id));
     }
+
 }

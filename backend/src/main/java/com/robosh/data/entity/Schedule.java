@@ -24,7 +24,7 @@ public class Schedule {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "id_group", nullable = true)
+    @JoinColumn(name = "id_class", nullable = true)
     private Group group;
 
     @Pattern(regexp = "[\\d]+")
