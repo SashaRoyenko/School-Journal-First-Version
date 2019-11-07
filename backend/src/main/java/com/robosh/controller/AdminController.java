@@ -71,6 +71,7 @@ public class AdminController {
 
     @PostMapping("/parent")
     public void saveParent(@RequestBody ParentDto parentDto) {
+        parentService.save(parentDto);
     }
 
     @PatchMapping("/parent/{id}")
