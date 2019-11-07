@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, includeFieldNames = true)
@@ -19,9 +21,8 @@ public class ParentDto extends UserDto {
     private String email2;
 
     private String phone2;
-//    todo what to do with this field?
-//    private List<StudentDto> students;
+
+    private List<StudentDto> students;
 
     private Role role = Role.PARENT;
-
 }

@@ -1,8 +1,6 @@
 package com.robosh.data.dto;
 
 import com.robosh.data.entity.Address;
-import com.robosh.data.entity.Group;
-import com.robosh.data.entity.Parent;
 import com.robosh.data.enumeration.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,10 +16,5 @@ public class StudentDto extends UserDto {
 
     private Address address;
 
-    private Group group;
-
-    private Parent parent;
-
     private Role role = Role.STUDENT;
-
 }
