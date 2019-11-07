@@ -1,0 +1,16 @@
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    }
+
+.header {
+    grid-area: header;
+    display: grid;
+}
+
+.header{
+background-color: #999;
+color: white;
+grid-row-end: auto;
+}
