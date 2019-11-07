@@ -1,4 +1,4 @@
-e-rozklad is a study project which is develop by 4 developers: 1 front-end and 3 back-end developers
+e-rozklad is a study project which is develop by 4 developers: 2 front-end and 2 back-end developers
 
 ################
 Git flow is next:
