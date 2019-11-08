@@ -71,6 +71,7 @@ public class AdminController {
 
     @PostMapping("/parent")
     public void saveParent(@RequestBody ParentDto parentDto) {
+        parentService.save(parentDto);
     }
 
     @PatchMapping("/parent/{id}")
@@ -122,7 +123,6 @@ public class AdminController {
     }
 
     @GetMapping("/subject")
-    @ResponseStatus(HttpStatus.CREATED)
     public List<SubjectDto> getSubject() {
         return subjectService.findAll();
     }
@@ -139,7 +139,6 @@ public class AdminController {
     }
 
     @GetMapping("/schedule/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public List<ScheduleDto> getSchedule(@PathVariable Long id) {
         return scheduleService.findByGroupId(id);
     }

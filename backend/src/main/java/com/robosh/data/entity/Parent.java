@@ -41,32 +41,22 @@ public class Parent extends User {
         this.students = students;
     }
 
-    @NotEmpty
-    @NotBlank
     @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String firstName2;
 
-    @NotEmpty
-    @NotBlank
     @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String secondName2;
 
-    @NotEmpty
-    @NotBlank
     @Nullable
     @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
     private String lastName2;
 
-    @NotEmpty
-    @NotBlank
     @Nullable
     @Pattern(regexp = "[A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8}")
     private String email2;
 
-    @NotEmpty
-    @NotBlank
     @Nullable
     @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
     private String phone2;
