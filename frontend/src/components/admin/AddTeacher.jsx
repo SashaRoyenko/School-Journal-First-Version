@@ -32,7 +32,7 @@ const AddTeacher = () => {
                         defaultValue=""
                     />
                     <Form.Control.Feedback type="invalid">
-                        Будь ласка напишіть логін.
+                        Будь ласка, напишіть логін.
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="4" controlId="validationCustomTel">
