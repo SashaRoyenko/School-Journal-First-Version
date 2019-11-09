@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -24,13 +23,13 @@ public class Teacher extends User {
                    String secondName, String lastName,
                    String login, String password,
                    String email, String phone, Role role,
-                   Address address, Boolean active) {
+                   String address, Boolean active) {
         super(id, firstName, secondName, lastName, password, email, phone, role, active);
         this.address = address;
     }
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_address")
-    private Address address;
+    @NotEmpty
+    @NotBlank
+    private String address;
 }

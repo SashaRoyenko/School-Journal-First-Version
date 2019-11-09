@@ -1,6 +1,5 @@
 package com.robosh.data.dto;
 
-import com.robosh.data.entity.Address;
 import com.robosh.data.entity.Group;
 import com.robosh.data.enumeration.Role;
 import lombok.Data;
@@ -15,7 +14,7 @@ import java.util.Date;
 public class StudentDto extends UserDto {
     private Date birthDate;
 
-    private Address address;
+    private String address;
 
     private Group group;
 

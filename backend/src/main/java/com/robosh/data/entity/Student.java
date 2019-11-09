@@ -4,6 +4,9 @@ import com.robosh.data.enumeration.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -21,7 +24,7 @@ public class Student extends User {
                    Date birthDate, String login,
                    String password, String email,
                    String phone, Role role,
-                   Address address, Group group, Boolean active){
+                   String address, Group group, Boolean active) {
         super(id, firstName, secondName, lastName, password, email, phone, role, active);
         this.birthDate = birthDate;
         this.address = address;
@@ -31,11 +34,10 @@ public class Student extends User {
     @Column(nullable = true)
     private Date birthDate;
 
-
-    //todo replace
-    @OneToOne
-    @JoinColumn(name = "id_address", nullable = true)
-    private Address address;
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String address;
 
     //todo discuss
     @ManyToOne
