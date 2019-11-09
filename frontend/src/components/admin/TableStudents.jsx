@@ -3,14 +3,17 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 import TableRow from './TableRow'
 import { Navbar, Nav, Button, Form } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
-const MyTable = () => {
+const TableStudents = () => {
     return (
         <div>
-            <h1>Вчителі</h1>
+            <h1>Учні</h1>
             <Navbar bg="light">
                 <Nav className="mr-auto">
-                    <Button href="/addTeacher">+ Вчитель</Button>
+                    <LinkContainer to="/add_student">
+                        <Button >+ Учень</Button>
+                    </LinkContainer>                    
                 </Nav>               
                 <Form inline>
                     <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
@@ -20,23 +23,21 @@ const MyTable = () => {
             <Table responsive striped bordered hover variant="light">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
+                        <th>Прізвище</th>
+                        <th>Ім'я</th>
+                        <th>Побатькові</th>
+                        <th>E-mail</th>
+                        <th>Телефон</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <TableRow surname='Storozhuk' name='Kostya' second_name='Batkovich' subject='Math' age='35'/>
-                    <TableRow surname='Bortnichuk' name='Nikita' second_name='Batkovich' subject='English' age='32'/>
+                    <TableRow surname='Mishin' name='Myhaylo' second_name='Batkovich' email='satanist@gmail.com' telnum='+380XXXXXXX5'/>
+                    <TableRow surname='Golub' name='Vitalya' second_name='Batkovich' email='ptichka@ukr.net' telnum='+380XXXXXXX6'/>
                 </tbody>                    
             </Table>
         </div>
     );
 }
 
-export default MyTable;
+export default TableStudents;

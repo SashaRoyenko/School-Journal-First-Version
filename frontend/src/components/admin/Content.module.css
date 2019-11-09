@@ -1,9 +1,0 @@
-.box {
-    background-color: gray;
-    border-radius: 5px;
-    padding: 10px;
-    }
-
-.content {
-    grid-area: content;
-}
