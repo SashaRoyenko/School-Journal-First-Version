@@ -70,16 +70,18 @@ public class AdminController {
     }
 
     @PostMapping("/parent")
-    public void saveParent(@RequestBody ParentDto parentDto) {
-        parentService.save(parentDto);
+    public ParentDto saveParent(@RequestBody ParentDto parentDto) {
+        return parentService.save(parentDto);
     }
 
     @PatchMapping("/parent/{id}")
     public void updateParent(@RequestBody ParentDto parentDto) {
+//        parentService.update(parentDto);
     }
 
     @DeleteMapping("/parent/{id}")
-    public void deleteParent(@RequestBody ParentDto parentDto) {
+    public ResponseEntity<?> deleteParent(@PathVariable(value = "id")  Long id) {
+        return parentService.delete(id);
     }
 
     @PostMapping("/")
