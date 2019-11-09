@@ -25,7 +25,7 @@ public class Teacher extends User {
                    String login, String password,
                    String email, String phone, Role role,
                    Address address, Boolean active) {
-        super(id, firstName, secondName, lastName, login, password, email, phone, role, active);
+        super(id, firstName, secondName, lastName, password, email, phone, role, active);
         this.address = address;
     }
 

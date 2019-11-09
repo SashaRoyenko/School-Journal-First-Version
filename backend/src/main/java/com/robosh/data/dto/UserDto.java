@@ -16,15 +16,12 @@ public class UserDto {
 
     protected String lastName;
 
-    protected String login;
+    protected String email;
 
     @NotNull
     protected String password;
 
-    protected String email;
-
     protected String phone;
 
     protected Role role;
-
 }
