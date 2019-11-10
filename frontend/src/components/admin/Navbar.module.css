@@ -1,7 +1,8 @@
 .box {
-    background-color: #123;
+    
     border-radius: 5px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     }
 
 .sidebar {

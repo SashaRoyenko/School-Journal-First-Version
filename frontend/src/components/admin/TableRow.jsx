@@ -5,11 +5,11 @@ import {Button, ButtonToolbar} from 'react-bootstrap'
 const TableRow = (props) => {
     return (
         <tr>
-            <td>{ props.surname }</td>
-            <td>{ props.name }</td>
-            <td>{ props.second_name }</td>
-            <td>{ props.email }</td>
-            <td>{ props.telnum }</td>
+            <td>{ props.surname }<br/>{ props.surname2 }</td>
+            <td>{ props.name }<br/>{ props.name2 }</td>
+            <td>{ props.second_name }<br/>{ props.second_name2 }</td>
+            <td>{ props.email }<br/>{ props.email2 }</td>
+            <td>{ props.telnum }<br/>{ props.telnum2 }</td>
             <td>
                 <ButtonToolbar>
                     <Button variant="outline-warning" size="sm" className="mr-1">Змінити</Button>

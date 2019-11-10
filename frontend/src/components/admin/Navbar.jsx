@@ -5,39 +5,39 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 const Navbar = () => {
     return (
-        <aside className={`${classes.box} ${classes.sidebar}`}>
+        <aside className={`bg-secondary  ${classes.box} ${classes.sidebar}`}>
             <Nav className="flex-column">
                 <Nav.Item>
-                    <Nav.Link disabled>Користувачі</Nav.Link>
+                    <Nav.Link className="text-light" disabled>Користувачі</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/teachers">
-                        <Nav.Link className="ml-2">Вчителі</Nav.Link>
+                    <LinkContainer to="/admin/teachers">
+                        <Nav.Link className="ml-2 text-light">Вчителі</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/students">
-                        <Nav.Link className="ml-2">Учні</Nav.Link>
+                    <LinkContainer to="/admin/students">
+                        <Nav.Link className="ml-2 text-light">Учні</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/parents">
-                        <Nav.Link className="ml-2">Батьки</Nav.Link>
-                    </LinkContainer>
-                </Nav.Item>
-                <Nav.Item>
-                    <LinkContainer to="/teachers">
-                        <Nav.Link>Предмети</Nav.Link>
+                    <LinkContainer to="/admin/parents">
+                        <Nav.Link className="ml-2 text-light">Батьки</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
                     <LinkContainer to="/teachers">
-                        <Nav.Link>Класи</Nav.Link>
+                        <Nav.Link className="text-light">Предмети</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
                     <LinkContainer to="/teachers">
-                        <Nav.Link>Розклад</Nav.Link>
+                        <Nav.Link className="text-light">Класи</Nav.Link>
+                    </LinkContainer>
+                </Nav.Item>
+                <Nav.Item>
+                    <LinkContainer to="/teachers">
+                        <Nav.Link className="text-light">Розклад</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
             </Nav>
