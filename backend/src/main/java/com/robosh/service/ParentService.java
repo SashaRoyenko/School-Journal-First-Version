@@ -3,14 +3,14 @@ package com.robosh.service;
 import com.robosh.data.dto.ParentDto;
 import com.robosh.data.entity.Parent;
 import com.robosh.data.mapping.ParentMapper;
-import com.robosh.data.mapping.TeacherMapper;
 import com.robosh.data.repository.ParentRepository;
-import com.robosh.data.repository.TeacherRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ParentService {
@@ -31,7 +31,11 @@ public class ParentService {
         return parentMapper.parentToDto(parentRepository.save(parentMapper.dtoToParent(parentDto)));
     }
 
-    public Parent findById(Long id){
+    public ParentDto findByParentId(Long id) {
+        return parentMapper.parentToDto(findById(id));
+    }
+
+    public Parent findById(Long id) {
         return parentRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Parent", "id", id)
         );
@@ -42,4 +46,7 @@ public class ParentService {
         return ResponseEntity.ok().build();
     }
 
+    public List<ParentDto> findAll() {
+        return parentMapper.parentsToDto(parentRepository.findAll());
+    }
 }

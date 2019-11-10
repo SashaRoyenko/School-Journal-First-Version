@@ -21,8 +21,7 @@ public class Student extends User {
     @Builder(builderMethodName = "studentBuilder")
     public Student(Long id, String firstName,
                    String secondName, String lastName,
-                   Date birthDate, String login,
-                   String password, String email,
+                   Date birthDate, String password, String email,
                    String phone, Role role,
                    String address, Group group, Boolean active) {
         super(id, firstName, secondName, lastName, password, email, phone, role, active);

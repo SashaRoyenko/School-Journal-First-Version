@@ -4,6 +4,7 @@ import com.robosh.data.enumeration.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 

@@ -23,7 +23,6 @@ public class AdminController {
     private StudentService studentService;
     private GroupService groupService;
     private SubjectService subjectService;
-    private UserMapper userMapper;
     private ScheduleService scheduleService;
 
     @Autowired
@@ -57,20 +56,45 @@ public class AdminController {
         return userService.delete(id);
     }
 
+    @GetMapping("/student")
+    public List<StudentDto> getStudents() {
+        return studentService.findAll();
+    }
+
+    @GetMapping("/student/{id}")
+    public StudentDto getStudent(@PathVariable("id") Long id) {
+        return studentService.findByStudentId(id);
+    }
+
     @PostMapping("/student")
-    public void saveStudent(@RequestBody StudentDto studentDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public StudentDto saveStudent(@Valid @RequestBody StudentDto studentDto) {
+        return studentService.save(studentDto);
     }
 
     @PatchMapping("/student/{id}")
     public void updateStudent(@RequestBody StudentDto studentDto) {
+        //todo update student
     }
 
     @DeleteMapping("/student/{id}")
-    public void deleteStudent(@RequestBody StudentDto studentDto) {
+    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
+        return studentService.delete(id);
+    }
+
+    @GetMapping("/parent/{id}")
+    public ParentDto getParent(@PathVariable(value = "id") Long id) {
+        return parentService.findByParentId(id);
+    }
+
+    @GetMapping("/parent")
+    public List<ParentDto> getParents() {
+        return parentService.findAll();
     }
 
     @PostMapping("/parent")
-    public ParentDto saveParent(@RequestBody ParentDto parentDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
         return parentService.save(parentDto);
     }
 
@@ -80,14 +104,14 @@ public class AdminController {
     }
 
     @DeleteMapping("/parent/{id}")
-    public ResponseEntity<?> deleteParent(@PathVariable(value = "id")  Long id) {
+    public ResponseEntity<?> deleteParent(@PathVariable(value = "id") Long id) {
         return parentService.delete(id);
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDto saveAdmin(@RequestBody UserDto user) {
-        return userService.save(userMapper.dtoToUser(user));
+    public UserDto saveAdmin(@RequestBody UserDto userDto) {
+        return userService.save(userDto);
     }
 
     // todo find right variant of update
@@ -108,7 +132,6 @@ public class AdminController {
     }
 
     @GetMapping("/group")
-    @ResponseStatus(HttpStatus.CREATED)
     public List<GroupDto> getGroups() {
         return groupService.findAll();
     }
@@ -149,5 +172,4 @@ public class AdminController {
     public ResponseEntity<?> deleteSchedule(@PathVariable(value = "id") Long id) {
         return scheduleService.delete(id);
     }
-
 }

@@ -37,7 +37,13 @@ public class UserService {
         );
     }
 
-    public UserDto save(User user) {
+    public UserDto save(UserDto userDto) {
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        return userMapper.userToDto(userRepository.save(userMapper.dtoToUser(userDto)));
+    }
+
+    //delete in release
+    public UserDto saveUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userMapper.userToDto(userRepository.save(user));
     }

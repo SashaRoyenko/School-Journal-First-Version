@@ -4,7 +4,10 @@ import com.robosh.data.dto.StudentDto;
 import com.robosh.data.entity.Student;
 import com.robosh.data.mapping.StudentMapper;
 import com.robosh.data.repository.StudentRepository;
+import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +15,13 @@ import java.util.List;
 @Service
 public class StudentService {
 
+    private final BCryptPasswordEncoder passwordEncoder;
     private StudentRepository studentRepository;
     private StudentMapper studentMapper;
+
     @Autowired
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.studentRepository = studentRepository;
         studentMapper = StudentMapper.INSTANCE;
     }
@@ -24,4 +30,27 @@ public class StudentService {
         return studentMapper.studentsToDto(studentRepository.findStudentByGroupId(id));
     }
 
+    public StudentDto save(StudentDto studentDto) {
+        studentDto.setPassword(passwordEncoder.encode(studentDto.getPassword()));
+        return studentMapper.studentToDto(studentRepository.save(studentMapper.dtoToStudent(studentDto)));
+    }
+
+    public Student findById(Long id) {
+        return studentRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Student", "id", id)
+        );
+    }
+
+    public StudentDto findByStudentId(Long id) {
+        return studentMapper.studentToDto(findById(id));
+    }
+
+    public ResponseEntity<?> delete(Long id) {
+        studentRepository.delete(findById(id));
+        return ResponseEntity.ok().build();
+    }
+
+    public List<StudentDto> findAll() {
+        return studentMapper.studentsToDto(studentRepository.findAll());
+    }
 }

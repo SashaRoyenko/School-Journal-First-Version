@@ -48,7 +48,7 @@ public class MainController {
         user.setPassword("admin");
         user.setRole(Role.ADMIN);
 
-        userService.save(user);
+        userService.saveUser(user);
     }
 
     @GetMapping("/subjects/{id}")
