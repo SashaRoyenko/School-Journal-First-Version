@@ -32,7 +32,7 @@ public class Parent extends User {
                   String secondName2, String lastName2,
                   String email2, String phone2,
                   List<Student> students, Boolean active) {
-        super(id, firstName, secondName, lastName, login, password, email, phone, role, active);
+        super(id, firstName, secondName, lastName, password, email, phone, role, active);
         this.firstName2 = firstName2;
         this.secondName2 = secondName2;
         this.lastName2 = lastName2;

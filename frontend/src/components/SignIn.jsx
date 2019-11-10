@@ -13,21 +13,21 @@ const SignIn = () => {
             <Row>
                 <Col lg={{ span: 4, offset: 4 }} style={{marginTop: 150}}>
                     <h1>
-                        Sign In
+                        Вхід
                     </h1>
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Login</Form.Label>
-                            <Form.Control type="text" placeholder="Enter login"/>
+                            <Form.Label>Логін</Form.Label>
+                            <Form.Control type="text" placeholder="Введіть логін"/>
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password"/>
+                            <Form.Label>Пароль</Form.Label>
+                            <Form.Control type="password" placeholder="Пароль"/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">
-                            Submit
+                            Увійти
                         </Button>
                     </Form>
                 </Col>

@@ -3,10 +3,10 @@ package com.robosh.data.entity;
 import com.robosh.data.enumeration.Role;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -24,16 +24,23 @@ public class Student extends User {
                    Date birthDate, String login,
                    String password, String email,
                    String phone, Role role,
-                   Address address, Boolean active){
-        super(id, firstName, secondName, lastName, login, password, email, phone, role, active);
+                   String address, Group group, Boolean active) {
+        super(id, firstName, secondName, lastName, password, email, phone, role, active);
         this.birthDate = birthDate;
         this.address = address;
+        this.group = group;
     }
 
     @Column(nullable = true)
     private Date birthDate;
 
-    @OneToOne
-    @JoinColumn(name = "id_address", nullable = true)
-    private Address address;
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String address;
+
+    //todo discuss
+    @ManyToOne
+    @JoinColumn(name = "id_class", nullable = true)
+    private Group group;
 }

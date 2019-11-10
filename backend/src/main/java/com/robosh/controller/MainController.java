@@ -45,7 +45,6 @@ public class MainController {
         user.setLastName("Admin");
         user.setEmail("admin@admin.com");
         user.setPhone("+380982827486");
-        user.setLogin("admin");
         user.setPassword("admin");
         user.setRole(Role.ADMIN);
 

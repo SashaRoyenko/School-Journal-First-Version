@@ -25,7 +25,7 @@ public class LoginController {
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String ACCESS_CONTROL = "Access-Control-Expose-Headers";
     private static final String MESSAGE_WRONG_PASSWORD = "Invalid password";
-    private static final String MESSAGE_WRONG_LOGIN = "Invalid login";
+    private static final String MESSAGE_WRONG_LOGIN = "Invalid email";
     private final AuthenticationManager authenticationManager;
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -47,8 +47,8 @@ public class LoginController {
     }
 
     private String getToken(LoginDto loginDto) {
-        String login = loginDto.getLogin();
-        if (userService.findByLogin(login).isPresent()) {
+        String email = loginDto.getEmail();
+        if (userService.findByEmail(email).isPresent()) {
             try {
                 return getAuthenticationToken(loginDto);
             } catch (BadCredentialsException e) {
@@ -60,12 +60,12 @@ public class LoginController {
     }
 
     private String getAuthenticationToken(LoginDto loginDto) {
-        String username = loginDto.getLogin();
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, loginDto.getPassword()));
-        User user = userService.findByLogin(username)
+        String email = loginDto.getEmail();
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, loginDto.getPassword()));
+        User user = userService.findByEmail(email)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User with username: " + username + " not found")
+                        new UsernameNotFoundException("User with email: " + email + " not found")
                 );
-        return jwtTokenProvider.createToken(username, user.getRole());
+        return jwtTokenProvider.createToken(email, user.getRole());
     }
 }

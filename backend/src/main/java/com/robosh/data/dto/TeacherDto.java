@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class TeacherDto extends UserDto {
 
     @NotNull
-    private AddressDto address;
+    private String address;
 
     private Role role = Role.TEACHER;
 }

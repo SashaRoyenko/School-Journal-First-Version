@@ -1,11 +1,14 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.ParentDto;
+import com.robosh.data.entity.Parent;
 import com.robosh.data.mapping.ParentMapper;
 import com.robosh.data.mapping.TeacherMapper;
 import com.robosh.data.repository.ParentRepository;
 import com.robosh.data.repository.TeacherRepository;
+import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,15 @@ public class ParentService {
         return parentMapper.parentToDto(parentRepository.save(parentMapper.dtoToParent(parentDto)));
     }
 
-//    teacherDto.setPassword(passwordEncoder.encode(teacherDto.getPassword()));
-//        return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
+    public Parent findById(Long id){
+        return parentRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Parent", "id", id)
+        );
+    }
+
+    public ResponseEntity<?> delete(Long id) {
+        parentRepository.delete(findById(id));
+        return ResponseEntity.ok().build();
+    }
+
 }
