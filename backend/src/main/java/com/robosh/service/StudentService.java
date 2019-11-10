@@ -20,8 +20,8 @@ public class StudentService {
         studentMapper = StudentMapper.INSTANCE;
     }
 
-//    public List<StudentDto> findStudentByGroupId(Long id){
-////        return studentMapper.studentsToDto(studentRepository.findStudentByGroupId(id));
-//    }
+    public List<StudentDto> findStudentByGroupId(Long id){
+        return studentMapper.studentsToDto(studentRepository.findStudentByGroupId(id));
+    }
 
 }

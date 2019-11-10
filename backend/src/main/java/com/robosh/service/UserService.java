@@ -27,8 +27,8 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Optional<User> findByLogin(String login) {
-        return userRepository.findByLogin(login);
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public User findById(Long id) {

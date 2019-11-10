@@ -44,10 +44,10 @@ public class TeacherController {
         return groupService.findGroupByTeacherId(id);
     }
 
-//    @GetMapping("/groups/group/{id}/students")
-//    public List<StudentDto> getGroupStudents(@PathVariable("id") Long id){
-//        return studentService.findStudentByGroupId(id);
-//    }
+    @GetMapping("/groups/group/{id}/students")
+    public List<StudentDto> getGroupStudents(@PathVariable("id") Long id){
+        return studentService.findStudentByGroupId(id);
+    }
 
 
     @GetMapping("/{teacherId}/groups/group/{groupId}")

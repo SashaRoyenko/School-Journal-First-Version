@@ -3,14 +3,12 @@ package com.robosh.data.mapping;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Teacher;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper(uses = {AddressMapper.class})
+@Mapper
 @Component
 public interface TeacherMapper {
     TeacherMapper INSTANCE = Mappers.getMapper(TeacherMapper.class);

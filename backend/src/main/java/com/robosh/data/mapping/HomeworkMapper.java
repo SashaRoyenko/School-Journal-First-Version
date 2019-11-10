@@ -1,7 +1,7 @@
 package com.robosh.data.mapping;
 
 import com.robosh.data.entity.Homework;
-import com.robosh.data.entity.HomeworkDto;
+import com.robosh.data.dto.HomeworkDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
