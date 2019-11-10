@@ -1,11 +1,9 @@
 import React from 'react';
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from "react-bootstrap/Col";
-import App from "../App"
 
 
 const SignIn = () => {
@@ -35,6 +33,7 @@ const SignIn = () => {
                 </Col>
             </Row>
         </Container>
+        
     );
 
 }
