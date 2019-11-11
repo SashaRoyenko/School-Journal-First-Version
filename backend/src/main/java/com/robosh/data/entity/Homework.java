@@ -27,10 +27,14 @@ public class Homework {
     private Date deadline;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "id_subject")
     private Subject subject;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "id_teacher")
     private Teacher teacher;
+
+    @OneToOne
+    @JoinColumn(name = "id_class")
+    private  Group group;
 }

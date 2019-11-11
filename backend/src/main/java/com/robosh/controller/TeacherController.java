@@ -1,18 +1,13 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.GroupDto;
+import com.robosh.data.dto.HomeworkDto;
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.dto.SubjectDto;
-import com.robosh.service.GroupService;
-import com.robosh.service.StudentService;
-import com.robosh.service.SubjectService;
-import com.robosh.service.TeacherService;
+import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,13 +20,15 @@ public class TeacherController {
     private SubjectService subjectService;
     private GroupService groupService;
     private StudentService studentService;
+    private HomeworkService homeworkService;
 
     @Autowired
-    public TeacherController(TeacherService teacherService, SubjectService subjectService, GroupService groupService, StudentService studentService) {
+    public TeacherController(TeacherService teacherService, SubjectService subjectService, GroupService groupService, StudentService studentService, HomeworkService homeworkService) {
         this.teacherService = teacherService;
         this.subjectService = subjectService;
         this.groupService = groupService;
         this.studentService = studentService;
+        this.homeworkService = homeworkService;
     }
 
     @GetMapping("/{id}/subjects")
@@ -55,5 +52,23 @@ public class TeacherController {
         return subjectService.findSubjectByTeacherIdAndGroupId(teacherId, groupId);
     }
 
+    @PostMapping("/homework")
+    public HomeworkDto createHomework(@RequestBody HomeworkDto homeworkDto){
+        return homeworkService.save(homeworkDto);
+    }
 
+    @GetMapping("/homework/{id}")
+    public HomeworkDto getHomeworkById(@PathVariable("id") Long id){
+        return homeworkService.findById(id);
+    }
+
+    @GetMapping("/homework/group/{id}")
+    public List<HomeworkDto> getGroupHomework(@PathVariable("id") Long id){
+        return homeworkService.findByGroupId(id);
+    }
+
+    @GetMapping("/homework/teacher/{id}")
+    public List<HomeworkDto> getTeacherHomework(@PathVariable("id") Long id){
+        return homeworkService.findByTeacherId(id);
+    }
 }

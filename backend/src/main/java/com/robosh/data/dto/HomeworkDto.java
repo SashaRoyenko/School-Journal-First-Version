@@ -1,7 +1,5 @@
 package com.robosh.data.dto;
 
-import com.robosh.data.entity.Subject;
-import com.robosh.data.entity.Teacher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,9 @@ public class HomeworkDto {
 
     private String task;
 
-    private Subject subject;
+    private Long subjectId;
 
-    private Teacher teacher;
+    private Long teacherId;
+
+    private Long groupId;
 }

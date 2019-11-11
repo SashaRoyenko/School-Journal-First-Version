@@ -31,5 +31,6 @@ public class Teacher extends User {
     @NotNull
     @NotEmpty
     @NotBlank
+//    todo add regex
     private String address;
 }
