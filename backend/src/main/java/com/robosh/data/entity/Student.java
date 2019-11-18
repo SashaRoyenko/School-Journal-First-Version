@@ -38,7 +38,6 @@ public class Student extends User {
     @NotEmpty
     private String address;
 
-    //todo discuss
     @ManyToOne
     @JoinColumn(name = "id_class", nullable = true)
     private Group group;

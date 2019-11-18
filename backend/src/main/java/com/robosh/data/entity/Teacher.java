@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -28,9 +29,7 @@ public class Teacher extends User {
         this.address = address;
     }
 
-    @NotNull
-    @NotEmpty
     @NotBlank
-//    todo add regex
+    //todo add regex
     private String address;
 }
