@@ -2,9 +2,11 @@ package com.robosh.service;
 
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.entity.Student;
+import com.robosh.data.entity.User;
 import com.robosh.data.mapping.StudentMapper;
 import com.robosh.data.repository.StudentRepository;
 import com.robosh.exception.ResourceNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,11 +20,13 @@ public class StudentService {
     private final BCryptPasswordEncoder passwordEncoder;
     private StudentRepository studentRepository;
     private StudentMapper studentMapper;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository) {
+    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository, ModelMapper modelMapper) {
         this.passwordEncoder = passwordEncoder;
         this.studentRepository = studentRepository;
+        this.modelMapper = modelMapper;
         studentMapper = StudentMapper.INSTANCE;
     }
 
@@ -45,12 +49,22 @@ public class StudentService {
         return studentMapper.studentToDto(findById(id));
     }
 
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity delete(Long id) {
         studentRepository.delete(findById(id));
         return ResponseEntity.ok().build();
     }
 
     public List<StudentDto> findAll() {
         return studentMapper.studentsToDto(studentRepository.findAll());
+    }
+
+    public StudentDto update(StudentDto studentDto) {
+        if (studentDto.getPassword() != null) {
+            studentDto.setPassword(passwordEncoder.encode(studentDto.getPassword()));
+        }
+        Student currentUser = findById(studentDto.getId());
+        User updateUser = studentMapper.dtoToStudent(studentDto);
+        modelMapper.map(updateUser, currentUser);
+        return studentMapper.studentToDto(studentRepository.save(currentUser));
     }
 }

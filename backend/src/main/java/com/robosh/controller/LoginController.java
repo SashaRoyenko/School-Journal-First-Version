@@ -24,6 +24,7 @@ public class LoginController {
     private static final String TOKEN_HEADER = "Authorization";
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String ACCESS_CONTROL = "Access-Control-Expose-Headers";
+    @SuppressWarnings("squid:S2068")
     private static final String MESSAGE_WRONG_PASSWORD = "Invalid password";
     private static final String MESSAGE_WRONG_LOGIN = "Invalid email";
     private final AuthenticationManager authenticationManager;

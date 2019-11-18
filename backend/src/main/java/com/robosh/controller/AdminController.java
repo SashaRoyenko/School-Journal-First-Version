@@ -1,7 +1,6 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.*;
-import com.robosh.data.mapping.UserMapper;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,13 +45,13 @@ public class AdminController {
         return teacherService.save(teacherDto);
     }
 
-    @PatchMapping("/teacher/{id}")
-    public TeacherDto updateTeacher(@Valid @RequestBody TeacherDto teacherDto) {
-        return teacherService.save(teacherDto);
+    @PutMapping("/teacher")
+    public TeacherDto updateTeacher(@RequestBody TeacherDto teacherDto) {
+        return teacherService.update(teacherDto);
     }
 
     @DeleteMapping("/teacher/{id}")
-    public ResponseEntity<?> deleteTeacher(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteTeacher(@PathVariable(value = "id") Long id) {
         return userService.delete(id);
     }
 
@@ -72,13 +71,13 @@ public class AdminController {
         return studentService.save(studentDto);
     }
 
-    @PatchMapping("/student/{id}")
+    @PutMapping("/student")
     public void updateStudent(@RequestBody StudentDto studentDto) {
-        //todo update student
+        studentService.update(studentDto);
     }
 
     @DeleteMapping("/student/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
+    public ResponseEntity deleteStudent(@PathVariable("id") Long id) {
         return studentService.delete(id);
     }
 
@@ -98,13 +97,13 @@ public class AdminController {
         return parentService.save(parentDto);
     }
 
-    @PatchMapping("/parent/{id}")
+    @PutMapping("/parent")
     public void updateParent(@RequestBody ParentDto parentDto) {
-//        parentService.update(parentDto);
+        parentService.update(parentDto);
     }
 
     @DeleteMapping("/parent/{id}")
-    public ResponseEntity<?> deleteParent(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteParent(@PathVariable(value = "id") Long id) {
         return parentService.delete(id);
     }
 
@@ -114,14 +113,13 @@ public class AdminController {
         return userService.save(userDto);
     }
 
-    // todo find right variant of update
-    @PatchMapping("/{id}")
+    @PutMapping("/")
     public UserDto updateAdmin(@RequestBody UserDto userDto) {
         return userService.update(userDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteAdmin(@PathVariable(value = "id") Long id) {
         return userService.delete(id);
     }
 
@@ -137,7 +135,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/group/{id}")
-    public ResponseEntity<?> deleteGroup(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteGroup(@PathVariable(value = "id") Long id) {
         return groupService.delete(id);
     }
 
@@ -153,7 +151,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/subject/{id}")
-    public ResponseEntity<?> deleteSubject(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteSubject(@PathVariable(value = "id") Long id) {
         return subjectService.delete(id);
     }
 
@@ -169,7 +167,13 @@ public class AdminController {
     }
 
     @DeleteMapping("/schedule/{id}")
-    public ResponseEntity<?> deleteSchedule(@PathVariable(value = "id") Long id) {
+    public ResponseEntity deleteSchedule(@PathVariable(value = "id") Long id) {
         return scheduleService.delete(id);
     }
+
+    @PutMapping("/schedule")
+    public ScheduleDto updateSchedule(@RequestBody ScheduleDto scheduleDto) {
+        return scheduleService.update(scheduleDto);
+    }
+
 }

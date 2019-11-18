@@ -42,7 +42,7 @@ public class HomeworkService {
         return homeworkMapper.homeworkToDto(homeworkRepository.findByTeacherId(id));
     }
 
-    public ResponseEntity<?> deleteById(Long id){
+    public ResponseEntity deleteById(Long id){
         homeworkRepository.delete(homeworkMapper.dtoToHomework(findById(id)));
         return ResponseEntity.ok().build();
     }

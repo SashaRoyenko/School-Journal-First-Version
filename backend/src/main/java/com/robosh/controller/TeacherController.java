@@ -1,9 +1,6 @@
 package com.robosh.controller;
 
-import com.robosh.data.dto.GroupDto;
-import com.robosh.data.dto.HomeworkDto;
-import com.robosh.data.dto.StudentDto;
-import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.dto.*;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +39,7 @@ public class TeacherController {
     }
 
     @GetMapping("/groups/group/{id}/students")
-    public List<StudentDto> getGroupStudents(@PathVariable("id") Long id){
+    public List<StudentDto> getGroupStudents(@PathVariable("id") Long id) {
         return studentService.findStudentByGroupId(id);
     }
 
@@ -53,22 +50,28 @@ public class TeacherController {
     }
 
     @PostMapping("/homework")
-    public HomeworkDto createHomework(@RequestBody HomeworkDto homeworkDto){
+    public HomeworkDto createHomework(@RequestBody HomeworkDto homeworkDto) {
         return homeworkService.save(homeworkDto);
     }
 
     @GetMapping("/homework/{id}")
-    public HomeworkDto getHomeworkById(@PathVariable("id") Long id){
+    public HomeworkDto getHomeworkById(@PathVariable("id") Long id) {
         return homeworkService.findById(id);
     }
 
     @GetMapping("/homework/group/{id}")
-    public List<HomeworkDto> getGroupHomework(@PathVariable("id") Long id){
+    public List<HomeworkDto> getGroupHomework(@PathVariable("id") Long id) {
         return homeworkService.findByGroupId(id);
     }
 
     @GetMapping("/homework/teacher/{id}")
-    public List<HomeworkDto> getTeacherHomework(@PathVariable("id") Long id){
+    public List<HomeworkDto> getTeacherHomework(@PathVariable("id") Long id) {
         return homeworkService.findByTeacherId(id);
+    }
+
+    @PutMapping("/")
+    public TeacherDto updateTeacher(@RequestBody TeacherDto teacherDto)
+    {
+        return teacherService.update(teacherDto);
     }
 }

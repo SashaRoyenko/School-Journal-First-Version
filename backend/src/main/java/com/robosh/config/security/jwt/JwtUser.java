@@ -1,6 +1,5 @@
 package com.robosh.config.security.jwt;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.robosh.data.enumeration.Role;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

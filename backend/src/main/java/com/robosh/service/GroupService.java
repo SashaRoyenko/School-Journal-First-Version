@@ -29,12 +29,12 @@ public class GroupService {
         return groupMapper.groupToDto(groupRepository.save(groupMapper.dtoToGroup(groupDto)));
     }
 
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity delete(Long id) {
         groupRepository.delete(groupMapper.dtoToGroup(findById(id)));
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<?> delete(String code) {
+    public ResponseEntity delete(String code) {
         groupRepository.delete(groupMapper.dtoToGroup(findByCodeGroup(code)));
         return ResponseEntity.ok().build();
     }

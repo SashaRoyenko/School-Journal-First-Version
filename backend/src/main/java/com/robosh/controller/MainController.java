@@ -39,10 +39,11 @@ public class MainController {
 
     @PostMapping("/user/save")
     public void saveUser() {
+        final String ADMIN_NAME = "Admin";
         User user = new User();
-        user.setFirstName("Admin");
-        user.setSecondName("Admin");
-        user.setLastName("Admin");
+        user.setFirstName(ADMIN_NAME);
+        user.setSecondName(ADMIN_NAME);
+        user.setLastName(ADMIN_NAME);
         user.setEmail("admin@admin.com");
         user.setPhone("+380982827486");
         user.setPassword("admin");

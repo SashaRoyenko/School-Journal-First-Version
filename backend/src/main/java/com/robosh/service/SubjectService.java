@@ -33,7 +33,7 @@ public class SubjectService {
         );
     }
 
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity delete(Long id) {
         subjectRepository.delete(subjectMapper.dtoToSubject(findById(id)));
         return ResponseEntity.ok().build();
     }
