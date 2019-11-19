@@ -25,6 +25,9 @@ public class AdminController {
     private ScheduleService scheduleService;
 
     @Autowired
+    private MailSender mailSender;
+
+    @Autowired
     public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService, SubjectService subjectService, ScheduleService scheduleService) {
         this.userService = userService;
         this.teacherService = teacherService;
@@ -33,6 +36,11 @@ public class AdminController {
         this.groupService = groupService;
         this.subjectService = subjectService;
         this.scheduleService = scheduleService;
+    }
+
+    @GetMapping("send/mail")
+    public void sendEmail(){
+        mailSender.send("shhur.nazar2000@gmail.com", "Code", "tesxww2");
     }
 
     @GetMapping("/teacher")
