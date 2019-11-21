@@ -46,4 +46,9 @@ public class HomeworkService {
         homeworkRepository.delete(homeworkMapper.dtoToHomework(findById(id)));
         return ResponseEntity.ok().build();
     }
+
+    public List<HomeworkDto> findByUserIdAndSubjectId(Long userId, Long subjectId){
+        return homeworkMapper.homeworkToDto(homeworkRepository.findByUserIdAndSubjectId(userId, subjectId));
+    }
+
 }
