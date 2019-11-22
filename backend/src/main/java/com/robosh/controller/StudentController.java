@@ -23,9 +23,10 @@ public class StudentController {
     private SubjectService subjectService;
 
     @Autowired
-    public StudentController(HomeworkService homeworkService, ScheduleService scheduleService) {
+    public StudentController(HomeworkService homeworkService, ScheduleService scheduleService, SubjectService subjectService) {
         this.homeworkService = homeworkService;
         this.scheduleService = scheduleService;
+        this.subjectService = subjectService;
     }
 
 //    @GetMapping("/marks")
@@ -33,9 +34,9 @@ public class StudentController {
 //
 //    }
 
-    @GetMapping("/{studentId}/subject/{subjectId}/homework")
-    public List<HomeworkDto> getHomework(@PathVariable("studentId") Long studentId, @PathVariable("subjectId") Long subjectId) {
-        return homeworkService.findByUserIdAndSubjectId(studentId, subjectId);
+    @GetMapping("group/{groupId}/subject/{subjectId}/homework")
+    public List<HomeworkDto> getHomework(@PathVariable("studentId") Long groupId, @PathVariable("subjectId") Long subjectId) {
+        return homeworkService.findByGroupIdAndSubjectId(groupId, subjectId);
     }
 
     @GetMapping("schedule/group/{id}")

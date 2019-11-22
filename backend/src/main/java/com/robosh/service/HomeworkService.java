@@ -47,8 +47,8 @@ public class HomeworkService {
         return ResponseEntity.ok().build();
     }
 
-    public List<HomeworkDto> findByUserIdAndSubjectId(Long userId, Long subjectId){
-        return homeworkMapper.homeworkToDto(homeworkRepository.findByUserIdAndSubjectId(userId, subjectId));
+    public List<HomeworkDto> findByGroupIdAndSubjectId(Long groupId, Long subjectId){
+        return homeworkMapper.homeworkToDto(homeworkRepository.findByGroupIdAndSubjectId(groupId, subjectId));
     }
 
 }
