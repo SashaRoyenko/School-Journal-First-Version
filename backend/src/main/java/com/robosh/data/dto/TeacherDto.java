@@ -4,6 +4,7 @@ import com.robosh.data.enumeration.Role;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -14,6 +15,9 @@ public class TeacherDto extends UserDto {
 
     @NotNull
     private String address;
+
+    //todo
+    private List<Long> subjectId;
 
     private Role role = Role.TEACHER;
 }

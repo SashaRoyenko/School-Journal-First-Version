@@ -38,11 +38,6 @@ public class Schedule {
 
     @NotNull
     @OneToOne
-    @JoinColumn(name = "id_subject")
-    private Subject subject;
-
-    @NotNull
-    @OneToOne
     @JoinColumn(name = "id_teacher")
     private Teacher teacher;
 }

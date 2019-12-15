@@ -4,7 +4,12 @@ import com.robosh.data.enumeration.Role;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +22,7 @@ import javax.validation.constraints.NotBlank;
 public class Teacher extends User {
 
     @Builder(builderMethodName = "teacherBuilder")
-    public Teacher(Long id, String firstName,
+    public Teacher(Long id, String firstName, Subject subject,
                    String secondName, String lastName, String password,
                    String email, String phone, Role role,
                    String address, Boolean active) {
@@ -28,4 +33,8 @@ public class Teacher extends User {
     @NotBlank
     //todo add regex
     private String address;
+
+    @OneToMany
+    @JoinColumn(name = "id_subject")
+    private List<Subject> subjects;
 }
