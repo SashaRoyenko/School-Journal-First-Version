@@ -49,7 +49,6 @@ public class Parent extends User {
     private String phone2;
 
     @OneToMany
-    @JoinColumn(name = "id_list_student")
     @ElementCollection
     private List<Student> students;
 }

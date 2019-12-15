@@ -2,6 +2,8 @@ package com.robosh.controller;
 
 import com.robosh.data.dto.SubjectDto;
 import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.entity.Subject;
+import com.robosh.data.entity.Teacher;
 import com.robosh.data.entity.User;
 import com.robosh.data.enumeration.Role;
 import com.robosh.service.StudentService;
@@ -58,6 +60,8 @@ public class MainController {
     @PostMapping("/init")
     public void initDb() {
         initAdmins();
+        initSubjects();
+        initTeachers();
     }
 
     private void initAdmins() {
@@ -103,13 +107,172 @@ public class MainController {
         userService.saveUser(admin4);
     }
 
+    private void initSubjects() {
+        Subject subject1 = new Subject();
+        subject1.setName("Українська мова");
+        Subject subject2 = new Subject();
+        subject2.setName("Англійська мова");
+        Subject subject3 = new Subject();
+        subject3.setName("Російська мова");
+        Subject subject4 = new Subject();
+        subject4.setName("Математика");
+        Subject subject5 = new Subject();
+        subject5.setName("Алгебра");
+        Subject subject6 = new Subject();
+        subject6.setName("Геометрія");
+        Subject subject7 = new Subject();
+        subject7.setName("Фізика");
+        Subject subject8 = new Subject();
+        subject8.setName("Біологія");
+        Subject subject9 = new Subject();
+        subject9.setName("Хімія");
+        Subject subject10 = new Subject();
+        subject10.setName("Фізкультура");
+        Subject subject11 = new Subject();
+        subject11.setName("Трудове навчання");
+        subjectService.saveSubject(subject1);
+        subjectService.saveSubject(subject2);
+        subjectService.saveSubject(subject3);
+        subjectService.saveSubject(subject4);
+        subjectService.saveSubject(subject5);
+        subjectService.saveSubject(subject6);
+        subjectService.saveSubject(subject7);
+        subjectService.saveSubject(subject8);
+        subjectService.saveSubject(subject9);
+        subjectService.saveSubject(subject10);
+        subjectService.saveSubject(subject11);
+    }
+
+    private void initTeachers() {
+        Teacher teacher1 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher2 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher3 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher4 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher5 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher6 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher7 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher8 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher9 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher10 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+
+        Teacher teacher11 = Teacher.teacherBuilder()
+                .firstName("Божена")
+                .secondName("Романівна")
+                .lastName("Коваль")
+                .email("bozhena_koval@admin.com")
+                .phone("+380981827486")
+                .password("teacher1")
+                .role(Role.TEACHER)
+                .address("Пушкіна 12")
+                .build();
+    }
+
     @GetMapping("/subjects/{id}")
-    public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id){
+    public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id) {
         return subjectService.findSubjectsByGroupId(id);
     }
 
     @GetMapping("/teachers/{id}")
-    public List<TeacherDto> getGroupTeachers(@PathVariable("id") Long id){
+    public List<TeacherDto> getGroupTeachers(@PathVariable("id") Long id) {
         return teacherService.findTeacherByGroupId(id);
     }
 }
