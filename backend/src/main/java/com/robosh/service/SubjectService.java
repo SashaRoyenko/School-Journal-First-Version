@@ -1,6 +1,7 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.SubjectMapper;
 import com.robosh.data.repository.SubjectRepository;
 import com.robosh.exception.ResourceNotFoundException;
@@ -19,6 +20,10 @@ public class SubjectService {
     @Autowired
     public SubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
+    }
+
+    public Subject saveSubject(Subject subject) {
+        return subjectRepository.save(subject);
     }
 
     public SubjectDto save(SubjectDto subjectDto) {
