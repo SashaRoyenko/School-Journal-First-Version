@@ -19,6 +19,7 @@ public interface ScheduleMapper {
             @Mapping(source = "cabinet", target = "cabinet"),
             @Mapping(source = "dayOfWeek", target = "dayOfWeek"),
             @Mapping(source = "numberOfSubject", target = "numberOfSubject"),
+            @Mapping(source = "subjectId", target = "subject.id"),
             @Mapping(source = "teacherId", target = "teacher.id")
     })
     Schedule dtoToSchedule(ScheduleDto scheduleDto);

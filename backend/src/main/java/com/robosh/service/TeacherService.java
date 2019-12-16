@@ -30,6 +30,10 @@ public class TeacherService {
         teacherMapper = TeacherMapper.INSTANCE;
     }
 
+    public Teacher saveTeacher(Teacher teacher) {
+        return teacherRepository.save(teacher);
+    }
+
     public TeacherDto save(TeacherDto teacherDto) {
         teacherDto.setPassword(passwordEncoder.encode(teacherDto.getPassword()));
         return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));

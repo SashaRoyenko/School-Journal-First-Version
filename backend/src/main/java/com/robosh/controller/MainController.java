@@ -59,8 +59,8 @@ public class MainController {
 
     @PostMapping("/init")
     public void initDb() {
-        initAdmins();
-        initSubjects();
+//        initAdmins();
+//        initSubjects();
         initTeachers();
     }
 
@@ -144,29 +144,32 @@ public class MainController {
     }
 
     private void initTeachers() {
-        Teacher teacher1 = Teacher.teacherBuilder()
+        Teacher teacher1 = Teacher.builder()
                 .firstName("Божена")
                 .secondName("Романівна")
                 .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
                 .phone("+380981827486")
+                .email("bozhena_koval@teacher.com")
                 .password("teacher1")
                 .role(Role.TEACHER)
                 .address("Пушкіна 12")
+                .active(true)
+                .build();
+        System.out.println(teacher1);
+
+        Teacher teacher2 = Teacher.builder()
+                .firstName("Ірина")
+                .secondName("Борисівна")
+                .lastName("Годя")
+                .email("godia_ira@admin.com")
+                .phone("+380981867486")
+                .password("teacher2")
+                .role(Role.TEACHER)
+                .address("Василя 4")
                 .build();
 
-        Teacher teacher2 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
 
-        Teacher teacher3 = Teacher.teacherBuilder()
+        Teacher teacher3 = Teacher.builder()
                 .firstName("Божена")
                 .secondName("Романівна")
                 .lastName("Коваль")
@@ -176,94 +179,95 @@ public class MainController {
                 .role(Role.TEACHER)
                 .address("Пушкіна 12")
                 .build();
-
-        Teacher teacher4 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher5 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher6 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher7 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher8 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher9 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher10 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
-
-        Teacher teacher11 = Teacher.teacherBuilder()
-                .firstName("Божена")
-                .secondName("Романівна")
-                .lastName("Коваль")
-                .email("bozhena_koval@admin.com")
-                .phone("+380981827486")
-                .password("teacher1")
-                .role(Role.TEACHER)
-                .address("Пушкіна 12")
-                .build();
+//
+//        Teacher teacher4 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher5 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher6 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher7 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher8 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher9 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher10 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+//
+//        Teacher teacher11 = Teacher.teacherBuilder()
+//                .firstName("Божена")
+//                .secondName("Романівна")
+//                .lastName("Коваль")
+//                .email("bozhena_koval@admin.com")
+//                .phone("+380981827486")
+//                .password("teacher1")
+//                .role(Role.TEACHER)
+//                .address("Пушкіна 12")
+//                .build();
+        teacherService.saveTeacher(teacher1);
     }
 
     @GetMapping("/subjects/{id}")
