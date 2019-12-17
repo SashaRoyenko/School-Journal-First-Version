@@ -13,12 +13,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Student extends User {
 
-    @Builder(builderMethodName = "studentBuilder")
+    @Builder
     public Student(Long id, String firstName,
                    String secondName, String lastName,
                    Date birthDate, String password, String email,
