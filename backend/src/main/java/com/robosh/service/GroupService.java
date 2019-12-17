@@ -1,6 +1,7 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.GroupDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.mapping.GroupMapper;
 import com.robosh.data.repository.GroupRepository;
 import com.robosh.exception.ResourceNotFoundException;
@@ -23,6 +24,10 @@ public class GroupService {
 
     public List<GroupDto> findAll() {
         return groupMapper.groupsToDto(groupRepository.findAll());
+    }
+
+    public Group saveGroup(Group group) {
+        return groupRepository.save(group);
     }
 
     public GroupDto save(GroupDto groupDto) {

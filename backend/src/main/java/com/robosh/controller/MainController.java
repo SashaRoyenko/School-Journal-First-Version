@@ -1,24 +1,22 @@
 package com.robosh.controller;
 
-import com.robosh.data.dto.SubjectDto;
-import com.robosh.data.dto.TeacherDto;
-import com.robosh.data.entity.Subject;
-import com.robosh.data.entity.Teacher;
-import com.robosh.data.entity.User;
-import com.robosh.data.enumeration.Role;
-import com.robosh.service.StudentService;
-import com.robosh.service.SubjectService;
-import com.robosh.service.TeacherService;
-import com.robosh.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+        import com.robosh.data.dto.SubjectDto;
+        import com.robosh.data.dto.TeacherDto;
+        import com.robosh.data.entity.Group;
+        import com.robosh.data.entity.Subject;
+        import com.robosh.data.entity.Teacher;
+        import com.robosh.data.entity.User;
+        import com.robosh.data.enumeration.Role;
+        import com.robosh.service.*;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.security.core.context.SecurityContextHolder;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.web.bind.annotation.GetMapping;
+        import org.springframework.web.bind.annotation.PathVariable;
+        import org.springframework.web.bind.annotation.PostMapping;
+        import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+        import java.util.List;
 
 @Controller
 @RestController
@@ -27,13 +25,15 @@ public class MainController {
     private SubjectService subjectService;
     private TeacherService teacherService;
     private StudentService studentService;
+    private GroupService groupService;
 
     @Autowired
-    public MainController(UserService userService, SubjectService subjectService, TeacherService teacherService, StudentService studentService) {
+    public MainController(UserService userService, SubjectService subjectService, TeacherService teacherService, StudentService studentService, GroupService groupService) {
         this.userService = userService;
         this.subjectService = subjectService;
         this.teacherService = teacherService;
         this.studentService = studentService;
+        this.groupService = groupService;
     }
 
 
@@ -61,6 +61,7 @@ public class MainController {
     public void initDb() {
         initAdmins();
         initSubjects();
+        initGroups();
         initTeachers();
     }
 
@@ -141,6 +142,21 @@ public class MainController {
         subjectService.saveSubject(subject9);
         subjectService.saveSubject(subject10);
         subjectService.saveSubject(subject11);
+    }
+
+    private void initGroups() {
+        Group group1 = new Group();
+        group1.setGroupCode("1-А");
+        Group group2 = new Group();
+        group2.setGroupCode("1-Б");
+        Group group3 = new Group();
+        group3.setGroupCode("2-А");
+        Group group4 = new Group();
+        group4.setGroupCode("2-Б");
+        groupService.saveGroup(group1);
+        groupService.saveGroup(group2);
+        groupService.saveGroup(group3);
+        groupService.saveGroup(group4);
     }
 
     private void initTeachers() {
@@ -287,6 +303,8 @@ public class MainController {
         teacherService.saveTeacher(teacher10);
         teacherService.saveTeacher(teacher11);
     }
+
+
 
     @GetMapping("/subjects/{id}")
     public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id) {

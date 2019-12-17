@@ -33,7 +33,7 @@ public class StudentController {
 //    public MarksDto getMarks(){
 //
 //    }
-
+    //todo check
     @GetMapping("group/{groupId}/subject/{subjectId}/homework")
     public List<HomeworkDto> getHomework(@PathVariable("studentId") Long groupId, @PathVariable("subjectId") Long subjectId) {
         return homeworkService.findByGroupIdAndSubjectId(groupId, subjectId);
