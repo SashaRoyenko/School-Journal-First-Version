@@ -39,19 +39,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/user/save").permitAll()
-                .antMatchers("/").hasAuthority(ADMIN.name())
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(ADMIN_ENDPOINT).hasAuthority(ADMIN.name())
-                .antMatchers(TEACHER_ENDPOINT).hasAuthority(TEACHER.name())
-                .antMatchers(STUDENT_ENDPOINT).hasAuthority(STUDENT.name())
-                .antMatchers(PARENT_ENDPOINT).hasAuthority(PARENT.name())
-                .and()
-                .apply(new JwtConfigurer(jwtTokenProvider))
-                .and()
-                .logout();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/user/save").permitAll()
+//                .antMatchers("/").hasAuthority(ADMIN.name())
+//                .antMatchers(LOGIN_ENDPOINT).permitAll()
+//                .antMatchers(ADMIN_ENDPOINT).hasAuthority(ADMIN.name())
+//                .antMatchers(TEACHER_ENDPOINT).hasAuthority(TEACHER.name())
+//                .antMatchers(STUDENT_ENDPOINT).hasAuthority(STUDENT.name())
+//                .antMatchers(PARENT_ENDPOINT).hasAuthority(PARENT.name())
+//                .and()
+//                .apply(new JwtConfigurer(jwtTokenProvider))
+//                .and()
+//                .logout();
     }
 }
