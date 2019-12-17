@@ -67,4 +67,8 @@ public class StudentService {
         modelMapper.map(updateUser, currentUser);
         return studentMapper.studentToDto(studentRepository.save(currentUser));
     }
+
+    public StudentDto convertStudentToDto(Student student) {
+        return studentMapper.studentToDto(student);
+    }
 }

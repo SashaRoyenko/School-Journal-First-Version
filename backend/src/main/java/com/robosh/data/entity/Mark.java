@@ -17,11 +17,13 @@ public class Mark {
     private Long id;
 
     @Column(name = "mark_value")
-    private int value;
+    private String value;
 
     private Long subjectId;
 
     private Long teacherId;
 
     private Long studentId;
+
+    //todo date
 }

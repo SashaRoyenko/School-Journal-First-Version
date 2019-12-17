@@ -1,22 +1,20 @@
 package com.robosh.controller;
 
-        import com.robosh.data.dto.SubjectDto;
-        import com.robosh.data.dto.TeacherDto;
-        import com.robosh.data.entity.Group;
-        import com.robosh.data.entity.Subject;
-        import com.robosh.data.entity.Teacher;
-        import com.robosh.data.entity.User;
-        import com.robosh.data.enumeration.Role;
-        import com.robosh.service.*;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.security.core.context.SecurityContextHolder;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.PathVariable;
-        import org.springframework.web.bind.annotation.PostMapping;
-        import org.springframework.web.bind.annotation.RestController;
+import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.entity.*;
+import com.robosh.data.enumeration.Role;
+import com.robosh.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        import java.util.List;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RestController
@@ -304,7 +302,20 @@ public class MainController {
         teacherService.saveTeacher(teacher11);
     }
 
-
+    private void initStudents() {
+//        Student student1 = Student.builder()
+//                .firstName("")
+//                .secondName("")
+//                .lastName("")
+//                .email("")
+//                .password("")
+//                .phone("")
+//                .role(Role.STUDENT)
+//                .active(true)
+//                .birthDate(new Date())
+//                .address()
+//                .group()
+    }
 
     @GetMapping("/subjects/{id}")
     public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id) {

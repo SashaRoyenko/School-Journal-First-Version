@@ -31,6 +31,7 @@ public class TeacherService {
     }
 
     public Teacher saveTeacher(Teacher teacher) {
+        teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         return teacherRepository.save(teacher);
     }
 
@@ -68,4 +69,7 @@ public class TeacherService {
         return teacherMapper.teacherToDto(teacherRepository.save(currentUser));
     }
 
+    public TeacherDto convertTeacherToDto(Teacher teacher) {
+        return teacherMapper.teacherToDto(teacher);
+    }
 }
