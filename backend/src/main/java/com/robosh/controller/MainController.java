@@ -305,7 +305,7 @@ public class MainController {
     }
 
     private void initStudents() {
-        Group group = groupService.convertGroupDtoToEntity(groupService.findByCodeGroup("1-А"));
+        Group group1 = groupService.convertGroupDtoToEntity(groupService.findByCodeGroup("1-А"));
         Student student1 = Student.builder()
                 .firstName("Катерина")
                 .secondName("Олегівна")
@@ -315,11 +315,373 @@ public class MainController {
                 .phone("+380974444444")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.JANUARY,11))
+                .birthDate(new Date(2003, Calendar.JANUARY, 11))
                 .address("Васильківська 12")
-                .group(group)
+                .group(group1)
+                .build();
+
+        Student student2 = Student.builder()
+                .firstName("Юлія")
+                .secondName("Петрівна")
+                .lastName("Бондаренко")
+                .email("__585T_@gmai.com")
+                .password("password1")
+                .phone("+380937569845")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.MARCH, 14))
+                .address("Магістральна 2")
+                .group(group1)
+                .build();
+
+        Student student3 = Student.builder()
+                .firstName("Яна")
+                .secondName("Олегівна")
+                .lastName("Верстлер")
+                .email("gK137Dg@gmai.com")
+                .password("password1")
+                .phone("+380924219864")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.JANUARY, 3))
+                .address("Магнітогорська 12")
+                .group(group1)
+                .build();
+
+        Student student4 = Student.builder()
+                .firstName("Юрій")
+                .secondName("Андрійович")
+                .lastName("Висоцький")
+                .email("gK137Dgss@gmai.com")
+                .password("password12")
+                .phone("+380939589649")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2002, Calendar.JANUARY, 17))
+                .address("Магнітогорський 5")
+                .group(group1)
+                .build();
+
+        Student student5 = Student.builder()
+                .firstName("Анна")
+                .secondName("Петрівна")
+                .lastName("Гнап")
+                .email("dsaasdsaddsa@gmai.com")
+                .password("password12")
+                .phone("+380917852599")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2002, Calendar.MAY, 3))
+                .address("Маяковського 5")
+                .group(group1)
+                .build();
+
+        Student student6 = Student.builder()
+                .firstName("Олексій")
+                .secondName("Валерійович")
+                .lastName("Грицюк")
+                .email("sadsadsada@gmai.com")
+                .password("password12")
+                .phone("+380941034728")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.NOVEMBER, 6))
+                .address("Маяковського 88")
+                .group(group1)
+                .build();
+
+        Student student7 = Student.builder()
+                .firstName("Денис")
+                .secondName("Петрович")
+                .lastName("Горваль")
+                .email("sadsadsadasas@gmai.com")
+                .password("password12")
+                .phone("+380902160537")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.SEPTEMBER, 24))
+                .address("Васильківська 43")
+                .group(group1)
+                .build();
+
+        Student student8 = Student.builder()
+                .firstName("Валентин")
+                .secondName("Олексондрович")
+                .lastName("Герасимович")
+                .email("assadsadgfdgew@gmai.com")
+                .password("password12")
+                .phone("+380959801128")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.MAY, 5))
+                .address("Калинова 12")
+                .group(group1)
+                .build();
+
+        Student student9 = Student.builder()
+                .firstName("Микита")
+                .secondName("Олегович")
+                .lastName("Балєєв")
+                .email("ssssnghgngbvtoniuk@gmai.com")
+                .password("password12")
+                .phone("+380964319388")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.MARCH, 5))
+                .address("Калинова 67")
+                .group(group1)
+                .build();
+
+        Student student10 = Student.builder()
+                .firstName("Павло")
+                .secondName("Васильович")
+                .lastName("Артемюк")
+                .email("asdasfsdaaa@gmai.com")
+                .password("password12")
+                .phone("+380965540202")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.JANUARY, 7))
+                .address("Кам'янська 6")
+                .group(group1)
+                .build();
+
+        Group group2 = groupService.convertGroupDtoToEntity(groupService.findByCodeGroup("2-А"));
+
+        Student student11 = Student.builder()
+                .firstName("Марія")
+                .secondName("Олегівна")
+                .lastName("Якимчук")
+                .email("sadasfsdvxzcx@gmai.com")
+                .password("password12")
+                .phone("+380971821467")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.MARCH, 2))
+                .address("Карельський 3")
+                .group(group2)
+                .build();
+
+        Student student12 = Student.builder()
+                .firstName("Ірина")
+                .secondName("Андріїна")
+                .lastName("Якобчук")
+                .email("sadasdcxzc@gmai.com")
+                .password("password12")
+                .phone("+380926749639")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2005, Calendar.FEBRUARY, 1))
+                .address("Карельський 55")
+                .group(group2)
+                .build();
+
+        Student student13 = Student.builder()
+                .firstName("Віталій")
+                .secondName("Ігорович")
+                .lastName("Яворський")
+                .email("sadvfdtresdfcz@gmai.com")
+                .password("password12")
+                .phone("+380931215534")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2005, Calendar.FEBRUARY, 12))
+                .address("Квітуча 32")
+                .group(group2)
+                .build();
+
+        Student student14 = Student.builder()
+                .firstName("Анна")
+                .secondName("Олександрівна")
+                .lastName("Шишкіна")
+                .email("asdcvtrsdcv@gmai.com")
+                .password("password12")
+                .phone("+380904781821")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.SEPTEMBER, 11))
+                .address("Квітуча 77")
+                .group(group2)
+                .build();
+
+        Student student15 = Student.builder()
+                .firstName("Ірина")
+                .secondName("Олегівна")
+                .lastName("Роспопа")
+                .email("bgfdfvcbn@gmai.com")
+                .password("password12")
+                .phone("+380999688307")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.MARCH, 24))
+                .address("Кирилівська 76")
+                .group(group2)
+                .build();
+
+        Student student16 = Student.builder()
+                .firstName("Ірина")
+                .secondName("Валерівна")
+                .lastName("Хилю")
+                .email("sadfghtrdgfd@gmai.com")
+                .password("password12")
+                .phone("+380989844978")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.DECEMBER, 27))
+                .address("Кирилівська 33")
+                .group(group2)
+                .build();
+
+        Student student17 = Student.builder()
+                .firstName("Оксана")
+                .secondName("Остапівна")
+                .lastName("Степура")
+                .email("vbgfmkjlhj@gmai.com")
+                .password("password12")
+                .phone("+380988486456")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.NOVEMBER, 11))
+                .address("Коновала Пилипа 12")
+                .group(group2)
+                .build();
+
+        Student student18 = Student.builder()
+                .firstName("Микола")
+                .secondName("Назарович")
+                .lastName("Спасовка")
+                .email("sdgfhjkhgfcx@gmai.com")
+                .password("password12")
+                .phone("+380938853830")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.FEBRUARY, 4))
+                .address("Коновала Пилипа 33")
+                .group(group2)
+                .build();
+
+        Student student19 = Student.builder()
+                .firstName("Юлія")
+                .secondName("Олександрівна")
+                .lastName("Остапчук")
+                .email("fbghjkjhbvcx@gmai.com")
+                .password("password12")
+                .phone("+380904702956")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2005, Calendar.NOVEMBER, 1))
+                .address("Саксаганського 12")
+                .group(group2)
+                .build();
+
+        Student student20 = Student.builder()
+                .firstName("Владислав")
+                .secondName("Петрович")
+                .lastName("Недзельський")
+                .email("safgnhjytdrfsz@gmai.com")
+                .password("password12")
+                .phone("+380974848514")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.DECEMBER, 22))
+                .address("Саксаганського 44")
+                .group(group2)
+                .build();
+
+        Student student21 = Student.builder()
+                .firstName("Катерина")
+                .secondName("Олегівна")
+                .lastName("Лущик")
+                .email("safvbgfdgfx@gmai.com")
+                .password("password12")
+                .phone("+380914163089")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2005, Calendar.FEBRUARY, 6))
+                .address("Саксаганського 76")
+                .group(group2)
+                .build();
+
+        Student student22 = Student.builder()
+                .firstName("Наталія")
+                .secondName("Юрівна")
+                .lastName("Копернік")
+                .email("sfgjthdf@gmai.com")
+                .password("password12")
+                .phone("+380983900546")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.JUNE, 3))
+                .address("Салютний 65")
+                .group(group2)
+                .build();
+
+        Student student23 = Student.builder()
+                .firstName("Віринея")
+                .secondName("Петрівна")
+                .lastName("Князь")
+                .email("sdsadasfsd@gmai.com")
+                .password("password12")
+                .phone("+380918787919")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.SEPTEMBER, 9))
+                .address("Мазепи Івана 7")
+                .group(group2)
+                .build();
+
+        Student student24 = Student.builder()
+                .firstName("Вікторія")
+                .secondName("Василівна")
+                .lastName("Жданюк")
+                .email("gggggfffff@gmai.com")
+                .password("password12")
+                .phone("+380989917163")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.MAY, 8))
+                .address("Мазепи Івана 65")
+                .group(group2)
+                .build();
+
+        Student student25 = Student.builder()
+                .firstName("Олександра")
+                .secondName("Андріївна")
+                .lastName("Діденко")
+                .email("gfhgfdsasd@gmai.com")
+                .password("password12")
+                .phone("+380993631899")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2004, Calendar.JULY, 7))
+                .address("Мазепи Івана 12")
+                .group(group2)
                 .build();
         studentService.saveStudent(student1);
+        studentService.saveStudent(student2);
+        studentService.saveStudent(student3);
+        studentService.saveStudent(student4);
+        studentService.saveStudent(student5);
+        studentService.saveStudent(student6);
+        studentService.saveStudent(student7);
+        studentService.saveStudent(student8);
+        studentService.saveStudent(student9);
+        studentService.saveStudent(student10);
+        studentService.saveStudent(student11);
+        studentService.saveStudent(student12);
+        studentService.saveStudent(student13);
+        studentService.saveStudent(student14);
+        studentService.saveStudent(student15);
+        studentService.saveStudent(student16);
+        studentService.saveStudent(student17);
+        studentService.saveStudent(student18);
+        studentService.saveStudent(student19);
+        studentService.saveStudent(student20);
+        studentService.saveStudent(student21);
+        studentService.saveStudent(student22);
+        studentService.saveStudent(student23);
+        studentService.saveStudent(student24);
+        studentService.saveStudent(student25);
     }
 
     @GetMapping("/subjects/{id}")
