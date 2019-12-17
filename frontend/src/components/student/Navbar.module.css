@@ -1,0 +1,12 @@
+.box {
+    
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+
+.sidebar {
+    grid-area: sidebar;
+    background-color:rgb(200,217,237);
+}
+

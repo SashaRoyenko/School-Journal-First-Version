@@ -1,0 +1,211 @@
+[
+  {
+    "firstName": "Авраменко",
+    "secondName": "Ярослав",
+    "lastName": "Валентинович",
+    "password": "password",
+    "email": "DQ539NG@gmail.com",
+    "phone": "+380951704245",
+    "role": "PARENT"
+  },
+  {
+    "firstName": "Антонюк",
+    "secondName": "Артем",
+    "lastName": "Олегович",
+    "password": "password",
+    "email": "jI411`a@gmail.com",
+    "phone": "+380967791593"
+  },
+  {
+    "firstName": "Бережний",
+    "secondName": "Микита",
+    "lastName": "Анатолійович",
+    "password": "password",
+    "email": "_Q220P[@gmail.com",
+    "phone": "+380910375896"
+  },
+  {
+    "firstName": "Бондар",
+    "secondName": "Артур",
+    "lastName": "Сергійович",
+    "password": "password",
+    "email": "Nf830fO@gmail.com",
+    "phone": "+380984853049"
+  },
+  {
+    "firstName": "Витвицький",
+    "secondName": "Максим",
+    "lastName": "Артурович",
+    "password": "password",
+    "email": "jQ487gZ@gmail.com",
+    "phone": "+380921326636"
+  },
+  {
+    "firstName": "Волинець",
+    "secondName": "Ілля",
+    "lastName": "Олегович",
+    "password": "password",
+    "email": "TG358YF@gmail.com",
+    "phone": "+380952374362"
+  },
+  {
+    "firstName": "Гаврилюк",
+    "secondName": "Вадим",
+    "lastName": "Миколайович",
+    "password": "password",
+    "email": "Fm561Ho@gmail.com",
+    "phone": "+380997315228"
+  },
+  {
+    "firstName": "Гончаренко",
+    "secondName": "Богдан",
+    "lastName": "Сергійович",
+    "password": "password",
+    "email": "aQ965Wd@gmail.com",
+    "phone": "+380958904870"
+  },
+  {
+    "firstName": "Гринько",
+    "secondName": "Ілля",
+    "lastName": "Євгенович",
+    "password": "password",
+    "email": "HQ118NK@gmail.com",
+    "phone": "+380938834573"
+  },
+  {
+    "firstName": "Гришкевич",
+    "secondName": "Максим",
+    "lastName": "Миколайович",
+    "password": "password",
+    "email": "cK325eb@gmail.com",
+    "phone": "+380994593652"
+  },
+  {
+    "firstName": "Гришко",
+    "secondName": "Артур",
+    "lastName": "Євгенійович",
+    "password": "password",
+    "email": "VK149]Y@gmail.com",
+    "phone": "+380987375580"
+  },
+  {
+    "firstName": "Гурин",
+    "secondName": "Ярослав",
+    "lastName": "Юрійович",
+    "password": "password",
+    "email": "dq120EH@gmail.com",
+    "phone": "+380957940585"
+  },
+  {
+    "firstName": "Гуріненко",
+    "secondName": "Андрій",
+    "lastName": "Русланович",
+    "password": "password",
+    "email": "fd699jK@gmail.com",
+    "phone": "+380919669999"
+  },
+  {
+    "firstName": "Деркач",
+    "secondName": "Валерій",
+    "lastName": "Костянтинович",
+    "password": "password",
+    "email": "JW705CY@gmail.com",
+    "phone": "+380967204572"
+  },
+  {
+    "firstName": "Дудченко",
+    "secondName": "Людмила",
+    "lastName": "Олександрівна",
+    "password": "password",
+    "email": "de883`I@gmail.com",
+    "phone": "+380989557477"
+  },
+  {
+    "firstName": "Дячук",
+    "secondName": "Андрій",
+    "lastName": "Олегович",
+    "password": "password",
+    "email": "Mf816EL@gmail.com",
+    "phone": "+380957436043"
+  },
+  {
+    "firstName": "Єрмосін",
+    "secondName": " Олексій",
+    "lastName": "Олександрович",
+    "password": "password",
+    "email": "GM921BZ@gmail.com",
+    "phone": "+380930968262"
+  },
+  {
+    "firstName": "Єрмосіна",
+    "secondName": "Олеся",
+    "lastName": "Олександрівна",
+    "password": "password",
+    "email": "UKG38FU@gmail.com",
+    "phone": "+380971667525"
+  },
+  {
+    "firstName": "Іващенко",
+    "secondName": "Вікторія",
+    "lastName": "Ігорівна",
+    "password": "password",
+    "email": "UK238FU@gmail.com",
+    "phone": "+380972667525"
+  },
+  {
+    "firstName": "Копійка",
+    "secondName": "Олексій",
+    "lastName": "Ігорович",
+    "password": "password",
+    "email": "CO313Ga@gmail.com",
+    "phone": "+380985145957"
+  },
+  {
+    "firstName": "Коробка",
+    "secondName": "Іван",
+    "lastName": "Сергійович",
+    "password": "password",
+    "email": "T_124fE@gmail.com",
+    "phone": "+380983611643"
+  },
+  {
+    "firstName": "Криворотов",
+    "secondName": "Данило",
+    "lastName": "Євгенійович",
+    "password": "password",
+    "email": "fU216Ck@gmail.com",
+    "phone": "+380936688748"
+  },
+  {
+    "firstName": "Кубрак",
+    "secondName": "Сергій",
+    "lastName": "Володимирович",
+    "password": "password",
+    "email": "fE584jA@gmail.com",
+    "phone": "+380917065284"
+  },
+  {
+    "firstName": "Кузик",
+    "secondName": "Анастасія",
+    "lastName": "Вадимівна",
+    "password": "password",
+    "email": "^`273jd@gmail.com",
+    "phone": "+380972415121"
+  },
+  {
+    "firstName": "Кульбабенко",
+    "secondName": "Віктор",
+    "lastName": "Олексійович",
+    "password": "password",
+    "email": "cQ438[m@gmail.com",
+    "phone": "+380965860141"
+  },
+  {
+    "firstName": "Левкун",
+    "secondName": "Дар`я",
+    "lastName": "Павлівна",
+    "password": "password",
+    "email": "IM860LH@gmail.com",
+    "phone": "+380965860121"
+  }
+]

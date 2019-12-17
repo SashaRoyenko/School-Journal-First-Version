@@ -1,0 +1,9 @@
+.box {
+    border-radius: 5px;
+    padding: 15px 10px;
+    }
+
+.content {
+    grid-area: content;
+    background-color: rgb(225,241,253);
+}

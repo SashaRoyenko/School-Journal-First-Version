@@ -1,15 +1,17 @@
 import React from 'react';
 import './AdminPage.css';
 import Header from './Header';
-import Navbar from './admin/Navbar';
+import Navbar from './Navbar';
 import Footer from './Footer';
-import TableTeacher from './admin/Teachers/TableTeacher'
-import TableParents from './admin/Parents/TableParents'
-import TableStudents from './admin/Students/TableStudents'
-import AddTeacher from './admin/Teachers/AddTeacher'
-import AddStudent from './admin/Students/AddStudent'
-import AddParent from './admin/Parents/AddParent'
+import TableTeacher from './Teachers/TableTeacher'
+import TableParents from './Parents/TableParents'
+import TableStudents from './Students/TableStudents'
+import AddTeacher from './Teachers/AddTeacher'
+import AddStudent from './Students/AddStudent'
+import AddParent from './Parents/AddParent'
+import TableGroups from './Groups/TableGroups'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import TableLessons from './Lessons/TableLessons';
 
 const AdminPage = () => {
     return (
@@ -25,6 +27,8 @@ const AdminPage = () => {
                     <Route path='/admin/add_student' component={AddStudent} />
                     <Route path='/admin/parents' component={TableParents} />
                     <Route path='/admin/add_parents' component={AddParent} />
+                    <Route path='/admin/groups' component={TableGroups} />
+                    <Route path='/admin/lessons' component={TableLessons} />
                 </Switch>
                 <Footer />
             </div>

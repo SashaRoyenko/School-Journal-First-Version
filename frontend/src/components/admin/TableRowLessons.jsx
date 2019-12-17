@@ -2,11 +2,10 @@ import React from 'react';
 import './AdminPage.css'
 import {Button, ButtonToolbar} from 'react-bootstrap'
 
-const TableRow = (props) => {
+const TableRowLessons = (props) => {
     return (
         <tr>
-            <td>{ props.group_name }</td>
-            <td>{ props.group_teacher_surname } { props.group_teacher_name } { props.group_teacher_secname }</td>
+            <td>{ props.lesson_name }</td>
             <td className="sec_col">
                 <ButtonToolbar>
                     <Button variant="outline-warning" size="sm" className="mr-1">Змінити</Button>
@@ -17,4 +16,4 @@ const TableRow = (props) => {
     );
 }
 
-export default TableRow;
+export default TableRowLessons;
