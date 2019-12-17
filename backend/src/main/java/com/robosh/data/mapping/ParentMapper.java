@@ -6,12 +6,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface ParentMapper {
     ParentMapper INSTANCE = Mappers.getMapper(ParentMapper.class);
 
+    Parent dtoToParent(ParentDto parentDto);
+
     ParentDto parentToDto(Parent parent);
 
-    Parent dtoToParent(ParentDto parentDto);
+    List<ParentDto> parentsToDto(List<Parent> parents);
 }

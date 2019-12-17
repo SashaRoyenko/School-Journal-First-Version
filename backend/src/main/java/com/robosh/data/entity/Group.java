@@ -26,7 +26,7 @@ public class Group {
     @NotEmpty
     @NotBlank
     @Column(name = "class_code", unique = true)
-    @Pattern(regexp = "\\d{1,2}+[-]+[А-ЯЇ]")
+    @Pattern(regexp = "\\d{1,2}[-]+[А-ЯЇ]")
     private String groupCode;
 
 }

@@ -41,6 +41,16 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: true
+# mail sender
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: emai.from
+    password: pass
+
+mail:
+  debug: true
+  smtp.starttls.enable: true
 
 # logging
 logging:
@@ -63,3 +73,8 @@ cors:
   pathMapping: '/**'
   allowedOrigins: 'http://localhost:3000'
   allowedMethods: 'GET,POST,PUT,DELETE'
+
+#Jwt
+jwt:
+  token.secret: kson+robosh=dreamTeam
+  expiration.time.milliseconds: 3600000

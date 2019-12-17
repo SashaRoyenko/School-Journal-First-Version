@@ -22,7 +22,8 @@ public class Subject {
     @Column(name = "id_subject")
     private Long id;
 
-    @Column(nullable = true, length = 100)
-    @Pattern(regexp = "[А-ЯЇ]+[А-ЯЇа-яЇ\\s]{5,}")
+    @Column(length = 100)
+    //todo
+//    @Pattern(regexp = "[А-ЯЇ]+[А-ЯЇа-яЇ\\s]{5,}")
     private String name;
 }

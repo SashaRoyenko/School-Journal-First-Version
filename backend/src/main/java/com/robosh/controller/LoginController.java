@@ -2,8 +2,15 @@ package com.robosh.controller;
 
 import com.robosh.config.security.jwt.JwtTokenProvider;
 import com.robosh.data.dto.LoginDto;
+import com.robosh.data.dto.UserDto;
+import com.robosh.data.entity.Parent;
+import com.robosh.data.entity.Student;
+import com.robosh.data.entity.Teacher;
 import com.robosh.data.entity.User;
 import com.robosh.exception.AuthenticationException;
+import com.robosh.service.ParentService;
+import com.robosh.service.StudentService;
+import com.robosh.service.TeacherService;
 import com.robosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +31,7 @@ public class LoginController {
     private static final String TOKEN_HEADER = "Authorization";
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String ACCESS_CONTROL = "Access-Control-Expose-Headers";
+    @SuppressWarnings("squid:S2068")
     private static final String MESSAGE_WRONG_PASSWORD = "Invalid password";
     private static final String MESSAGE_WRONG_LOGIN = "Invalid email";
     private final AuthenticationManager authenticationManager;
@@ -31,19 +39,28 @@ public class LoginController {
     private final JwtTokenProvider jwtTokenProvider;
 
     private final UserService userService;
+    private final TeacherService teacherService;
+    private final StudentService studentService;
+    private final ParentService parentService;
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
+    public LoginController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService, TeacherService teacherService, StudentService studentService, ParentService parentService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
+        this.teacherService = teacherService;
+        this.studentService = studentService;
+        this.parentService = parentService;
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
+    public UserDto login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
         response.setHeader(TOKEN_HEADER,
                 TOKEN_PREFIX + getToken(loginDto));
         response.setHeader(ACCESS_CONTROL, TOKEN_HEADER);
+        User user = userService.findByEmail(loginDto.getEmail()).get();
+        user.setPassword(null);
+        return getAccordingUserDto(user);
     }
 
     private String getToken(LoginDto loginDto) {
@@ -67,5 +84,15 @@ public class LoginController {
                         new UsernameNotFoundException("User with email: " + email + " not found")
                 );
         return jwtTokenProvider.createToken(email, user.getRole());
+    }
+
+    private UserDto getAccordingUserDto(User user) {
+        switch (user.getRole()) {
+            case ADMIN: return userService.convertUserToDto(user);
+            case TEACHER: return teacherService.convertTeacherToDto((Teacher) user);
+            case STUDENT: return studentService.convertStudentToDto((Student)user);
+            case PARENT: return parentService.convertParentToDto((Parent) user);
+            default: return null;
+        }
     }
 }

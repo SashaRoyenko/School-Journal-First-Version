@@ -1,12 +1,11 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.ScheduleDto;
-import com.robosh.data.dto.SubjectDto;
-import com.robosh.data.entity.Group;
-import com.robosh.data.mapping.GroupMapper;
+import com.robosh.data.entity.Schedule;
 import com.robosh.data.mapping.ScheduleMapper;
 import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.exception.ResourceNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,10 +17,12 @@ public class ScheduleService {
 
     private ScheduleRepository scheduleRepository;
     private ScheduleMapper scheduleMapper = ScheduleMapper.INSTANCE;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public ScheduleService(ScheduleRepository scheduleRepository) {
+    public ScheduleService(ScheduleRepository scheduleRepository, ModelMapper modelMapper) {
         this.scheduleRepository = scheduleRepository;
+        this.modelMapper = modelMapper;
     }
 
     public ScheduleDto save(ScheduleDto scheduleDto) {
@@ -44,9 +45,15 @@ public class ScheduleService {
         );
     }
 
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity delete(Long id) {
         scheduleRepository.delete(scheduleMapper.dtoToSchedule(findById(id)));
         return ResponseEntity.ok().build();
     }
 
+    public ScheduleDto update(ScheduleDto scheduleDto) {
+        Schedule updatedSchedule = scheduleMapper.dtoToSchedule(scheduleDto);
+        Schedule currentSchedule = scheduleMapper.dtoToSchedule(findById(updatedSchedule.getId()));
+        modelMapper.map(updatedSchedule, currentSchedule);
+        return scheduleMapper.scheduleToDto(scheduleRepository.save(currentSchedule));
+    }
 }

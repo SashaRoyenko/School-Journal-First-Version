@@ -5,31 +5,26 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 @ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Teacher extends User {
 
-    @Builder(builderMethodName = "teacherBuilder")
+    @Builder
     public Teacher(Long id, String firstName,
-                   String secondName, String lastName,
-                   String login, String password,
+                   String secondName, String lastName, String password,
                    String email, String phone, Role role,
                    String address, Boolean active) {
-        super(id, firstName, secondName, lastName, password, email, phone, role, active);
+        super(id, firstName, secondName, lastName, email, password, phone, role, active);
         this.address = address;
     }
 
-    @NotNull
-    @NotEmpty
     @NotBlank
+    //todo add regex
     private String address;
 }
