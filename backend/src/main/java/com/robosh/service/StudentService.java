@@ -34,6 +34,11 @@ public class StudentService {
         return studentMapper.studentsToDto(studentRepository.findStudentByGroupId(id));
     }
 
+    public Student saveStudent(Student student) {
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
+        return studentRepository.save(student);
+    }
+
     public StudentDto save(StudentDto studentDto) {
         studentDto.setPassword(passwordEncoder.encode(studentDto.getPassword()));
         return studentMapper.studentToDto(studentRepository.save(studentMapper.dtoToStudent(studentDto)));

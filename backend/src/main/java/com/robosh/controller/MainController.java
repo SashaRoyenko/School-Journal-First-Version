@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class MainController {
         initSubjects();
         initGroups();
         initTeachers();
+        initStudents();
     }
 
     private void initAdmins() {
@@ -303,18 +305,21 @@ public class MainController {
     }
 
     private void initStudents() {
-//        Student student1 = Student.builder()
-//                .firstName("")
-//                .secondName("")
-//                .lastName("")
-//                .email("")
-//                .password("")
-//                .phone("")
-//                .role(Role.STUDENT)
-//                .active(true)
-//                .birthDate(new Date())
-//                .address()
-//                .group()
+        Group group = groupService.convertGroupDtoToEntity(groupService.findByCodeGroup("1-А"));
+        Student student1 = Student.builder()
+                .firstName("Катерина")
+                .secondName("Олегівна")
+                .lastName("Антонюк")
+                .email("katerina_antoniuk@gmai.com")
+                .password("password12")
+                .phone("+380974444444")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.JANUARY,11))
+                .address("Васильківська 12")
+                .group(group)
+                .build();
+        studentService.saveStudent(student1);
     }
 
     @GetMapping("/subjects/{id}")

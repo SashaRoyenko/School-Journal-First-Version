@@ -23,7 +23,7 @@ public class Student extends User {
                    Date birthDate, String password, String email,
                    String phone, Role role,
                    String address, Group group, Boolean active) {
-        super(id, firstName, secondName, lastName, password, email, phone, role, active);
+        super(id, firstName, secondName, lastName, email, password, phone, role, active);
         this.birthDate = birthDate;
         this.address = address;
         this.group = group;

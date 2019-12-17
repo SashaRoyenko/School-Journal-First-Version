@@ -59,4 +59,8 @@ public class GroupService {
     public List<GroupDto> findGroupByTeacherId(Long id) {
         return groupMapper.groupsToDto(groupRepository.findGroupByTeacherId(id));
     }
+
+    public Group convertGroupDtoToEntity(GroupDto groupDto) {
+        return groupMapper.dtoToGroup(groupDto);
+    }
 }
