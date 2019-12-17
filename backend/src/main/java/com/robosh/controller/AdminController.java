@@ -25,7 +25,7 @@ public class AdminController {
     private ScheduleService scheduleService;
 
     @Autowired
-    private MailSender mailSender;
+    private MailSenderService mailSenderService;
 
     @Autowired
     public AdminController(UserService userService, TeacherService teacherService, ParentService parentService, StudentService studentService, GroupService groupService, SubjectService subjectService, ScheduleService scheduleService) {
@@ -40,7 +40,7 @@ public class AdminController {
 
     @GetMapping("send/mail")
     public void sendEmail(){
-        mailSender.send("shhur.nazar2000@gmail.com", "Code", "tesxww2");
+        mailSenderService.send("shhur.nazar2000@gmail.com", "Code", "tesxww2");
     }
 
     @GetMapping("/teacher")
