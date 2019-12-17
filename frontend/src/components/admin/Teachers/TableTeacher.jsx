@@ -2,7 +2,7 @@ import React from 'react';
 import classes from '../Content.module.css'
 import Table from 'react-bootstrap/Table'
 import Card from 'react-bootstrap/Card'
-import TableRow from '../TableRow'
+import TableRowUsers from '../TableRowUsers'
 import { Navbar, Nav, Button, Form } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
@@ -34,13 +34,12 @@ const TableTeacher = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <TableRow surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
-                        <TableRow surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
-                        <TableRow surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
-                        <TableRow surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
-                        <TableRow surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
-                        <TableRow surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
-
+                        <TableRowUsers surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
+                        <TableRowUsers surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
+                        <TableRowUsers surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
+                        <TableRowUsers surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
+                        <TableRowUsers surname='Storozhuk' name='Kostya' second_name='Batkovich' email='kostik@gmail.com' telnum='+380685529917' />
+                        <TableRowUsers surname='Bortnichuk' name='Nikita' second_name='Batkovich' email='bortik@gmail.com' telnum='+380XXXXXXX1' />
                     </tbody>
                 </Table>
             </Card>

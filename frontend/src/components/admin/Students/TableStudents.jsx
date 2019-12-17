@@ -2,7 +2,7 @@ import React from 'react';
 import classes from '../Content.module.css'
 import Table from 'react-bootstrap/Table'
 import Card from 'react-bootstrap/Card'
-import TableRow from '../TableRow'
+import TableRowUsers from '../TableRowUsers'
 import { Navbar, Nav, Button, Form } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
@@ -34,8 +34,8 @@ const TableStudents = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <TableRow surname='Mishin' name='Myhaylo' second_name='Batkovich' email='satanist@gmail.com' telnum='+380XXXXXXX5' />
-                        <TableRow surname='Golub' name='Vitalya' second_name='Batkovich' email='ptichka@ukr.net' telnum='+380XXXXXXX6' />
+                        <TableRowUsers surname='Mishin' name='Myhaylo' second_name='Batkovich' email='satanist@gmail.com' telnum='+380XXXXXXX5' />
+                        <TableRowUsers surname='Golub' name='Vitalya' second_name='Batkovich' email='ptichka@ukr.net' telnum='+380XXXXXXX6' />
                     </tbody>
                 </Table>
             </Card>

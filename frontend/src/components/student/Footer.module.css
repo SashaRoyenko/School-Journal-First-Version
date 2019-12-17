@@ -1,0 +1,9 @@
+.box {
+    border-radius: 5px;
+    padding: 10px;
+    }
+
+.footer {
+    grid-area: footer;
+    background-color: rgb(0, 0, 128);
+}

@@ -26,12 +26,12 @@ const Navbar = () => {
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/teachers">
+                    <LinkContainer to="/admin/lessons">
                         <Nav.Link className="text-light">Предмети</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/teachers">
+                    <LinkContainer to="/admin/groups">
                         <Nav.Link className="text-light">Класи</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>

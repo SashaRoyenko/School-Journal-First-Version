@@ -1,0 +1,14 @@
+.box {
+    border-radius: 5px;
+    }
+
+.header {
+    grid-area: header;
+    display: grid;
+}
+
+.header{
+background-color:rgb(0, 0, 128);
+grid-row-end: auto;
+}
+
