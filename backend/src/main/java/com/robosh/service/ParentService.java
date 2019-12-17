@@ -63,4 +63,8 @@ public class ParentService {
         modelMapper.map(updateUser, currentUser);
         return parentMapper.parentToDto(parentRepository.save(currentUser));
     }
+
+    public ParentDto convertParentToDto(Parent parent) {
+        return parentMapper.parentToDto(parent);
+    }
 }

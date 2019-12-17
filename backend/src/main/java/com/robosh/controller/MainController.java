@@ -1,22 +1,21 @@
 package com.robosh.controller;
 
-        import com.robosh.data.dto.SubjectDto;
-        import com.robosh.data.dto.TeacherDto;
-        import com.robosh.data.entity.Group;
-        import com.robosh.data.entity.Subject;
-        import com.robosh.data.entity.Teacher;
-        import com.robosh.data.entity.User;
-        import com.robosh.data.enumeration.Role;
-        import com.robosh.service.*;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.security.core.context.SecurityContextHolder;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.PathVariable;
-        import org.springframework.web.bind.annotation.PostMapping;
-        import org.springframework.web.bind.annotation.RestController;
+import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.entity.*;
+import com.robosh.data.enumeration.Role;
+import com.robosh.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RestController
@@ -63,6 +62,7 @@ public class MainController {
         initSubjects();
         initGroups();
         initTeachers();
+        initStudents();
     }
 
     private void initAdmins() {
@@ -304,7 +304,23 @@ public class MainController {
         teacherService.saveTeacher(teacher11);
     }
 
-
+    private void initStudents() {
+        Group group = groupService.convertGroupDtoToEntity(groupService.findByCodeGroup("1-А"));
+        Student student1 = Student.builder()
+                .firstName("Катерина")
+                .secondName("Олегівна")
+                .lastName("Антонюк")
+                .email("katerina_antoniuk@gmai.com")
+                .password("password12")
+                .phone("+380974444444")
+                .role(Role.STUDENT)
+                .active(true)
+                .birthDate(new Date(2003, Calendar.JANUARY,11))
+                .address("Васильківська 12")
+                .group(group)
+                .build();
+        studentService.saveStudent(student1);
+    }
 
     @GetMapping("/subjects/{id}")
     public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id) {

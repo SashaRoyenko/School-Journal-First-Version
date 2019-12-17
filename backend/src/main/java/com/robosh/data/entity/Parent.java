@@ -11,12 +11,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Parent extends User {
 
-    @Builder(builderMethodName = "parentBuilder")
+    @Builder
     public Parent(Long id, String firstName,
                   String secondName, String lastName,
                   String password, String email, String phone,

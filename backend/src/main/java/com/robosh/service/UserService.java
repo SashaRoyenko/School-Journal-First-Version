@@ -51,6 +51,10 @@ public class UserService {
         return userMapper.userToDto(userRepository.save(user));
     }
 
+    public UserDto convertUserToDto(User user) {
+        return userMapper.userToDto(user);
+    }
+
     public ResponseEntity delete(Long id) {
         userRepository.delete(findById(id));
         return ResponseEntity.ok().build();
