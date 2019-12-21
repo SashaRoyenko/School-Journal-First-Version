@@ -1,6 +1,5 @@
 package com.robosh.controller;
 
-import com.robosh.config.security.jwt.JwtTokenProvider;
 import com.robosh.data.dto.LoginDto;
 import com.robosh.data.dto.UserDto;
 import com.robosh.data.entity.Parent;
@@ -34,9 +33,6 @@ public class LoginController {
     @SuppressWarnings("squid:S2068")
     private static final String MESSAGE_WRONG_PASSWORD = "Invalid password";
     private static final String MESSAGE_WRONG_LOGIN = "Invalid email";
-    private final AuthenticationManager authenticationManager;
-
-    private final JwtTokenProvider jwtTokenProvider;
 
     private final UserService userService;
     private final TeacherService teacherService;
@@ -44,46 +40,11 @@ public class LoginController {
     private final ParentService parentService;
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService, TeacherService teacherService, StudentService studentService, ParentService parentService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
+    public LoginController(UserService userService, TeacherService teacherService, StudentService studentService, ParentService parentService) {
         this.userService = userService;
         this.teacherService = teacherService;
         this.studentService = studentService;
         this.parentService = parentService;
-    }
-
-    @PostMapping("/login")
-    public UserDto login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
-        response.setHeader(TOKEN_HEADER,
-                TOKEN_PREFIX + getToken(loginDto));
-        response.setHeader(ACCESS_CONTROL, TOKEN_HEADER);
-        User user = userService.findByEmail(loginDto.getEmail()).get();
-        user.setPassword(null);
-        return getAccordingUserDto(user);
-    }
-
-    private String getToken(LoginDto loginDto) {
-        String email = loginDto.getEmail();
-        if (userService.findByEmail(email).isPresent()) {
-            try {
-                return getAuthenticationToken(loginDto);
-            } catch (BadCredentialsException e) {
-                throw new AuthenticationException(MESSAGE_WRONG_PASSWORD);
-            }
-        } else {
-            throw new AuthenticationException(MESSAGE_WRONG_LOGIN);
-        }
-    }
-
-    private String getAuthenticationToken(LoginDto loginDto) {
-        String email = loginDto.getEmail();
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, loginDto.getPassword()));
-        User user = userService.findByEmail(email)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User with email: " + email + " not found")
-                );
-        return jwtTokenProvider.createToken(email, user.getRole());
     }
 
     private UserDto getAccordingUserDto(User user) {
