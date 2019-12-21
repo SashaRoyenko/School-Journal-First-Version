@@ -1,4 +1,4 @@
-package com.robosh.controller;
+package com.robosh.controller.old_to_delete;
 
 import com.robosh.data.dto.SubjectDto;
 import com.robosh.data.dto.TeacherDto;

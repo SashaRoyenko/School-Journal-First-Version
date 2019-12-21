@@ -1,6 +1,7 @@
 package com.robosh.config;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,12 +14,14 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.sql.DataSource;
 
+import static com.robosh.common_routes.Routes.E_JOURNAL;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final String BASE_URL = "/e-journal";
     private final DataSource dataSource;
 
+    @Autowired
     public WebSecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -27,11 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", BASE_URL)
+                .antMatchers("/", E_JOURNAL)
                 .permitAll()
-                .antMatchers(BASE_URL + "/register-client").anonymous()
-                .antMatchers(BASE_URL + "/client-account/**").hasAuthority("USER")
-                .antMatchers(BASE_URL+ "/driver-account/**").hasAuthority("STUDENT")
+                .antMatchers(E_JOURNAL + "/client-account/**").hasAuthority("USER")
+                .antMatchers(E_JOURNAL + "/driver-account/**").hasAuthority("STUDENT")
                 .antMatchers("/*")
                 .authenticated()
                 .and()
