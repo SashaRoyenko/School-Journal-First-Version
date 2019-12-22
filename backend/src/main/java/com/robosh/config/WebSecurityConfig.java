@@ -32,24 +32,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", E_JOURNAL)
                 .permitAll()
-                .antMatchers(E_JOURNAL + "/client-account/**").hasAuthority("USER")
-                .antMatchers(E_JOURNAL + "/driver-account/**").hasAuthority("STUDENT")
+                .antMatchers(E_JOURNAL + "/admin/**").hasAuthority("USER")
+                .antMatchers(E_JOURNAL + "/student/**").hasAuthority("STUDENT")
+                .antMatchers(E_JOURNAL + "/parent/**").hasAuthority("PARENT")
+                .antMatchers(E_JOURNAL + "/teacher/**").hasAuthority("TEACHER")
                 .antMatchers("/*")
                 .authenticated()
                 .and()
                 .csrf().disable()
                 .formLogin()
-                .loginPage("/taxi-kyiv/login")
+                .loginPage(E_JOURNAL + "/login")
                 .defaultSuccessUrl("/default", true)
-                .failureUrl("/taxi-kyiv/login?error=true")
+                .failureUrl(E_JOURNAL + "/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/taxi-kyiv")
+                .logoutSuccessUrl(E_JOURNAL)
                 .permitAll()
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/taxi-kyiv/access-denied");
+                .accessDeniedPage(E_JOURNAL + "/access-denied");
     }
 
     @Override
