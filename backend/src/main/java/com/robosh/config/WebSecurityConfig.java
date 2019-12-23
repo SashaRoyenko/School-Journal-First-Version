@@ -9,7 +9,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.sql.DataSource;
@@ -19,60 +25,31 @@ import static com.robosh.common_routes.Routes.E_JOURNAL;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final DataSource dataSource;
-
-    @Autowired
-    public WebSecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", E_JOURNAL)
-                .permitAll()
-                .antMatchers(E_JOURNAL + "/admin/**").hasAuthority("USER")
-                .antMatchers(E_JOURNAL + "/student/**").hasAuthority("STUDENT")
-                .antMatchers(E_JOURNAL + "/parent/**").hasAuthority("PARENT")
-                .antMatchers(E_JOURNAL + "/teacher/**").hasAuthority("TEACHER")
-                .antMatchers("/*")
-                .authenticated()
+                .antMatchers("/", "/home").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .csrf().disable()
                 .formLogin()
-                .loginPage(E_JOURNAL + "/login")
-                .defaultSuccessUrl("/default", true)
-                .failureUrl(E_JOURNAL + "/login?error=true")
+                .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl(E_JOURNAL)
-                .permitAll()
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage(E_JOURNAL + "/access-denied");
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select email, password, true from user where email=?")
-                .authoritiesByUsernameQuery("select email, role from user where email=?");
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-        web
-                .ignoring()
-                .antMatchers("/css/**", "/img/**", "/js/**", "/errors/**");
+                .permitAll();
     }
 
     @Bean
-    public SpringSecurityDialect springSecurityDialect() {
-        return new SpringSecurityDialect();
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user =
+                User.withDefaultPasswordEncoder()
+                        .username("u")
+                        .password("p")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user);
     }
 }

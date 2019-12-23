@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/adminpage.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>E-journal</title>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <header class="bg-dark box header">
+        <nav class="navbar navbar-expand navbar-light"><a href="#home"
+                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
+                class="font-weight-light text-secondary navbar-text">Ви увійшли як: <a
+                class="font-weight-bold text-light" href="#login">admin</a><br><a class="text-light"
+                                                                                  href="#logout">Вийти</a></span>
+        </nav>
+    </header>
+    <aside class="bg-secondary box sidebar">
+        <div class="flex-column nav">
+            <div class="nav-item"><a href="#" class="text-light nav-link disabled" role="button" tabindex="-1"
+                                     aria-disabled="true">Користувачі</a></div>
+            <div class="nav-item"><a href="/admin/teachers" data-rb-event-key="/admin/teachers"
+                                     class="ml-2 text-light nav-link">Вчителі</a></div>
+            <div class="nav-item"><a href="/admin/students" data-rb-event-key="/admin/students"
+                                     class="ml-2 text-light nav-link">Учні</a></div>
+            <div class="nav-item"><a href="/admin/parents" data-rb-event-key="/admin/parents"
+                                     class="ml-2 text-light nav-link">Батьки</a></div>
+            <div class="nav-item"><a href="/admin/lessons" data-rb-event-key="/admin/lessons"
+                                     class="text-light nav-link">Предмети</a></div>
+            <div class="nav-item"><a href="/admin/groups" data-rb-event-key="/admin/groups"
+                                     class="text-light nav-link">Класи</a></div>
+            <div class="nav-item"><a href="/teachers" data-rb-event-key="/teachers"
+                                     class="text-light nav-link">Розклад</a>
+            </div>
+        </div>
+    </aside>
+    <div class="bg-light box content">
+        <form novalidate="" class=""><h2>Батьки</h2><h4>-- Parent1 --</h4>
+            <div class="form-row">
+                <div class="form-group col-md-4"><label class="form-label"
+                                                        for="validationCustom01">Прізвище</label><input required=""
+                                                                                                        placeholder="Прізвище"
+                                                                                                        type="text"
+                                                                                                        id="validationCustom01"
+                                                                                                        class="form-control"
+                                                                                                        value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustom02">Ім'я</label><input
+                        required="" placeholder="Ім'я" type="text" id="validationCustom02" class="form-control"
+                        value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustom03">По
+                    батькові</label><input required="" placeholder="По батькові" type="text" id="validationCustom03"
+                                           class="form-control" value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4"><label class="form-label"
+                                                        for="validationCustomTel">Телефон</label><input
+                        placeholder="Номер телефону" aria-describedby="inputGroupPrepend" required="" type="tel"
+                        id="validationCustomTel" class="form-control" value="">
+                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustomEmail">Електронна
+                    пошта</label><input required="" placeholder="Електронна пошта" type="email"
+                                        id="validationCustomEmail" class="form-control" value="">
+                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6"><label class="form-label" for="validationCustom04">Адреса</label><input
+                        placeholder="Адреса проживання" required="" type="text" id="validationCustom04"
+                        class="form-control">
+                    <div class="invalid-feedback">Введіть адресу</div>
+                </div>
+            </div>
+            <h4>-- Parent2 --</h4>
+            <div class="form-row">
+                <div class="form-group col-md-4"><label class="form-label"
+                                                        for="validationCustom05">Прізвище</label><input required=""
+                                                                                                        placeholder="Прізвище"
+                                                                                                        type="text"
+                                                                                                        id="validationCustom05"
+                                                                                                        class="form-control"
+                                                                                                        value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustom06">Ім'я</label><input
+                        required="" placeholder="Ім'я" type="text" id="validationCustom06" class="form-control"
+                        value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustom07">По
+                    батькові</label><input required="" placeholder="По батькові" type="text" id="validationCustom07"
+                                           class="form-control" value="">
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4"><label class="form-label"
+                                                        for="validationCustomTel1">Телефон</label><input
+                        placeholder="Номер телефону" aria-describedby="inputGroupPrepend" required="" type="tel"
+                        id="validationCustomTel1" class="form-control" value="">
+                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
+                </div>
+                <div class="form-group col-md-4"><label class="form-label" for="validationCustomEmail1">Електронна
+                    пошта</label><input required="" placeholder="Електронна пошта" type="email"
+                                        id="validationCustomEmail1" class="form-control" value="">
+                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6"><label class="form-label" for="validationCustom08">Адреса</label><input
+                        placeholder="Адреса проживання" required="" type="text" id="validationCustom08"
+                        class="form-control">
+                    <div class="invalid-feedback">Введіть адресу</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3"><label class="form-label">Пароль</label><input placeholder="Пароль"
+                                                                                                type="password"
+                                                                                                class="form-control">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Додати батьків</button>
+        </form>
+    </div>
+    <footer class="bg-dark d-flex box footer">
+        <small
+                class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
+    </footer>
+</div>
+
+</body>
+</html>
