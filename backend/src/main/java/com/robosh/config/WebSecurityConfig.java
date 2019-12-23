@@ -14,7 +14,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.sql.DataSource;
 
-import static com.robosh.common_routes.Routes.E_JOURNAL;
+import static com.robosh.common_routes.Routes.*;
 import static com.robosh.data.enumeration.Role.*;
 
 @Configuration
@@ -33,10 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", E_JOURNAL)
                 .permitAll()
-                .antMatchers(E_JOURNAL + "/admin/**").hasAuthority(ADMIN.name())
-                .antMatchers(E_JOURNAL + "/student/**").hasAuthority(STUDENT.name())
-                .antMatchers(E_JOURNAL + "/parent/**").hasAuthority(PARENT.name())
-                .antMatchers(E_JOURNAL + "/teacher/**").hasAuthority(TEACHER.name())
+                .antMatchers(E_JOURNAL + ADMIN_MAPPING + "/**").hasAuthority(ADMIN.name())
+                .antMatchers(E_JOURNAL + STUDENT_MAPPING + "/**").hasAuthority(STUDENT.name())
+                .antMatchers(E_JOURNAL + PARENT_MAPPING + "/**").hasAuthority(PARENT.name())
+                .antMatchers(E_JOURNAL + TEACHER_MAPPING + "/**").hasAuthority(TEACHER.name())
                 .antMatchers("/*")
                 .authenticated()
                 .and()

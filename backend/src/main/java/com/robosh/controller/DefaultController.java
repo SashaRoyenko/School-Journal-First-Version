@@ -15,7 +15,7 @@ import static com.robosh.data.enumeration.Role.*;
 
 @Controller
 public class DefaultController {
-    
+
     @GetMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
