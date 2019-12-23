@@ -20,36 +20,67 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.sql.DataSource;
 
-import static com.robosh.common_routes.Routes.E_JOURNAL;
+import static com.robosh.common_routes.Routes.*;
+import static com.robosh.data.enumeration.Role.*;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final DataSource dataSource;
+
+    @Autowired
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/", E_JOURNAL)
+                .permitAll()
+                .antMatchers(E_JOURNAL + ADMIN_MAPPING + "/**").hasAuthority(ADMIN.name())
+                .antMatchers(E_JOURNAL + STUDENT_MAPPING + "/**").hasAuthority(STUDENT.name())
+                .antMatchers(E_JOURNAL + PARENT_MAPPING + "/**").hasAuthority(PARENT.name())
+                .antMatchers(E_JOURNAL + TEACHER_MAPPING + "/**").hasAuthority(TEACHER.name())
+                .antMatchers("/*")
+                .authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage(E_JOURNAL + "/login")
+                .defaultSuccessUrl("/default", true)
+                .failureUrl(E_JOURNAL + "/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .logoutSuccessUrl(E_JOURNAL)
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage(E_JOURNAL + "/access-denied");
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //todo replace with some encoder
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .usersByUsernameQuery("select email, password, true from user where email=?")
+                .authoritiesByUsernameQuery("select email, role from user where email=?");
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
+        web
+                .ignoring()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/errors/**");
     }
 
     @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("u")
-                        .password("p")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
+    public SpringSecurityDialect springSecurityDialect() {
+        return new SpringSecurityDialect();
     }
 }
