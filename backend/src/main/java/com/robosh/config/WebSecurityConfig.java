@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", E_JOURNAL)
                 .permitAll()
-                .antMatchers(ADMIN_MAPPING + "/*").hasAuthority(ADMIN.name())
+                .antMatchers(ADMIN_MAPPING + "/**").hasAuthority(ADMIN.name())
                 .antMatchers( STUDENT_MAPPING + "/**").hasAuthority(STUDENT.name())
                 .antMatchers(PARENT_MAPPING + "/**").hasAuthority(PARENT.name())
                 .antMatchers(TEACHER_MAPPING + "/**").hasAuthority(TEACHER.name())
