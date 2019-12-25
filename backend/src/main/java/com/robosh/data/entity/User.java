@@ -66,6 +66,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     protected Role role;
 
-    @Column(nullable = false)
+    @Column(nullable = true) //changed from false to true to add user
     protected Boolean active = true;
 }

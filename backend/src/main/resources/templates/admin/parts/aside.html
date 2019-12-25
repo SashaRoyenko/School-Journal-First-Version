@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside class="bg-secondary box sidebar" th:fragment="content">
+    <div class="flex-column nav">
+        <div class="nav-item"><a href="#" class="text-light nav-link disabled" role="button" tabindex="-1"
+                                 aria-disabled="true">Користувачі</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/teachers}"
+                                 class="ml-2 text-light nav-link">Вчителі</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/students}"
+                                 class="ml-2 text-light nav-link">Учні</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/parents}"
+                                 class="ml-2 text-light nav-link">Батьки</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/lessons}"
+                                 class="text-light nav-link">Предмети</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/groups}"
+                                 class="text-light nav-link">Класи</a></div>
+        <div class="nav-item"><a th:href="@{/e-journal/admin/schedule}"
+                                 class="text-light nav-link">Розклад</a>
+        </div>
+    </div>
+</aside>
+</body>
+</html>

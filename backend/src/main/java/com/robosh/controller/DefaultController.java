@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.HashSet;
 
+import static com.robosh.common_routes.Routes.*;
 import static com.robosh.data.enumeration.Role.*;
 
 @Controller
@@ -26,18 +27,18 @@ public class DefaultController {
         boolean isTeacher = authorities.contains(new SimpleGrantedAuthority(TEACHER.name()));
 
         if (isAdmin) {
-            //todo replace all with urls
-            return "home_page";
+            return REDIRECT_URL + ADMIN_MAPPING;
         }
         if (isStudent) {
-            return "redirect:/taxi-kyiv/driver-account";
+            return REDIRECT_URL + STUDENT_MAPPING;
         }
         if (isParent) {
-            return "redirect:/taxi-kyiv/driver-account";
+            return REDIRECT_URL + PARENT_MAPPING;
         }
         if(isTeacher) {
-            return "redirect:/taxi-kyiv/driver-account";
+            return REDIRECT_URL + TEACHER_MAPPING;
         }
+
         return "login";
     }
 }

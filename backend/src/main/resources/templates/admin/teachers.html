@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="../css/adminpage.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminpage.css}" >
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
@@ -22,40 +22,18 @@
 
 <body>
 <div class="wrapper">
-    <header class="bg-dark box header">
-        <nav class="navbar navbar-expand navbar-light"><a href="#home"
-                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
-                class="font-weight-light text-secondary navbar-text">Ви увійшли як: <a
-                class="font-weight-bold text-light" href="#login">admin</a><br><a class="text-light"
-                                                                                  href="#logout">Вийти</a></span>
-        </nav>
-    </header>
-    <aside class="bg-secondary box sidebar">
-        <div class="flex-column nav">
-            <div class="nav-item"><a href="#" class="text-light nav-link disabled" role="button" tabindex="-1"
-                                     aria-disabled="true">Користувачі</a></div>
-            <div class="nav-item"><a href="/admin/teachers" data-rb-event-key="/admin/teachers"
-                                     class="ml-2 text-light nav-link">Вчителі</a></div>
-            <div class="nav-item"><a href="/admin/students" data-rb-event-key="/admin/students"
-                                     class="ml-2 text-light nav-link">Учні</a></div>
-            <div class="nav-item"><a href="/admin/parents" data-rb-event-key="/admin/parents"
-                                     class="ml-2 text-light nav-link">Батьки</a></div>
-            <div class="nav-item"><a href="/admin/lessons" data-rb-event-key="/admin/lessons"
-                                     class="text-light nav-link">Предмети</a></div>
-            <div class="nav-item"><a href="/admin/groups" data-rb-event-key="/admin/groups"
-                                     class="text-light nav-link">Класи</a></div>
-            <div class="nav-item"><a href="/teachers" data-rb-event-key="/teachers"
-                                     class="text-light nav-link">Розклад</a>
-            </div>
-        </div>
-    </aside>
+
+    <div th:replace="~{admin/parts/header :: content}"></div>
+
+    <div th:replace="~{admin/parts/aside :: content}"></div>
+
     <div class="bg-light box content">
         <h1 class="text-dark">Вчителі</h1>
         <div class="card">
             <nav class="navbar navbar-expand navbar-light bg-light">
-                <div class="mr-auto navbar-nav"><a href="/admin/add_teacher" class="btn btn-primary">+
+                <div class="mr-auto navbar-nav"><a th:href="@{/e-journal/admin/teachers/edit}" class="btn btn-primary">+
                     Вчитель</a></div>
-                <form class="form-inline"><input placeholder="Search" type="text" class="mr-sm-2 form-control">
+                <form class="form-inline" th:action="@{/e-journal/admin/teachers/search}"><input placeholder="Search" type="text" class="mr-sm-2 form-control">
                     <button type="button" class="btn btn-outline-info">Search</button>
                 </form>
             </nav>
@@ -72,87 +50,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Storozhuk<br></td>
-                        <td>Kostya<br></td>
-                        <td>Batkovich<br></td>
-                        <td>kostik@gmail.com<br></td>
-                        <td>+380685529917<br></td>
+                    <tr th:each="teacher : ${teacherList}">
+                        <td th:text="${teacher.getLastName()}">Прізвище<br></td>
+                        <td th:text="${teacher.getFirstName()}">Ім'я<br></td>
+                        <td th:text="${teacher.getSecondName()}"><br>По-батькові</td>
+                        <td th:text="${teacher.getEmail()}">E-mail<br></td>
+                        <td th:text="${teacher.getPhone()}">Номер телефону<br></td>
                         <td>
                             <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bortnichuk<br></td>
-                        <td>Nikita<br></td>
-                        <td>Batkovich<br></td>
-                        <td>bortik@gmail.com<br></td>
-                        <td>+380XXXXXXX1<br></td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Storozhuk<br></td>
-                        <td>Kostya<br></td>
-                        <td>Batkovich<br></td>
-                        <td>kostik@gmail.com<br></td>
-                        <td>+380685529917<br></td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bortnichuk<br></td>
-                        <td>Nikita<br></td>
-                        <td>Batkovich<br></td>
-                        <td>bortik@gmail.com<br></td>
-                        <td>+380XXXXXXX1<br></td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Storozhuk<br></td>
-                        <td>Kostya<br></td>
-                        <td>Batkovich<br></td>
-                        <td>kostik@gmail.com<br></td>
-                        <td>+380685529917<br></td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bortnichuk<br></td>
-                        <td>Nikita<br></td>
-                        <td>Batkovich<br></td>
-                        <td>bortik@gmail.com<br></td>
-                        <td>+380XXXXXXX1<br></td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
+                                <a type="button" class="mr-1 btn btn-outline-warning btn-sm"
+                                    th:href="@{/e-journal/admin/teachers/edit(id=${teacher.getId()})}">
+                                    Змінити
+                                </a>
+                                <a type="button" class="btn btn-outline-danger btn-sm"
+                                   th:href="@{/e-journal/admin/teachers/delete(id=${teacher.getId()})}">
+                                    Видалити
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -161,10 +74,9 @@
             </div>
         </div>
     </div>
-    <footer class="bg-dark d-flex box footer">
-        <small
-                class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
-    </footer>
+
+    <div th:replace="~{admin/parts/footer :: content}"></div>
+
 </div>
 
 </body>
