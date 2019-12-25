@@ -53,7 +53,7 @@ public class AdminController {
 
 
     @PostMapping(value = TEACHERS_MAPPING + "/add")
-    public String createOrUpdate(TeacherDto teacherDto){
+    public String createOrUpdateTeacher(TeacherDto teacherDto){
         if (teacherDto.getId()==null){
             teacherService.save(teacherDto);
         }
@@ -61,6 +61,15 @@ public class AdminController {
             teacherService.update(teacherDto);
         }
 
+        return REDIRECT_URL + ADMIN_MAPPING + TEACHERS_MAPPING;
+    }
+
+
+    @GetMapping(value = TEACHERS_MAPPING + "/delete/{id}")
+    public String deleteTeacher(Model model, @PathVariable("id") Optional<Long> id){
+
+        System.out.println("delete");
+        id.ifPresent(teacherService::delete);
         return REDIRECT_URL + ADMIN_MAPPING + TEACHERS_MAPPING;
     }
 

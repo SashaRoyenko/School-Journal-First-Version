@@ -59,11 +59,11 @@
                         <td>
                             <div role="toolbar" class="btn-toolbar">
                                 <a type="button" class="mr-1 btn btn-outline-warning btn-sm"
-                                    th:href="@{/e-journal/admin/teachers/edit(id=${teacher.getId()})}">
+                                    th:href="@{/e-journal/admin/teachers/edit/{id}(id=${teacher.getId()})}">
                                     Змінити
                                 </a>
                                 <a type="button" class="btn btn-outline-danger btn-sm"
-                                   th:href="@{/e-journal/admin/teachers/delete(id=${teacher.getId()})}">
+                                   th:href="@{/e-journal/admin/teachers/delete/{id}(id=${teacher.getId()})}">
                                     Видалити
                                 </a>
                             </div>
