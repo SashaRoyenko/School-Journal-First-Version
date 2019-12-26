@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="../css/teacherpage.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>E-journal</title>
+
+</head>
+
+<body>
+<div class="wrapper">
+
+    <header class="box header">
+        <nav class="navbar navbar-expand navbar-light"><a href=""
+                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
+                class="font-weight-light text-light navbar-text">Ви увійшли як: <a
+                class="font-weight-bold text-light" href="">Шалденко Олексій</a>, <a class="text-light"
+                                                                                     href="">Вийти</a></span>
+        </nav>
+    </header>
+
+    <aside class="box sidebar">
+        <div class="flex-column nav">
+            <div class="nav-item "><a href="/student/profile" data-rb-event-key="/student/profile"
+                                      class="ml-2 text-light active nav-link active">Ваш профіль</a></div>
+            <div class="nav-item "><a href="/admin/schedule" data-rb-event-key="/admin/schedule"
+                                      class="ml-2 text-light nav-link">Розклад уроків</a></div>
+            <div class="nav-item "><a href="/student/journal" data-rb-event-key="/student/journal"
+                                      class="ml-2 text-light nav-link">Журнал</a></div>
+            <div class="nav-item "><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
+                                      class="ml-2 text-light nav-link">Домашні завдання</a></div>
+            <div class="nav-item t"><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
+                                       class="ml-2 text-light nav-link">Зауваження</a></div>
+        </div>
+    </aside>
+
+    <div class="box content">
+        <h2 class="mb-2">Журнал оцінок учнів</h2>
+
+        <div class="card">
+
+            <div class="d-flex ml-3 my-2">
+                <select class="custom-select w-25 ">
+                    <option selected>Виберіть клас</option>
+                    <option value="1">11-А</option>
+                    <option value="2">10-Б</option>
+                    <option value="3">...</option>
+                    <option value="4">9-В</option>
+                </select>
+                <select class="custom-select w-50 ml-2">
+                    <option selected>Виберіть предмет</option>
+                    <option value="1">Алгебра</option>
+                    <option value="2">Геометрія</option>
+                    <option value="3">...</option>
+                    <option value="4">Фізика</option>
+                </select>
+
+            </div>
+
+
+            <nav class="navbar navbar-expand navbar-light bg-light">
+                <div class="mr-auto navbar-nav">
+                    <form novalidate="" class="">
+                        <div class="form-row d-flex align-items-center">
+                            <h5 class="ml-2">Додати оцінку</h5>
+                            <div class="add_mark_toolbar d-flex ml-5">
+                                <select class="custom-select w-50 ml-2">
+                                    <option selected>Оберіть учня</option>
+                                    <option value="1">Сторожук Нікіта Батькович</option>
+                                    <option value="2">Бортік Нікіта Батькович</option>
+                                    <option value="3">Шмель Нікіта Батькович</option>
+                                </select>
+
+
+                                <select class="custom-select w-50 ml-2">
+                                    <option selected>Виберіть оцінку</option>
+                                    <option value="1">12</option>
+                                    <option value="2">11</option>
+                                    <option value="3">...</option>
+                                    <option value="4">1</option>
+                                    <option value="5">н</option>
+                                </select>
+
+                                <select class="custom-select w-50 ml-2">
+                                    <option selected>Виберіть дату</option>
+                                    <option value="1">01.09.2019</option>
+                                    <option value="2">Дати уроків в цьому класі цього вчителя</option>
+                                    <option value="3">...</option>
+                                    <option value="4">21.12.2019</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-md btn-success ml-2 mt-2 mb-2">Підтвердити оцінку</button>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+
+            <div class="px-3 table-responsive">
+
+                <table class="table table-light table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>ПІБ</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                        <th>01.09.2019</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Сторожук К.С.</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td>н</td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Сторожук К.С.</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td>н</td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Сторожук К.С.</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td>н</td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>12</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<footer class="d-flex box footer">
+    <small
+            class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
+</footer>
+
+</div>
+
+</body>
+</html>
