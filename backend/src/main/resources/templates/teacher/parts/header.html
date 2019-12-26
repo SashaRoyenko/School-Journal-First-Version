@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header class="bg-dark box header" th:fragment="content">
+    <nav class="navbar navbar-expand navbar-light"><a th:href="@{/e-journal/admin}"
+                                                      class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
+            class="font-weight-light text-secondary navbar-text">Ви увійшли як: <a
+            class="font-weight-bold text-light" th:href="@{/e-journal/admin}">admin</a><br><a class="text-light"
+                                                                                              th:href="@{/logout}">Вийти</a></span>
+    </nav>
+</header>
+</body>
+</html>
