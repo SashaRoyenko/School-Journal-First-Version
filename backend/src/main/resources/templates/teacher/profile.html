@@ -7,20 +7,7 @@
 <div class="wrapper">
     <div th:replace="~{teacher/parts/header :: header}"></div>
 
-    <aside class="box sidebar" >
-        <div class="flex-column nav">
-            <div class="nav-item "><a href="/student/profile" data-rb-event-key="/student/profile"
-                                       class="ml-2 text-light active nav-link active">Ваш профіль</a></div>
-            <div class="nav-item "><a href="/admin/schedule" data-rb-event-key="/admin/schedule"
-                                     class="ml-2 text-light nav-link">Розклад уроків</a></div>
-            <div class="nav-item "><a href="/student/journal" data-rb-event-key="/student/journal"
-                                     class="ml-2 text-light nav-link">Журнал</a></div>
-            <div class="nav-item "><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
-                                     class="ml-2 text-light nav-link">Домашні завдання</a></div>
-            <div class="nav-item t"><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
-                                     class="ml-2 text-light nav-link">Зауваження</a></div>
-        </div>
-    </aside>
+    <div th:replace="~{teacher/parts/aside :: aside}"></div>
 
     <div class="box content">
         <div class="container">
@@ -62,11 +49,7 @@
         </div>
     </div>
 
-    <footer class="d-flex box footer">
-        <small
-                class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
-    </footer>
-
+<footer th:replace="~{teacher/parts/footer :: footer}"></footer>
 </div>
 
 </body>
