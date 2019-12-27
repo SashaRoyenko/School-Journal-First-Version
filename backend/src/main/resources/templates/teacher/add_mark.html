@@ -50,29 +50,32 @@
         <h2 class="mb-2">Журнал оцінок учнів</h2>
 
         <div class="card">
+            <form>
+                <div class="d-flex ml-3 my-2 align-items-center">
+                    <select class="custom-select w-25 ">
+                        <option selected>Виберіть клас</option>
+                        <option value="1">11-А</option>
+                        <option value="2">10-Б</option>
+                        <option value="3">...</option>
+                        <option value="4">9-В</option>
+                    </select>
+                    <select class="custom-select w-50 ml-2">
+                        <option selected>Виберіть предмет</option>
+                        <option value="1">Алгебра</option>
+                        <option value="2">Геометрія</option>
+                        <option value="3">...</option>
+                        <option value="4">Фізика</option>
+                    </select>
 
-            <div class="d-flex ml-3 my-2">
-                <select class="custom-select w-25 ">
-                    <option selected>Виберіть клас</option>
-                    <option value="1">11-А</option>
-                    <option value="2">10-Б</option>
-                    <option value="3">...</option>
-                    <option value="4">9-В</option>
-                </select>
-                <select class="custom-select w-50 ml-2">
-                    <option selected>Виберіть предмет</option>
-                    <option value="1">Алгебра</option>
-                    <option value="2">Геометрія</option>
-                    <option value="3">...</option>
-                    <option value="4">Фізика</option>
-                </select>
-
-            </div>
+                    <button type="submit" class="btn btn-md btn-success ml-2 mt-2 mb-2">ОК
+                    </button>
+                </div>
+            </form>
 
 
             <nav class="navbar navbar-expand navbar-light bg-light">
                 <div class="mr-auto navbar-nav">
-                    <form novalidate="" class="">
+                    <form class="">
                         <div class="form-row d-flex align-items-center">
                             <h5 class="ml-2">Додати оцінку</h5>
                             <div class="add_mark_toolbar d-flex ml-5">
@@ -104,8 +107,8 @@
                             </div>
 
 
-
-                            <button type="submit" class="btn btn-md btn-success ml-2 mt-2 mb-2">Підтвердити оцінку</button>
+                            <button type="submit" class="btn btn-md btn-success ml-2 mt-2 mb-2">Підтвердити оцінку
+                            </button>
                         </div>
                     </form>
                 </div>
