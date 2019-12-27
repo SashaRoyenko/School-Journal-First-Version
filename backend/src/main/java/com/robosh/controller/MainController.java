@@ -43,11 +43,11 @@ public class MainController {
 //    }
 
 
-    @PostMapping("/parent/save")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
-        return parentService.save(parentDto);
-    }
+//    @PostMapping("/parent/save")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
+//        return parentService.save(parentDto);
+//    }
 
     @GetMapping("/user/save")
     public void saveUser() {
