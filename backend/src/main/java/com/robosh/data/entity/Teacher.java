@@ -18,9 +18,9 @@ public class Teacher extends User {
     @Builder
     public Teacher(Long id, String firstName,
                    String secondName, String lastName, String password,
-                   String email, String phone, Role role,
+                   String email, String phone, String url, Role role,
                    String address, Boolean active) {
-        super(id, firstName, secondName, lastName, email, password, phone, role, active);
+        super(id, firstName, secondName, lastName, email, password, phone, url, role, active);
         this.address = address;
     }
 

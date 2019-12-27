@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.List;
 
@@ -312,7 +313,7 @@ public class MainController {
                 .phone("+380974444444")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(LocalDate.of(2003, Calendar.JANUARY, 11))
+                .birthDate(LocalDate.of(2003, 1, 11))
                 .address("Васильківська 12")
                 .group(group1)
                 .build();
@@ -340,7 +341,7 @@ public class MainController {
                 .phone("+380924219864")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(LocalDate.of(2003, Calendar.JANUARY, 3))
+                .birthDate(LocalDate.of(2003, 1, 3))
                 .address("Магнітогорська 12")
                 .group(group1)
                 .build();
@@ -354,7 +355,7 @@ public class MainController {
                 .phone("+380939589649")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(LocalDate.of(2002, Calendar.JANUARY, 17))
+                .birthDate(LocalDate.of(2002, 1, 17))
                 .address("Магнітогорський 5")
                 .group(group1)
                 .build();
@@ -438,7 +439,7 @@ public class MainController {
                 .phone("+380965540202")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(LocalDate.of(2004, Calendar.JANUARY, 7))
+                .birthDate(LocalDate.of(2004, 1, 7))
                 .address("Кам'янська 6")
                 .group(group1)
                 .build();

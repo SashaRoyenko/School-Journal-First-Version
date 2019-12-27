@@ -18,12 +18,12 @@ public class Parent extends User {
     @Builder
     public Parent(Long id, String firstName,
                   String secondName, String lastName,
-                  String password, String email, String phone,
+                  String password, String email, String phone, String url,
                   Role role, String firstName2,
                   String secondName2, String lastName2,
                   String email2, String phone2,
                   List<Student> students, Boolean active) {
-        super(id, firstName, secondName, lastName, email, password, phone, role, active);
+        super(id, firstName, secondName, lastName, email, password, phone, url, role, active);
         this.firstName2 = firstName2;
         this.secondName2 = secondName2;
         this.lastName2 = lastName2;
