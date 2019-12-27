@@ -6,15 +6,13 @@ import com.robosh.data.entity.*;
 import com.robosh.data.enumeration.Role;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -314,7 +312,7 @@ public class MainController {
                 .phone("+380974444444")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.JANUARY, 11))
+                .birthDate(LocalDate.of(2003, Calendar.JANUARY, 11))
                 .address("Васильківська 12")
                 .group(group1)
                 .build();
@@ -328,7 +326,7 @@ public class MainController {
                 .phone("+380937569845")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.MARCH, 14))
+                .birthDate(LocalDate.of(2003, Calendar.MARCH, 14))
                 .address("Магістральна 2")
                 .group(group1)
                 .build();
@@ -342,7 +340,7 @@ public class MainController {
                 .phone("+380924219864")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.JANUARY, 3))
+                .birthDate(LocalDate.of(2003, Calendar.JANUARY, 3))
                 .address("Магнітогорська 12")
                 .group(group1)
                 .build();
@@ -356,7 +354,7 @@ public class MainController {
                 .phone("+380939589649")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2002, Calendar.JANUARY, 17))
+                .birthDate(LocalDate.of(2002, Calendar.JANUARY, 17))
                 .address("Магнітогорський 5")
                 .group(group1)
                 .build();
@@ -370,7 +368,7 @@ public class MainController {
                 .phone("+380917852599")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2002, Calendar.MAY, 3))
+                .birthDate(LocalDate.of(2002, Calendar.MAY, 3))
                 .address("Маяковського 5")
                 .group(group1)
                 .build();
@@ -384,7 +382,7 @@ public class MainController {
                 .phone("+380941034728")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.NOVEMBER, 6))
+                .birthDate(LocalDate.of(2003, Calendar.NOVEMBER, 6))
                 .address("Маяковського 88")
                 .group(group1)
                 .build();
@@ -398,7 +396,7 @@ public class MainController {
                 .phone("+380902160537")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.SEPTEMBER, 24))
+                .birthDate(LocalDate.of(2003, Calendar.SEPTEMBER, 24))
                 .address("Васильківська 43")
                 .group(group1)
                 .build();
@@ -412,7 +410,7 @@ public class MainController {
                 .phone("+380959801128")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.MAY, 5))
+                .birthDate(LocalDate.of(2003, Calendar.MAY, 5))
                 .address("Калинова 12")
                 .group(group1)
                 .build();
@@ -426,7 +424,7 @@ public class MainController {
                 .phone("+380964319388")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2003, Calendar.MARCH, 5))
+                .birthDate(LocalDate.of(2003, Calendar.MARCH, 5))
                 .address("Калинова 67")
                 .group(group1)
                 .build();
@@ -440,7 +438,7 @@ public class MainController {
                 .phone("+380965540202")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.JANUARY, 7))
+                .birthDate(LocalDate.of(2004, Calendar.JANUARY, 7))
                 .address("Кам'янська 6")
                 .group(group1)
                 .build();
@@ -456,7 +454,7 @@ public class MainController {
                 .phone("+380971821467")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.MARCH, 2))
+                .birthDate(LocalDate.of(2004, Calendar.MARCH, 2))
                 .address("Карельський 3")
                 .group(group2)
                 .build();
@@ -470,7 +468,7 @@ public class MainController {
                 .phone("+380926749639")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2005, Calendar.FEBRUARY, 1))
+                .birthDate(LocalDate.of(2005, Calendar.FEBRUARY, 1))
                 .address("Карельський 55")
                 .group(group2)
                 .build();
@@ -484,7 +482,7 @@ public class MainController {
                 .phone("+380931215534")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2005, Calendar.FEBRUARY, 12))
+                .birthDate(LocalDate.of(2005, Calendar.FEBRUARY, 12))
                 .address("Квітуча 32")
                 .group(group2)
                 .build();
@@ -498,7 +496,7 @@ public class MainController {
                 .phone("+380904781821")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.SEPTEMBER, 11))
+                .birthDate(LocalDate.of(2004, Calendar.SEPTEMBER, 11))
                 .address("Квітуча 77")
                 .group(group2)
                 .build();
@@ -512,7 +510,7 @@ public class MainController {
                 .phone("+380999688307")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.MARCH, 24))
+                .birthDate(LocalDate.of(2004, Calendar.MARCH, 24))
                 .address("Кирилівська 76")
                 .group(group2)
                 .build();
@@ -526,7 +524,7 @@ public class MainController {
                 .phone("+380989844978")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.DECEMBER, 27))
+                .birthDate(LocalDate.of(2004, Calendar.DECEMBER, 27))
                 .address("Кирилівська 33")
                 .group(group2)
                 .build();
@@ -540,7 +538,7 @@ public class MainController {
                 .phone("+380988486456")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.NOVEMBER, 11))
+                .birthDate(LocalDate.of(2004, Calendar.NOVEMBER, 11))
                 .address("Коновала Пилипа 12")
                 .group(group2)
                 .build();
@@ -554,7 +552,7 @@ public class MainController {
                 .phone("+380938853830")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.FEBRUARY, 4))
+                .birthDate(LocalDate.of(2004, Calendar.FEBRUARY, 4))
                 .address("Коновала Пилипа 33")
                 .group(group2)
                 .build();
@@ -568,7 +566,7 @@ public class MainController {
                 .phone("+380904702956")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2005, Calendar.NOVEMBER, 1))
+                .birthDate(LocalDate.of(2005, Calendar.NOVEMBER, 1))
                 .address("Саксаганського 12")
                 .group(group2)
                 .build();
@@ -582,7 +580,7 @@ public class MainController {
                 .phone("+380974848514")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.DECEMBER, 22))
+                .birthDate(LocalDate.of(2004, Calendar.DECEMBER, 22))
                 .address("Саксаганського 44")
                 .group(group2)
                 .build();
@@ -596,7 +594,7 @@ public class MainController {
                 .phone("+380914163089")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2005, Calendar.FEBRUARY, 6))
+                .birthDate(LocalDate.of(2005, Calendar.FEBRUARY, 6))
                 .address("Саксаганського 76")
                 .group(group2)
                 .build();
@@ -610,7 +608,7 @@ public class MainController {
                 .phone("+380983900546")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.JUNE, 3))
+                .birthDate(LocalDate.of(2004, Calendar.JUNE, 3))
                 .address("Салютний 65")
                 .group(group2)
                 .build();
@@ -624,7 +622,7 @@ public class MainController {
                 .phone("+380918787919")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.SEPTEMBER, 9))
+                .birthDate(LocalDate.of(2004, Calendar.SEPTEMBER, 9))
                 .address("Мазепи Івана 7")
                 .group(group2)
                 .build();
@@ -638,7 +636,7 @@ public class MainController {
                 .phone("+380989917163")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.MAY, 8))
+                .birthDate(LocalDate.of(2004, Calendar.MAY, 8))
                 .address("Мазепи Івана 65")
                 .group(group2)
                 .build();
@@ -652,7 +650,7 @@ public class MainController {
                 .phone("+380993631899")
                 .role(Role.STUDENT)
                 .active(true)
-                .birthDate(new Date(2004, Calendar.JULY, 7))
+                .birthDate(LocalDate.of(2004, Calendar.JULY, 7))
                 .address("Мазепи Івана 12")
                 .group(group2)
                 .build();

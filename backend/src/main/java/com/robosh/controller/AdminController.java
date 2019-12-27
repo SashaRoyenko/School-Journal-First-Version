@@ -1,7 +1,9 @@
 package com.robosh.controller;
 
+import com.robosh.data.dto.GroupDto;
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Student;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static com.robosh.common_routes.Routes.*;
+import static com.robosh.common_routes.Routes.ADMIN_MAPPING;
+import static com.robosh.common_routes.Routes.REDIRECT_URL;
 
 @Controller
 @RequestMapping(ADMIN_MAPPING)
@@ -78,7 +82,7 @@ public class AdminController {
         return REDIRECT_URL + ADMIN_MAPPING + TEACHERS_MAPPING;
     }
 
-    @GetMapping(value = {"", STUDENT_MAPPING})
+    @GetMapping(value = {STUDENTS_MAPPING})
     public String getAllStudents(Model model) {
         List<StudentDto> students = studentService.findAll();
         model.addAttribute("studentList", students);
@@ -94,11 +98,18 @@ public class AdminController {
         } else {
             model.addAttribute("student", new Student());
         }
+
+        List<GroupDto> groups = groupService.findAll();
+        model.addAttribute("groups", groups);
+
         return "admin/add_student";
     }
 
     @PostMapping(value = STUDENTS_MAPPING + "/add")
-    public String createOrUpdateStudent(StudentDto studentDto) {
+    public String createOrUpdateStudent(StudentDto studentDto, String groupCode) {
+
+        studentDto.setGroup(groupService.convertGroupDtoToEntity(groupService.findByCodeGroup(groupCode)));
+
         if (studentDto.getId() == null) {
             studentService.save(studentDto);
         } else {
@@ -114,7 +125,6 @@ public class AdminController {
         id.ifPresent(studentService::delete);
         return REDIRECT_URL + ADMIN_MAPPING + STUDENTS_MAPPING;
     }
-
 
 
 
