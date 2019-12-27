@@ -26,4 +26,9 @@ public class TeacherController {
     public String marks() {
         return "teacher/marks";
     }
+
+    @GetMapping("/hometask")
+    public String hometask() {
+        return "teacher/hometasks";
+    }
 }
