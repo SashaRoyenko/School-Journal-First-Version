@@ -35,6 +35,10 @@ public class ParentService {
         return parentMapper.parentToDto(parentRepository.save(parentMapper.dtoToParent(parentDto)));
     }
 
+    public Parent saveParentEntity(Parent parent) {
+        parent.setPassword(passwordEncoder.encode(parent.getPassword()));
+        return parentRepository.save(parent);
+    }
     public ParentDto findByParentId(Long id) {
         return parentMapper.parentToDto(findById(id));
     }
