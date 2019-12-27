@@ -31,4 +31,19 @@ public class TeacherController {
     public String hometask() {
         return "teacher/hometasks";
     }
+
+    @GetMapping("/marks/add-mark")
+    public String addMarkPage() {
+        return "teacher/add_mark";
+    }
+
+    @GetMapping("/rebukes/add-rebuke")
+    public String addRebukesPage() {
+        return "teacher/add_rebuke";
+    }
+
+    @GetMapping("/hometask/add-hometask")
+    public String addHomeTaskPage() {
+        return "teacher/add_hometask";
+    }
 }
