@@ -31,6 +31,7 @@ public class Schedule {
     private String cabinet;
 
     @NotNull
+    @Enumerated
     private DayOfWeek dayOfWeek;
 
     @NotNull
