@@ -67,7 +67,14 @@ public class TeacherController {
     @GetMapping("/hometask")
     public String hometask(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+
         return "teacher/hometasks";
+    }
+
+    @GetMapping("/hometask/add-hometask")
+    public String addHomeTaskPage(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        return "teacher/add_hometask";
     }
 
     @GetMapping("/marks/add-mark")
@@ -80,11 +87,5 @@ public class TeacherController {
     public String addRebukesPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/add_rebuke";
-    }
-
-    @GetMapping("/hometask/add-hometask")
-    public String addHomeTaskPage(Model model, Principal principal) {
-        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
-        return "teacher/add_hometask";
     }
 }
