@@ -12,37 +12,29 @@
     <div th:replace="~{admin/parts/aside :: content}"></div>
 
     <div class="bg-light box content text-dark"> <!--validation TODO-->
-        <form novalidate class=""><h2>Клас</h2>
+        <form class="">
+            <h2>Клас</h2>
             <div class="form-row">
                 <div class="form-group col-md-4"><label class="form-label"
-                                                        for="validationCustom01">Назва класу</label><input required
-                                                                                                           placeholder="Введіть назву класу"
-                                                                                                           type="text"
-                                                                                                           id="validationCustom01"
-                                                                                                           class="form-control"
-                                                                                                           value>
-                    <div class="valid-feedback">ОК!</div>
+                                                        for="validationCustom01">Назва класу</label>
+                    <input required
+                           placeholder="Введіть назву класу"
+                           type="text"
+                           id="validationCustom01"
+                           class="form-control"
+                           value>
                 </div>
                 <div class="form-group offset-md-1 col-md-3">
                     <label class="form-label"
                            for="validationCustom01">Класний керівник</label>
 
-                    <div class="btn-group">
-
-                        <button type="button" class="btn btn-outline-dark">Оберіть вчителя</button>
-                        <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
-                                id="dropdownGroupTeacher" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" data-reference="parent">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuGroupTeacher">
-                            <a class="dropdown-item" href="#">Сторожук Олена Сергіївна</a>
-                            <a class="dropdown-item" href="#">Бортнічук Конь Стантинович</a>
-                            <a class="dropdown-item" href="#">Мішин Мойша Михайлович</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Додати вчителя</a>
-                        </div>
-                    </div>
+                    <select class="custom-select w-25 ">
+                        <option selected>Виберіть клас</option>
+                        <option value="1">Мішин Міша</option>
+                        <option value="2">Бортік Нікіта</option>
+                        <option value="3">...</option>
+                        <option value="4">Роєнко Саня</option>
+                    </select>
                 </div>
 
             </div>
