@@ -11,10 +11,11 @@
 
     <div th:replace="~{student/parts/aside :: content}"></div>
 
-        <div class="box content">
-            <h2 class="mb-2">Розклад уроків</h2>
-            <div class="card">
-                <table class="table table-responsive">
+    <div class="box content">
+        <h2 class="mb-2">Розклад уроків</h2>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -159,7 +160,8 @@
             </div>
         </div>
     </div>
-    <div th:replace="~{student/parts/footer :: content}"></div>
+</div>
+<div th:replace="~{student/parts/footer :: content}"></div>
 
 </body>
 </html>
