@@ -1,50 +1,13 @@
 <!DOCTYPE HTML>
 
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="../css/teacherpage.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-    <title>E-journal</title>
-
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{teacher/parts/head :: head}"></head>
 <body>
 <div class="wrapper">
+    <div th:replace="~{teacher/parts/header :: header}"></div>
 
-    <header class="box header">
-        <nav class="navbar navbar-expand navbar-light"><a href=""
-                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
-                class="font-weight-light text-light navbar-text">Ви увійшли як: <a
-                class="font-weight-bold text-light" href="">Шалденко Олексій</a>, <a class="text-light"
-                                                                                     href="">Вийти</a></span>
-        </nav>
-    </header>
-
-    <aside class="box sidebar">
-        <div class="flex-column nav">
-            <div class="nav-item "><a href="/student/profile" data-rb-event-key="/student/profile"
-                                      class="ml-2 text-light active nav-link active">Ваш профіль</a></div>
-            <div class="nav-item "><a href="/admin/schedule" data-rb-event-key="/admin/schedule"
-                                      class="ml-2 text-light nav-link">Розклад уроків</a></div>
-            <div class="nav-item "><a href="/student/journal" data-rb-event-key="/student/journal"
-                                      class="ml-2 text-light nav-link">Журнал</a></div>
-            <div class="nav-item "><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
-                                      class="ml-2 text-light nav-link">Домашні завдання</a></div>
-            <div class="nav-item t"><a href="/student/hometasks" data-rb-event-key="/student/hometasks"
-                                       class="ml-2 text-light nav-link">Зауваження</a></div>
-        </div>
-    </aside>
+    <div th:replace="~{teacher/parts/aside :: aside}"></div>
 
     <div class="box content">
         <h2 class="mb-2">Журнал оцінок учнів</h2>
@@ -189,12 +152,7 @@
 </div>
 </div>
 
-<footer class="d-flex box footer">
-    <small
-            class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
-</footer>
-
-</div>
+<footer th:replace="~{teacher/parts/footer :: footer}"></footer>
 
 </body>
 </html>
