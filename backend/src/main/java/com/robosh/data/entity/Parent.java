@@ -32,19 +32,19 @@ public class Parent extends User {
         this.students = students;
     }
 
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
+    @Pattern(regexp = "([A-za-z\\p{IsCyrillic}.'-]{3,20})*")
     private String firstName2;
 
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
+    @Pattern(regexp = "([A-za-z\\p{IsCyrillic}.'-]{3,20})*")
     private String secondName2;
 
-    @Pattern(regexp = "[A-za-z\\p{IsCyrillic}.'-]{3,20}")
+    @Pattern(regexp = "([A-za-z\\p{IsCyrillic}.'-]{3,20})*")
     private String lastName2;
 
-    @Pattern(regexp = "[A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8}")
+    @Pattern(regexp = "([A-Za-z0-9+_.-]+@[a-z.-]+\\.[a-z]{2,8})*")
     private String email2;
 
-    @Pattern(regexp = "^(\\+38)(\\(0\\d{2}\\))(\\d){3}(\\-\\d{2}){2}$")
+    @Pattern(regexp = "(^\\+?3?8?(0\\d{9})$)*")
     private String phone2;
 
     @OneToMany

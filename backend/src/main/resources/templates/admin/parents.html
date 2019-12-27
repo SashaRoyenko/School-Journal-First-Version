@@ -14,7 +14,7 @@
     <div class="bg-light box content"><h1>Батьки</h1>
         <div class="card">
             <nav class="navbar navbar-expand navbar-light bg-light">
-                <div class="mr-auto navbar-nav"><a th:href="@{/e-journal/admin/parents/add}" class="btn btn-primary">+ Батьки</a></div>
+                <div class="mr-auto navbar-nav"><a th:href="@{/e-journal/admin/parents/edit}" class="btn btn-primary">+ Батьки</a></div>
                 <form class="form-inline"><input placeholder="Search" type="text" class="mr-sm-2 form-control">
                     <button type="button" class="btn btn-outline-info">Search</button>
                 </form>
@@ -36,7 +36,7 @@
                         <td><p th:text="${parent.getLastName()}"></p><p th:text="${parent.getLastName2()}"></p></td>
                         <td><p th:text="${parent.getFirstName()}"></p><p th:text="${parent.getFirstName2()}"></p></td>
                         <td><p th:text="${parent.getSecondName()}"></p><p th:text="${parent.getSecondName2()}"></p></td>
-                        <td><p th:text="${parent.getEmail()}"></p><p th:text="${parent.getEmail()}"></p></td>
+                        <td><p th:text="${parent.getEmail()}"></p><p th:text="${parent.getEmail2()}"></p></td>
                         <td><p th:text="${parent.getPhone()}"></p><p th:text="${parent.getPhone2()}"></p></td>
                         <td>
                             <div role="toolbar" class="btn-toolbar">

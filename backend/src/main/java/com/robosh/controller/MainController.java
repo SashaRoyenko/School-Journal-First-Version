@@ -42,13 +42,6 @@ public class MainController {
 //        return SecurityContextHolder.getContext().getAuthentication().toString();
 //    }
 
-
-//    @PostMapping("/parent/save")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
-//        return parentService.save(parentDto);
-//    }
-
     @GetMapping("/user/save")
     public void saveUser() {
         final String ADMIN_NAME = "Admin";
