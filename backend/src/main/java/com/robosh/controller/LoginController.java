@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static com.robosh.common_routes.Routes.E_JOURNAL;
+import static com.robosh.common_routes.Routes.REDIRECT_URL;
 import static com.robosh.data.enumeration.Role.*;
 
 @Controller
@@ -20,8 +21,7 @@ import static com.robosh.data.enumeration.Role.*;
 public class LoginController {
 
     @GetMapping("/login")
-    public String loginPage()
-    {
+    public String loginPage() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities = new HashSet<>(auth.getAuthorities());
         boolean isAdmin = authorities.contains(new SimpleGrantedAuthority(ADMIN.name()));
@@ -30,17 +30,16 @@ public class LoginController {
         boolean isTeacher = authorities.contains(new SimpleGrantedAuthority(TEACHER.name()));
 
         if (isAdmin) {
-            //todo replace all with urls
-            return "home_page";
+            return REDIRECT_URL + E_JOURNAL + ADMIN;
         }
         if (isStudent) {
-            return "redirect:/taxi-kyiv/driver-account";
+            return REDIRECT_URL + E_JOURNAL + STUDENT;
         }
         if (isParent) {
-            return "redirect:/taxi-kyiv/driver-account";
+            return REDIRECT_URL + E_JOURNAL + PARENT;
         }
-        if(isTeacher) {
-            return "redirect:/taxi-kyiv/driver-account";
+        if (isTeacher) {
+            return REDIRECT_URL + E_JOURNAL + TEACHER;
         }
         return "login";
     }
