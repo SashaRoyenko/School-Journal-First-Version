@@ -17,7 +17,7 @@ public class TeacherDto extends UserDto {
     @NotNull
     private String address;
 
-    private Subject subject;
+    private String subject;
 
     private Role role = Role.TEACHER;
 }
