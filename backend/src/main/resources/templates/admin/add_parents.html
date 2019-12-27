@@ -12,9 +12,9 @@
     <div th:replace="~{admin/parts/aside :: content}"></div>
 
     <div class="bg-light box content">
-        <form class="">
+        <form class=""  th:action="@{/e-journal/admin/parents/add}" th:object="${parent}" th:method="post">
             <h2>Батьки</h2>
-            <h4>-- Parent1 --</h4>
+            <h4>-- Батько --</h4>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustom01">Прізвище</label>
@@ -23,7 +23,7 @@
                            type="text"
                            id="validationCustom01"
                            class="form-control"
-                           value="">
+                           th:field="*{lastName}">
                     <div class="valid-feedback">ОК!</div>
                 </div>
                 <div class="form-group col-md-4">
@@ -33,7 +33,7 @@
                            type="text"
                            id="validationCustom02"
                            class="form-control"
-                           value="">
+                           th:field="*{firstName}">
                     <div class="valid-feedback">ОК!</div>
                 </div>
                 <div class="form-group col-md-4">
@@ -43,7 +43,7 @@
                            type="text"
                            id="validationCustom03"
                            class="form-control"
-                           value="">
+                           th:field="*{secondName}">
                     <div class="valid-feedback">ОК!</div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                            type="tel"
                            id="validationCustomTel"
                            class="form-control"
-                           value="">
+                           th:field="*{phone}">
                     <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
                 </div>
                 <div class="form-group col-md-4">
@@ -66,52 +66,35 @@
                            type="email"
                            id="validationCustomEmail"
                            class="form-control"
-                           value="">
+                           th:field="*{email}">
                     <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="validationCustom04">Адреса</label>
-                    <input placeholder="Адреса проживання"
-                           required=""
-                           type="text"
-                           id="validationCustom04"
-                           class="form-control">
-                    <div class="invalid-feedback">Введіть адресу</div>
-                </div>
-            </div>
-            <h4>-- Parent2 --</h4>
+            <h4>-- Матір --</h4>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustom05">Прізвище</label>
-                    <input required=""
-                           placeholder="Прізвище"
+                    <input placeholder="Прізвище"
                            type="text"
                            id="validationCustom05"
                            class="form-control"
-                           value="">
-                    <div class="valid-feedback">ОК!</div>
+                           th:field="*{lastName2}">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustom06">Ім'я</label>
-                    <input required=""
-                           placeholder="Ім'я"
+                    <input placeholder="Ім'я"
                            type="text"
                            id="validationCustom06"
                            class="form-control"
-                           value="">
-                    <div class="valid-feedback">ОК!</div>
+                           th:field="*{firstName2}">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustom07">По батькові</label>
-                    <input required=""
-                           placeholder="По батькові"
+                    <input placeholder="По батькові"
                            type="text"
                            id="validationCustom07"
                            class="form-control"
-                           value="">
-                    <div class="valid-feedback">ОК!</div>
+                           th:field="*{secondName2}">
                 </div>
             </div>
             <div class="form-row">
@@ -119,43 +102,31 @@
                     <label class="form-label" for="validationCustomTel1">Телефон</label>
                     <input placeholder="Номер телефону"
                            aria-describedby="inputGroupPrepend"
-                           required=""
                            type="tel"
                            id="validationCustomTel1"
                            class="form-control"
-                           value="">
-                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
+                           th:field="*{phone2}">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustomEmail1">Електронна пошта</label>
-                    <input required=""
-                           placeholder="Електронна пошта"
+                    <input placeholder="Електронна пошта"
                            type="email"
                            id="validationCustomEmail1"
                            class="form-control"
-                           value="">
-                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
+                           th:field="*{email2}">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="validationCustom08">Адреса</label>
-                    <input placeholder="Адреса проживання"
-                           required=""
-                           type="text"
-                           id="validationCustom08"
-                           class="form-control">
-                    <div class="invalid-feedback">Введіть адресу</div>
-                </div>
-            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label class="form-label">Пароль</label>
                     <input placeholder="Пароль"
                            type="password"
-                           class="form-control">
+                           class="form-control"
+                           th:field="*{password}">
                 </div>
             </div>
+            <input type="hidden" th:field="*{id}">
             <button type="submit" class="btn btn-primary">Додати батьків</button>
         </form>
     </div>
