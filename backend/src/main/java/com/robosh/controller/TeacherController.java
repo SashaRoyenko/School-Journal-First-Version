@@ -21,4 +21,9 @@ public class TeacherController {
     public String rebukes() {
         return "teacher/rebukes";
     }
+
+    @GetMapping("/marks")
+    public String marks() {
+        return "teacher/marks";
+    }
 }
