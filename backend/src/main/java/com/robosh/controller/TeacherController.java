@@ -24,16 +24,26 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
+    private void setHeaderName(Model model, String name, String surname) {
+        model.addAttribute("teacherName", name + " " + surname);
+    }
+
     @GetMapping("")
     public String showTeacherProfile(Model model, Principal principal) {
-        addTeacherProfileAttributes(model, principal);
+        TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
+        setHeaderName(model, teacher.getFirstName(), teacher.getLastName());
+        addTeacherProfileAttributes(model, teacher);
         return "teacher/profile";
     }
 
-    private void addTeacherProfileAttributes(Model model, Principal principal) {
-        TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
+    private void addTeacherProfileAttributes(Model model, TeacherDto teacher) {
         System.out.println(teacher.getUrl());
         model.addAttribute("teacherDto", teacher);
+    }
+
+    @GetMapping("/schedule")
+    public String schedule() {
+        return "teacher/schedule";
     }
 
     @GetMapping("/rebukes")
