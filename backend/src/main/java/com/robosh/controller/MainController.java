@@ -1,21 +1,27 @@
 package com.robosh.controller;
 
-import com.robosh.data.dto.ParentDto;
+import com.google.gson.Gson;
 import com.robosh.data.dto.SubjectDto;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.*;
 import com.robosh.data.enumeration.Role;
 import com.robosh.service.*;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.Month;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Controller
 public class MainController {
@@ -42,13 +48,6 @@ public class MainController {
 //        return SecurityContextHolder.getContext().getAuthentication().toString();
 //    }
 
-
-//    @PostMapping("/parent/save")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
-//        return parentService.save(parentDto);
-//    }
-
     @GetMapping("/user/save")
     public void saveUser() {
         final String ADMIN_NAME = "Admin";
@@ -64,13 +63,15 @@ public class MainController {
         initDb();
     }
 
-    @PostMapping("/init")
+    @GetMapping("/init")
+    @Transactional
     public void initDb() {
         initAdmins();
         initSubjects();
         initGroups();
         initTeachers();
         initStudents();
+        initParents();
     }
 
     private void initAdmins() {
@@ -691,6 +692,29 @@ public class MainController {
         studentService.saveStudent(student24);
         studentService.saveStudent(student25);
     }
+
+    @SneakyThrows
+    @Transactional
+    public void initParents() {
+        Gson gson = new Gson();
+        String json = readLineByLineJava8("D:\\E-rozklad\\School-Journal\\backend\\src\\main\\resources\\parent.json");
+        List<Parent> parents = Arrays.asList(gson.fromJson(json, Parent[].class));
+        for (Parent parent : parents) {
+            parentService.saveParentEntity(parent);
+            System.out.println(parent);
+        }
+    }
+
+    private static String readLineByLineJava8(String filePath) {
+        StringBuilder contentBuilder = new StringBuilder();
+        try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
+            stream.forEach(s -> contentBuilder.append(s).append("\n"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contentBuilder.toString();
+    }
+
 
     @GetMapping("/subjects/{id}")
     public List<SubjectDto> getGroupSubjects(@PathVariable("id") Long id) {
