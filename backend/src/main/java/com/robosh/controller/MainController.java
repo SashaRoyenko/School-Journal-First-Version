@@ -1,16 +1,17 @@
 package com.robosh.controller;
 
+import com.robosh.data.dto.ParentDto;
 import com.robosh.data.dto.SubjectDto;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.*;
 import com.robosh.data.enumeration.Role;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Calendar;
@@ -23,20 +24,29 @@ public class MainController {
     private TeacherService teacherService;
     private StudentService studentService;
     private GroupService groupService;
+    private ParentService parentService;
 
     @Autowired
-    public MainController(UserService userService, SubjectService subjectService, TeacherService teacherService, StudentService studentService, GroupService groupService) {
+    public MainController(UserService userService, SubjectService subjectService, TeacherService teacherService, StudentService studentService, GroupService groupService, ParentService parentService) {
         this.userService = userService;
         this.subjectService = subjectService;
         this.teacherService = teacherService;
         this.studentService = studentService;
         this.groupService = groupService;
+        this.parentService = parentService;
     }
 
 
 //    @GetMapping("/")
 //    public String getMain() {
 //        return SecurityContextHolder.getContext().getAuthentication().toString();
+//    }
+
+
+//    @PostMapping("/parent/save")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ParentDto saveParent(@Valid @RequestBody ParentDto parentDto) {
+//        return parentService.save(parentDto);
 //    }
 
     @GetMapping("/user/save")

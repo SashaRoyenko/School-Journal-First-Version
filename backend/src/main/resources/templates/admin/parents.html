@@ -14,7 +14,7 @@
     <div class="bg-light box content"><h1>Батьки</h1>
         <div class="card">
             <nav class="navbar navbar-expand navbar-light bg-light">
-                <div class="mr-auto navbar-nav"><a href="/admin/add_parents" class="btn btn-primary">+ Батьки</a></div>
+                <div class="mr-auto navbar-nav"><a th:href="@{/e-journal/admin/parents/add}" class="btn btn-primary">+ Батьки</a></div>
                 <form class="form-inline"><input placeholder="Search" type="text" class="mr-sm-2 form-control">
                     <button type="button" class="btn btn-outline-info">Search</button>
                 </form>
@@ -32,29 +32,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Shemeliuk<br>Shemeliuk</td>
-                        <td>Orest<br>Marichka</td>
-                        <td>Batkovich<br>Batkivna</td>
-                        <td>shemel_o@gmail.com<br>shemel_m@gmail.com</td>
-                        <td>+380XXXXXXX2<br>+380XXXXXXX7</td>
+                    <tr th:each="parent: ${parentList}">
+                        <td><p th:text="${parent.getLastName()}"></p><p th:text="${parent.getLastName2()}"></p></td>
+                        <td><p th:text="${parent.getFirstName()}"></p><p th:text="${parent.getFirstName2()}"></p></td>
+                        <td><p th:text="${parent.getSecondName()}"></p><p th:text="${parent.getSecondName2()}"></p></td>
+                        <td><p th:text="${parent.getEmail()}"></p><p th:text="${parent.getEmail()}"></p></td>
+                        <td><p th:text="${parent.getPhone()}"></p><p th:text="${parent.getPhone2()}"></p></td>
                         <td>
                             <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Royenko<br>Royenko</td>
-                        <td>Olexandr<br>Maxym</td>
-                        <td>Batkovich<br>Batkovich</td>
-                        <td>frontend_developer@yandex.ru<br>backend_developer@yandex.ru</td>
-                        <td>+380XXXXXXX3<br>+380XXXXXXX8</td>
-                        <td>
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
+                                <a type="button" th:href="@{/e-journal/admin/parents/edit/{id}(id=${parent.getId()})}"
+                                   class="mr-1 btn btn-outline-warning btn-sm">Змінити</a>
+                                <a type="button" th:href="@{/e-journal/admin/parents/delete/{id}(id=${parent.getId()})}"
+                                   class="btn btn-outline-danger btn-sm">Видалити</a>
                             </div>
                         </td>
                     </tr>

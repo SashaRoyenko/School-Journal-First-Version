@@ -1,9 +1,11 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.GroupDto;
+import com.robosh.data.dto.ParentDto;
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Group;
+import com.robosh.data.entity.Parent;
 import com.robosh.data.entity.Student;
 import com.robosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,6 +128,43 @@ public class AdminController {
         return REDIRECT_URL + ADMIN_MAPPING + STUDENTS_MAPPING;
     }
 
+    @GetMapping(value = {PARENTS_MAPPING})
+    public String getAllParents(Model model) {
+        List<ParentDto> parents = parentService.findAll();
+        model.addAttribute("parentList", parents);
 
+        return "admin/parents";
+    }
+
+    @GetMapping(value = {PARENTS_MAPPING + "/edit", PARENTS_MAPPING + "/edit/{id}"})
+    public String editParentById(Model model, @PathVariable("id") Optional<Long> id) {
+        if (id.isPresent()) {
+            Parent parent = parentService.findById(id.get());
+            model.addAttribute("parent", parent);
+        } else {
+            model.addAttribute("parent", new Parent());
+        }
+
+        return "admin/add_parents";
+    }
+
+    @PostMapping(value = PARENTS_MAPPING + "/add")
+    public String createOrUpdateParent(ParentDto parentDto) {
+
+        if (parentDto.getId() == null) {
+            parentService.save(parentDto);
+        } else {
+            parentService.update(parentDto);
+        }
+
+        return REDIRECT_URL + ADMIN_MAPPING + PARENTS_MAPPING;
+    }
+
+    @GetMapping(value = PARENTS_MAPPING + "/delete/{id}")
+    public String deleteParent(Model model, @PathVariable("id") Optional<Long> id) {
+
+        id.ifPresent(parentService::delete);
+        return REDIRECT_URL + ADMIN_MAPPING + PARENTS_MAPPING;
+    }
 
 }
