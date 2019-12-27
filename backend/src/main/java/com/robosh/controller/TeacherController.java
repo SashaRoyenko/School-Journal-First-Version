@@ -16,4 +16,9 @@ public class TeacherController {
     public String teacherProfile() {
         return "teacher/profile";
     }
+
+    @GetMapping("/rebukes")
+    public String rebukes() {
+        return "teacher/rebukes";
+    }
 }
