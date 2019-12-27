@@ -4,6 +4,7 @@ import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Teacher;
 import com.robosh.data.entity.User;
 import com.robosh.data.mapping.TeacherMapper;
+import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.data.repository.TeacherRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -18,13 +19,15 @@ import java.util.List;
 public class TeacherService {
 
     private TeacherRepository teacherRepository;
+    private ScheduleRepository scheduleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private TeacherMapper teacherMapper;
     private ModelMapper modelMapper;
 
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public TeacherService(TeacherRepository teacherRepository, ScheduleRepository scheduleRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.teacherRepository = teacherRepository;
+        this.scheduleRepository = scheduleRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         teacherMapper = TeacherMapper.INSTANCE;
@@ -71,5 +74,16 @@ public class TeacherService {
 
     public TeacherDto convertTeacherToDto(Teacher teacher) {
         return teacherMapper.teacherToDto(teacher);
+    }
+
+    public TeacherDto findTeacherByEmail(String email) {
+        Teacher teacher = teacherRepository.findTeacherByEmail(email);
+        TeacherDto teacherDto = teacherMapper.teacherToDto(teacher);
+        if (teacher.getUrl() == null) {
+            teacherDto.setUrl("https://instagram.fdnk1-1.fna.fbcdn.net/vp/53a7c63e343bca3099b9f23a1cfcb8a5/5E8CABE1/t51.2885-19/s320x320/72875015_1368029390037558_6816249923525148672_n.jpg?_nc_ht=instagram.fdnk1-1.fna.fbcdn.net");
+        }
+        //todo set subject
+//        teacherDto.setSubject();
+        return teacherDto;
     }
 }

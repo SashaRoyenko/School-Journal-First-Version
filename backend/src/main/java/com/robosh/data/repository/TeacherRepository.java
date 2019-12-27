@@ -18,4 +18,5 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
             nativeQuery = true)
     List<Teacher> findTeacherByGroupId(Long id);
 
+    Teacher findTeacherByEmail(String email);
 }
