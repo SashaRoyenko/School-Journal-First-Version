@@ -1,113 +1,124 @@
 <!DOCTYPE HTML>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="../css/adminpage.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-    <title>E-journal</title>
+<div th:replace="~{admin/parts/head :: content}"></div>
 
-</head>
 
 <body>
 <div class="wrapper">
-    <header class="bg-dark box header">
-        <nav class="navbar navbar-expand navbar-light"><a href="#home"
-                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
-                class="font-weight-light text-secondary navbar-text">Ви увійшли як: <a
-                class="font-weight-bold text-light" href="#login">admin</a><br><a class="text-light"
-                                                                                  href="#logout">Вийти</a></span>
-        </nav>
-    </header>
-    <aside class="bg-secondary box sidebar">
-        <div class="flex-column nav">
-            <div class="nav-item"><a href="#" class="text-light nav-link disabled" role="button" tabindex="-1"
-                                     aria-disabled="true">Користувачі</a></div>
-            <div class="nav-item"><a href="/admin/teachers" data-rb-event-key="/admin/teachers"
-                                     class="ml-2 text-light nav-link">Вчителі</a></div>
-            <div class="nav-item"><a href="/admin/students" data-rb-event-key="/admin/students"
-                                     class="ml-2 text-light nav-link">Учні</a></div>
-            <div class="nav-item"><a href="/admin/parents" data-rb-event-key="/admin/parents"
-                                     class="ml-2 text-light nav-link">Батьки</a></div>
-            <div class="nav-item"><a href="/admin/lessons" data-rb-event-key="/admin/lessons"
-                                     class="text-light nav-link">Предмети</a></div>
-            <div class="nav-item"><a href="/admin/groups" data-rb-event-key="/admin/groups"
-                                     class="text-light nav-link">Класи</a></div>
-            <div class="nav-item"><a href="/teachers" data-rb-event-key="/teachers"
-                                     class="text-light nav-link">Розклад</a>
-            </div>
-        </div>
-    </aside>
+    <div th:replace="~{admin/parts/header :: content}"></div>
+
+    <div th:replace="~{admin/parts/aside :: content}"></div>
+
     <div class="bg-light box content"> <!--validation TODO-->
-        <form novalidate="" class=""><h2>Учень</h2>
+        <form
+              th:action="@{/e-journal/admin/students/add}" th:object="${student}" th:method="post">
+            <h2>Учень</h2>
             <div class="form-row">
-                <div class="form-group col-md-4"><label class="form-label"
-                                                        for="validationCustom01">Прізвище</label><input required=""
-                                                                                                        placeholder="Прізвище"
-                                                                                                        type="text"
-                                                                                                        id="validationCustom01"
-                                                                                                        class="form-control"
-                                                                                                        value="">
-                    <div class="valid-feedback">Looks good!</div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault01">Прізвище</label>
+                    <input required
+                           type="text"
+                           placeholder="Прізвище"
+                           id="validationDefault01"
+                           class="form-control"
+                           name="lastName"
+                           th:field="*{lastName}">
+                    <div class="valid-feedback">ОК!</div>
                 </div>
-                <div class="form-group col-md-4"><label class="form-label" for="validationCustom02">Ім'я</label><input
-                        required="" placeholder="Ім'я" type="text" id="validationCustom02" class="form-control"
-                        value="">
-                    <div class="valid-feedback">Looks good!</div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault02">Ім'я</label>
+                    <input required
+                           placeholder="Ім'я"
+                           type="text"
+                           id="validationDefault02"
+                           class="form-control"
+                           name="firstName"
+                           th:field="*{firstName}">
+                    <div class="valid-feedback">ОК!</div>
                 </div>
-                <div class="form-group col-md-4"><label class="form-label" for="validationCustom03">По
-                    батькові</label><input required="" placeholder="По батькові" type="text" id="validationCustom03"
-                                           class="form-control" value="">
-                    <div class="valid-feedback">Looks good!</div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault03">По батькові</label>
+                    <input required
+                           placeholder="По батькові"
+                           type="text"
+                           id="validationDefault03"
+                           class="form-control"
+                           value=""
+                           th:field="*{secondName}">
+                    <div class="valid-feedback">ОК!</div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4"><label class="form-label"
-                                                        for="validationCustomTel">Телефон</label><input
-                        placeholder="Номер телефону" aria-describedby="inputGroupPrepend" required="" type="tel"
-                        id="validationCustomTel" class="form-control" value="">
-                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault04">Телефон</label>
+                    <input placeholder="Номер телефону"
+                           aria-describedby="inputGroupPrepend"
+                           required type="tel"
+                           pattern='[\+]\d{12}'
+                           id="validationDefault04"
+                           class="form-control"
+                           name="phone"
+                           th:field="*{phone}">
                 </div>
-                <div class="form-group col-md-4"><label class="form-label" for="validationCustomEmail">Електронна
-                    пошта</label><input required="" placeholder="Електронна пошта" type="email"
-                                        id="validationCustomEmail" class="form-control" value="">
-                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault05">Електронна пошта</label>
+                    <input required
+                           placeholder="Електронна пошта"
+                           type="email"
+                           id="validationDefault05"
+                           class="form-control"
+                           name="email"
+                           th:field="*{email}">
                 </div>
-                <div class="form-group col-md-4"><label class="form-label" for="validationCustom04">Дата
-                    народження</label><input min="1900-01-01" max="2019-10-11" type="date" id="validationCustom04"
-                                             class="form-control"></div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationDefault06">Дата народження</label>
+                    <input min="1900-01-01"
+                           max="2019-10-11"
+                           type="date"
+                           id="validationDefault06"
+                           class="form-control"
+                           th:field="*{birthDate}">
+                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6"><label class="form-label" for="validationCustom05">Адреса</label><input
-                        placeholder="Адреса проживання" required="" type="text" id="validationCustom05"
-                        class="form-control">
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="validationDefault07">Адреса</label>
+                    <input placeholder="Адреса проживання"
+                           required
+                           type="text"
+                           id="validationDefault07"
+                           class="form-control"
+                           name="address"
+                           th:field="*{address}">
                     <div class="invalid-feedback">Введіть адресу</div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-3"><label class="form-label">Пароль</label><input placeholder="Пароль"
-                                                                                                type="password"
-                                                                                                class="form-control">
+                <div class="form-group col-md-3">
+                    <label class="form-label">Пароль</label>
+                    <input placeholder="Пароль"
+                           type="text"
+                           class="form-control"
+                           name="password"
+                           value="**********"
+                           onfocus="this.value=''">
                 </div>
             </div>
+            <select class="custom-select w-25" name="groupCode">
+                <option th:each="group: ${groups}"
+                        th:value="${group.groupCode}"
+                th:text="${group.groupCode}">
+                </option>
+            </select>
+            <input type="hidden" th:field="*{id}">
             <button type="submit" class="btn btn-primary">Додати учня</button>
         </form>
     </div>
-    <footer class="bg-dark d-flex box footer">
-        <small
-                class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
-    </footer>
+
+    <div th:replace="~{admin/parts/footer :: content}"></div>
+
 </div>
 
 </body>
