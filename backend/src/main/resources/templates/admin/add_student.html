@@ -12,38 +12,38 @@
     <div th:replace="~{admin/parts/aside :: content}"></div>
 
     <div class="bg-light box content"> <!--validation TODO-->
-        <form novalidate
+        <form
               th:action="@{/e-journal/admin/students/add}" th:object="${student}" th:method="post">
             <h2>Учень</h2>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustom01">Прізвище</label>
+                    <label class="form-label" for="validationDefault01">Прізвище</label>
                     <input required
                            type="text"
                            placeholder="Прізвище"
-                           id="validationCustom01"
+                           id="validationDefault01"
                            class="form-control"
                            name="lastName"
                            th:field="*{lastName}">
                     <div class="valid-feedback">ОК!</div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustom02">Ім'я</label>
+                    <label class="form-label" for="validationDefault02">Ім'я</label>
                     <input required
                            placeholder="Ім'я"
                            type="text"
-                           id="validationCustom02"
+                           id="validationDefault02"
                            class="form-control"
                            name="firstName"
                            th:field="*{firstName}">
                     <div class="valid-feedback">ОК!</div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustom03">По батькові</label>
+                    <label class="form-label" for="validationDefault03">По батькові</label>
                     <input required
                            placeholder="По батькові"
                            type="text"
-                           id="validationCustom03"
+                           id="validationDefault03"
                            class="form-control"
                            value=""
                            th:field="*{secondName}">
@@ -52,44 +52,43 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustomTel">Телефон</label>
+                    <label class="form-label" for="validationDefault04">Телефон</label>
                     <input placeholder="Номер телефону"
                            aria-describedby="inputGroupPrepend"
                            required type="tel"
-                           id="validationCustomTel"
+                           pattern='[\+]\d{12}'
+                           id="validationDefault04"
                            class="form-control"
                            name="phone"
                            th:field="*{phone}">
-                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustomEmail">Електронна пошта</label>
+                    <label class="form-label" for="validationDefault05">Електронна пошта</label>
                     <input required
                            placeholder="Електронна пошта"
                            type="email"
-                           id="validationCustomEmail"
+                           id="validationDefault05"
                            class="form-control"
                            name="email"
                            th:field="*{email}">
-                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="form-label" for="validationCustom04">Дата народження</label>
+                    <label class="form-label" for="validationDefault06">Дата народження</label>
                     <input min="1900-01-01"
                            max="2019-10-11"
                            type="date"
-                           id="validationCustom04"
+                           id="validationDefault06"
                            class="form-control"
                            th:field="*{birthDate}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label class="form-label" for="validationCustom05">Адреса</label>
+                    <label class="form-label" for="validationDefault07">Адреса</label>
                     <input placeholder="Адреса проживання"
                            required
                            type="text"
-                           id="validationCustom05"
+                           id="validationDefault07"
                            class="form-control"
                            name="address"
                            th:field="*{address}">
