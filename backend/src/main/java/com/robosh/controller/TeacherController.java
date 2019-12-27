@@ -1,9 +1,15 @@
 package com.robosh.controller;
 
+import com.robosh.data.dto.TeacherDto;
+import com.robosh.service.TeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 import static com.robosh.common_routes.Routes.TEACHER_MAPPING;
 
@@ -11,10 +17,23 @@ import static com.robosh.common_routes.Routes.TEACHER_MAPPING;
 @RequestMapping(TEACHER_MAPPING)
 @PreAuthorize("hasAuthority('ADMIN')")
 public class TeacherController {
+    private TeacherService teacherService;
+
+    @Autowired
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
 
     @GetMapping("")
-    public String teacherProfile() {
+    public String showTeacherProfile(Model model, Principal principal) {
+        addTeacherProfileAttributes(model, principal);
         return "teacher/profile";
+    }
+
+    private void addTeacherProfileAttributes(Model model, Principal principal) {
+        TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
+        System.out.println(teacher.getUrl());
+        model.addAttribute("teacherDto", teacher);
     }
 
     @GetMapping("/rebukes")

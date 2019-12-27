@@ -10,14 +10,14 @@
     <div th:replace="~{teacher/parts/aside :: aside}"></div>
 
     <div class="box content">
-        <div class="container">
+        <div class="container" th:object="${teacherDto}">
             <div class="row">
-                <div class="col-md-3"><img class="w-100 rounded border"
-                                           src="https://instagram.fdnk1-1.fna.fbcdn.net/vp/53a7c63e343bca3099b9f23a1cfcb8a5/5E8CABE1/t51.2885-19/s320x320/72875015_1368029390037558_6816249923525148672_n.jpg?_nc_ht=instagram.fdnk1-1.fna.fbcdn.net">
-                </div>
+                <div class="col-md-3"><img class="w-100 rounded border" th:src="@{${teacherDto.url}}"></div>
                 <div class="col-md-9">
-                    <div class="d-flex align-items-center"><h2 class="font-weight-bold m-0">Шалденко Олексій Вікторович</h2>
-
+                    <div class="d-flex align-items-center">
+                        <h2 class="font-weight-bold mr-1" th:text="${teacherDto.firstName}"></h2>
+                        <h2 class="font-weight-bold mr-1" th:text="${teacherDto.secondName}"></h2>
+                        <h2 class="font-weight-bold mr-1" th:text="${teacherDto.lastName}"></h2>
                     </div>
                     <p class="h5 text-success mt-2 d-block font-weight-light">Вчитель</p>
                     <section class="mt-5">
@@ -29,17 +29,15 @@
                             Інформація</h6>
                             <dl class="row mt-4 mb-4 pb-3">
                                 <dt class="col-sm-3">Предмет</dt>
-                                <dd class="col-sm-9">Учитель точних наук</dd>
-                                <dt class="col-sm-3">Дата народження</dt>
-                                <dd class="col-sm-9">20 листопада 1999</dd>
+                                <dd class="col-sm-9" th:text="${teacherDto.subject}"></dd>
                                 <dt class="col-sm-3">Телефон</dt>
-                                <dd class="col-sm-9">+380 68-552-99-17</dd>
+                                <dd class="col-sm-9" th:text="${teacherDto.phone}"></dd>
                                 <dt class="col-sm-3">Домашня адреса</dt>
                                 <dd class="col-sm-9">
-                                    <address class="mb-0">м. Вінниця, вул. Р. Скалецького, 34а, кв.33</address>
+                                    <address class="mb-0" th:text="${teacherDto.address}"></address>
                                 </dd>
                                 <dt class="col-sm-3">Електронна пошта</dt>
-                                <dd class="col-sm-9"><a class="text-success" href="mailto:kostyastorozhuk@gmail.com">kostyastorozhuk@gmail.com</a>
+                                <dd class="col-sm-9"><a class="text-success" href="#" th:text="${teacherDto.email}"></a>
                                 </dd>
                             </dl>
                         </div>
@@ -49,7 +47,7 @@
         </div>
     </div>
 
-<footer th:replace="~{teacher/parts/footer :: footer}"></footer>
+    <footer th:replace="~{teacher/parts/footer :: footer}"></footer>
 </div>
 
 </body>
