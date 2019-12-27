@@ -91,6 +91,18 @@
                            name="address"
                            th:field="*{address}">
                 </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="validationDefault08">Клас</label><br>
+                    <select class="custom-select w-50" name="groupCode">
+                        <option id="validationDefault08"
+                                th:each="group: ${groups}"
+                                th:value="${group.groupCode}"
+                                th:text="${group.groupCode}">
+                        </option>
+                    </select>
+                    <input type="hidden" th:field="*{id}">
+                </div>
+
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
@@ -103,13 +115,7 @@
                            onfocus="this.value=''">
                 </div>
             </div>
-            <select class="custom-select w-25" name="groupCode">
-                <option th:each="group: ${groups}"
-                        th:value="${group.groupCode}"
-                th:text="${group.groupCode}">
-                </option>
-            </select>
-            <input type="hidden" th:field="*{id}">
+
             <button type="submit" class="btn btn-primary">Додати учня</button>
         </form>
     </div>
