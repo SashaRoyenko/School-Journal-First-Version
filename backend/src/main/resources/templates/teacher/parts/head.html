@@ -1,12 +1,10 @@
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
+<head th:fragment="head">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login_styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/teacherpage.css}">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
@@ -17,27 +15,5 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <title>E-journal</title>
-
 </head>
-
-<body>
-
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Tabs Titles -->
-
-        <!-- Icon -->
-        <div class="fadeIn first">
-            <img class="mt-4" style="width:64px;" th:src="@{/img/school.ico}" id="icon" alt="User Icon"/>
-        </div>
-        <h2 class="mt-1 text-dark">E-JOURNAL</h2>
-
-        <!-- Login Form -->
-        <form method="POST" th:action="#{/e-journal/login}">
-            <input type="email" id="login" class="fadeIn second" name="username" placeholder="Електронна пошта" required>
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Пароль" required>
-            <input type="submit" class="fadeIn fourth" value="Log In">
-        </form>
-
-    </div>
-</div>
+</html>

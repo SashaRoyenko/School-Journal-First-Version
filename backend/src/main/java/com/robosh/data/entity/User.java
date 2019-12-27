@@ -63,6 +63,8 @@ public class User {
     @Column(nullable = false, unique = true)
     protected String phone;
 
+    protected String url;
+
     @Enumerated(EnumType.STRING)
     protected Role role;
 

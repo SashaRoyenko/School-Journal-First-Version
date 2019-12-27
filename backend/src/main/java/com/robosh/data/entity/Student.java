@@ -24,9 +24,9 @@ public class Student extends User {
     public Student(Long id, String firstName,
                    String secondName, String lastName,
                    LocalDate birthDate, String password, String email,
-                   String phone, Role role,
+                   String phone, String url, Role role,
                    String address, Group group, Boolean active) {
-        super(id, firstName, secondName, lastName, email, password, phone, role, active);
+        super(id, firstName, secondName, lastName, email, password, phone, url, role, active);
         this.birthDate = birthDate;
         this.address = address;
         this.group = group;

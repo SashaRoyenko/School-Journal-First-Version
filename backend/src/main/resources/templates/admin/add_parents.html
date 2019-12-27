@@ -11,8 +11,10 @@
 
     <div th:replace="~{admin/parts/aside :: content}"></div>
 
-    <div class="bg-light box content"> <!--validation TODO-->
-        <form novalidate="" class=""><h2>Батьки</h2><h4>-- Parent1 --</h4>
+    <div class="bg-light box content">
+        <form class="">
+            <h2>Батьки</h2>
+            <h4>-- Parent1 --</h4>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustom01">Прізвище</label>
@@ -157,10 +159,8 @@
             <button type="submit" class="btn btn-primary">Додати батьків</button>
         </form>
     </div>
-    <footer class="bg-dark d-flex box footer">
-        <small
-                class="font-weight-light text-light m-auto">© E-JOURNAL. KSON Team. 2019</small>
-    </footer>
+
+    <div th:replace="~{admin/parts/footer :: content}"></div>
 </div>
 
 </body>

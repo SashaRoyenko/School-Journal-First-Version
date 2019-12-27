@@ -12,8 +12,8 @@
     <div th:replace="~{admin/parts/aside :: content}"></div>
 
 
-    <div class="bg-light box content text-dark"> <!--validation TODO-->
-        <form novalidate
+    <div class="bg-light box content text-dark">
+        <form
               th:action="@{/e-journal/admin/teachers/add}" th:object="${teacher}" th:method="post">
             <h2>Вчитель</h2>
             <div class="form-row">
@@ -48,7 +48,6 @@
                            class="form-control"
                            value=""
                            th:field="*{secondName}">
-                    <div class="valid-feedback">ОК!</div>
                 </div>
             </div>
             <div class="form-row">
@@ -58,10 +57,10 @@
                            aria-describedby="inputGroupPrepend"
                            required type="tel"
                            id="validationCustomTel"
+                           pattern='[\+]\d{12}'
                            class="form-control"
                            name="phone"
                            th:field="*{phone}">
-                    <div class="invalid-feedback">Будь ласка напишіть номер телефону.</div>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label" for="validationCustomEmail">Електронна пошта</label>
@@ -72,7 +71,6 @@
                            class="form-control"
                            name="email"
                            th:field="*{email}">
-                    <div class="invalid-feedback">Будь ласка напишіть пошту.</div>
                 </div>
             </div>
             <div class="form-row">
@@ -85,7 +83,6 @@
                            class="form-control"
                            name="address"
                            th:field="*{address}">
-                    <div class="invalid-feedback">Введіть адресу</div>
                 </div>
             </div>
             <div class="form-row">

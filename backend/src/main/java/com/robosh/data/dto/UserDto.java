@@ -19,5 +19,7 @@ public class UserDto {
 
     protected String phone;
 
+    protected String url;
+
     protected Role role;
 }
