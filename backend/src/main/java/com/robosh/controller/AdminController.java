@@ -104,20 +104,31 @@ public class AdminController {
 
         List<GroupDto> groups = groupService.findAll();
         model.addAttribute("groups", groups);
+        List<ParentDto> parents = parentService.findAll();
+        model.addAttribute("parents", parents);
 
         return "admin/add_student";
     }
 
     @PostMapping(value = STUDENTS_MAPPING + "/add")
-    public String createOrUpdateStudent(StudentDto studentDto, String groupCode) {
+    public String createOrUpdateStudent(StudentDto studentDto, String groupCode, Long parentId) {
 
         studentDto.setGroup(groupService.convertGroupDtoToEntity(groupService.findByCodeGroup(groupCode)));
+//
+//        final Parent parent = parentService.findById(parentId);
+//
+//        final ParentDto parentDto = parentService.convertParentToDto(parent);
+
+//        List<StudentDto> students = new ArrayList<>();
+//        students.add(studentDto);
+//        parentDto.setStudents(students);
 
         if (studentDto.getId() == null) {
             studentService.save(studentDto);
         } else {
             studentService.update(studentDto);
         }
+//        parentService.update(parentDto);
 
         return REDIRECT_URL + ADMIN_MAPPING + STUDENTS_MAPPING;
     }
@@ -209,6 +220,9 @@ public class AdminController {
         } else {
             model.addAttribute("schedules", new ArrayList<ScheduleDto>(8));
         }
+
+        List<SubjectDto> subjects = subjectService.findAll();
+        model.addAttribute("subjects", subjects);
 
         return "admin/add_schedule";
     }

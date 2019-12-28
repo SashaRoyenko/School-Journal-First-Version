@@ -27,19 +27,11 @@
                 <div class="form-group mr-3">
                     <label class="form-label" for="validationDefault02">День тижня</label><br>
                     <select id="validationDefault02" class="custom-select w-100">
-                        <option value="1">Понеділок</option>
-                        <option value="2">Вівторок</option>
-                        <option value="3">...</option>
+                        <option value="0">Понеділок</option>
+                        <option value="1">Вівторок</option>
+                        <option value="2">Середа</option>
+                        <option value="3">Четвер</option>
                         <option value="4">П'ятниця</option>
-                    </select>
-                </div>
-                <div class="form-group mr-3">
-                    <label class="form-label" for="validationDefault03">Кількість предметів</label><br>
-                    <select id="validationDefault03" class="custom-select w-100">
-                        <option selected>3</option>
-                        <option value="1">1</option>
-                        <option value="2">....</option>
-                        <option value="3">8</option>
                     </select>
                 </div>
             </div>
@@ -48,11 +40,7 @@
                 <div class="form-group col-md-3">
                     <label class="form-label" for="validationDefault06">Предмет</label><br>
                     <select id="validationDefault06" class="custom-select w-100">
-                        <option value="1">Українська мова</option>
-                        <option value="2">....</option>
-                        <option value="3">Фізика</option>
-                        <option value="3">Алгебра</option>
-                        <option value="3">Геометрія</option>
+                        <option th:each="subject : ${subjects}" th:text="${subject.name}">Українська мова</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">

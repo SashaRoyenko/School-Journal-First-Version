@@ -74,7 +74,9 @@ public class TeacherController {
 
         final Map<DayOfWeek, List<Schedule>> scheduleForEachDay = scheduleService.getScheduleForEachDay(schedules);
 
-        model.addAttribute("scheduleMap", scheduleService.getIntegerSchedule(scheduleForEachDay));
+
+        final Map<Integer, List<Schedule>> integerSchedule = scheduleService.getIntegerSchedule(scheduleForEachDay);
+        model.addAttribute("scheduleMap", integerSchedule);
 
         return "teacher/schedule";
     }
@@ -91,6 +93,7 @@ public class TeacherController {
     public String marks(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         addTeacherProfileAttributes(model, teacher);
+
 
 
         return "teacher/marks";
