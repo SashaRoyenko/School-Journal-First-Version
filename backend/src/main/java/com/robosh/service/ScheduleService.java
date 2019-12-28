@@ -7,14 +7,16 @@ import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.ScheduleMapper;
 import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.exception.ResourceNotFoundException;
-import lombok.val;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -81,5 +83,10 @@ public class ScheduleService {
 
     public List<Schedule> getScheduleByTeacherId(Long id) {
         return scheduleRepository.findScheduleByTeacherId(id);
+    }
+
+    public Map<DayOfWeek, List<Schedule>> getScheduleForEachDay(List<Schedule> schedules) {
+        return schedules.stream()
+                .collect(Collectors.groupingBy(Schedule::getDayOfWeek));
     }
 }

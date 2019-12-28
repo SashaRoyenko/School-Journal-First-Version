@@ -2,22 +2,24 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div th:replace="~{student/parts/head :: content}"></div>
+<div th:replace="~{student/parts/head :: head}"></div>
 
 <body>
 <div class="wrapper">
 
-    <div th:replace="~{student/parts/header :: content}"></div>
+    <div th:replace="~{student/parts/header :: header}"></div>
 
-    <div th:replace="~{student/parts/aside :: content}"></div>
-    <div class="box content"><h2 class="mb-3">Журнал оцінок учня</h2>
-        <select class="custom-select" id="ex2">
+    <div th:replace="~{student/parts/aside :: aside}"></div>
+    <div class="box content">
+        <h2 class="mb-3">Журнал оцінок учня</h2>
+        <select class="custom-select w-50" id="ex2">
             <option selected>Оберіть предмет</option>
             <option value="1">Алгебра</option>
             <option value="2">Геометрія</option>
             <option value="3">....</option>
             <option value="4">Фізика</option>
         </select>
+        <button type="submit" class="btn btn-md btn-primary ml-2 mt-2 mb-2">ОК</button>
         <div class="table-responsive">
             <table class="table table-light table-striped table-bordered table-hover">
                 <thead>
@@ -51,7 +53,7 @@
             </table>
         </div>
     </div>
-    <div th:replace="~{student/parts/footer :: content}"></div>
+    <div th:replace="~{student/parts/footer :: footer}"></div>
 </div>
 
 </body>
