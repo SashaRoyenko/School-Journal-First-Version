@@ -21,19 +21,20 @@
                 </div>
             </nav>
             <nav class="navbar navbar-expand navbar-light bg-light">
-                <form class="form-inline">
+                <form class="form-inline" method="get">
                     <label class="form-label" for="validationDefault02">Виберіть клас</label><br>
-                    <select id="validationDefault02" class="custom-select w-100">
-                        <option value="1">10-А</option>
-                        <option value="2">11-А</option>
-                        <option value="3">...</option>
-                        <option value="4">9-В</option>
+                    <select id="validationDefault02" class="custom-select w-100" name="groupId">
+                        <option id="validationDefault08"
+                                th:each="group: ${groups}"
+                                th:value="${group.id}"
+                                th:text="${group.groupCode}">
+                        </option>
                     </select>
                 </form>
             </nav>
             <span class="ml-3 mt-2 mb-1 d-inline">
-                    <h4>10-A</h4>
-                    <small><a href="#">Змінити розклад</a></small>
+                    <h4 th:text="${group.groupCode}">Клас</h4>
+                    <small><a th:href="@{/e-journal/admin/schedule/edit}">Змінити розклад</a></small>
                 </span>
             <table class="table table-responsive ml-3">
                 <thead>
@@ -54,127 +55,21 @@
                     <td>
                         <strong>Фізика</strong><br>
                         <small>Власов О.В., к.303</small>
+                    </td>
+                    <td>
+                        <strong>Українська мова</strong><br>
+                        <small>Дрон А.С., к.112</small>
+                    </td>
+                    <td>
+                        <strong>Англійська мова</strong><br>
+                        <small>Гагаріна М.К., к.308</small>
+                    </td>
+                    <td>
+                        <strong>Фізичне виховання</strong><br>
+                        <small>Михайлов С.А., к.404</small>
+                    </td>
+                </tr>
 
-                    </td>
-                    <td>
-                        <strong>Українська мова</strong><br>
-                        <small>Дрон А.С., к.112</small>
-                    </td>
-                    <td>
-                        <strong>Англійська мова</strong><br>
-                        <small>Гагаріна М.К., к.308</small>
-                    </td>
-                    <td>
-                        <strong>Фізичне виховання</strong><br>
-                        <small>Михайлов С.А., к.404</small>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>
-                        <strong>Українська мова</strong><br>
-                        <small>Дрон А.С., к.112</small>
-                    </td>
-                    <td></td>
-                    <td>
-                        <strong>Фізичне виховання</strong><br>
-                        <small>Михайлов С.А., к.404</small>
-                    </td>
-                    <td>
-                        <strong>Алгебра</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Геометрія</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>
-                        <strong>Англійська мова</strong><br>
-                        <small>Гагаріна М.К., к.308</small>
-                    </td>
-                    <td>
-                        <strong>Фізичне виховання</strong><br>
-                        <small>Михайлов С.А., к.404</small>
-                    </td>
-                    <td>
-                        <strong>Алгебра</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Геометрія</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Фізика</strong><br>
-                        <small>Власов О.В., к.303</small>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>
-                        <strong>Фізичне виховання</strong><br>
-                        <small>Михайлов С.А., к.404</small>
-                    </td>
-                    <td>
-                        <strong>Алгебра</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Геометрія</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td></td>
-                    <td>
-                        <strong>Українська мова</strong><br>
-                        <small>Дрон А.С., к.112</small>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>
-                        <strong>Англійська мова</strong><br>
-                        <small>Гагаріна М.К., к.308</small>
-                    </td>
-                    <td></td>
-                    <td>
-                        <strong>Геометрія</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Українська мова</strong><br>
-                        <small>Дрон А.С., к.112</small>
-                    </td>
-                    <td>
-                        <strong>Англійська мова</strong><br>
-                        <small>Гагаріна М.К., к.308</small>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>
-                        <strong>Алгебра</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Фізичне виховання</strong><br>
-                        <small>Михайлов С.А., к.404</small>
-                    </td>
-                    <td>
-                        <strong>Геометрія</strong><br>
-                        <small>Карлівна О.М., к.228</small>
-                    </td>
-                    <td>
-                        <strong>Фізика</strong><br>
-                        <small>Власов О.В., к.303</small>
-                    </td>
-                    <td>
-                        <strong>Українська мова</strong><br>
-                        <small>Дрон А.С., к.112</small>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
