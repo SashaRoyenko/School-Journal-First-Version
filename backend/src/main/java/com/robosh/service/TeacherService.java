@@ -108,4 +108,8 @@ public class TeacherService {
         }
         return teacherDto;
     }
+
+    public Teacher convertDtoToTeacher(TeacherDto dto) {
+        return teacherMapper.dtoToTeacher(dto);
+    }
 }

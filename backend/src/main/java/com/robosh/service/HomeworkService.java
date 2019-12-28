@@ -62,4 +62,12 @@ public class HomeworkService {
     public List<HomeworkDtoTeacher> findAllHomeworkByGroupAndSubject(Group group, Subject subject) {
         return homeworkTeacherMapper.homeworkToDto(homeworkRepository.findByGroupIdAndSubjectId(group.getId(), subject.getId()));
     }
+
+    public void saveHomeworkTeacherDto(HomeworkDtoTeacher homeworkDtoTeacher) {
+        homeworkRepository.save(homeworkTeacherMapper.dtoToHomework(homeworkDtoTeacher));
+    }
+
+    public void saveHomework(Homework homework) {
+        homeworkRepository.save(homework);
+    }
 }

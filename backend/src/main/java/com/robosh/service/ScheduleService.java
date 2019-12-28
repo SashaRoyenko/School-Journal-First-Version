@@ -81,6 +81,10 @@ public class ScheduleService {
         return groups;
     }
 
+    public List<Schedule> getScheduleByTeacherId(Long id) {
+        return scheduleRepository.findScheduleByTeacherId(id);
+    }
+
     public Map<DayOfWeek, List<Schedule>> getScheduleForEachDay(List<Schedule> schedules) {
         return schedules.stream()
                 .collect(Collectors.groupingBy(Schedule::getDayOfWeek));

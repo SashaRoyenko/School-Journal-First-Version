@@ -21,137 +21,35 @@
                         <th scope="col">Середа</th>
                         <th scope="col">Четверг</th>
                         <th scope="col">П'ятниця</th>
-
                     </tr>
                     </thead>
                     <tbody>
+                    <th:block th:each="schedule : ${schedule_show}">
                     <tr>
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
-
+<!--                        todo replace with index-->
+                        <th scope="row" th:text="${schedule.getNumberOfSubject()}"></th>
+                        <td th:if="${schedule.getDayOfWeek().ordinal() == 1}">
+                            <strong th:text="${schedule.getSubject().name}"></strong><br>
+                            <small th:text="${schedule.getTeacher().lastName}">, </small> <small th:text="${schedule.getCabinet()}"></small>
                         </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
+                        <td th:if="${schedule.getDayOfWeek().ordinal() == 2}">
+                            <strong th:text="${schedule.getSubject().name}"></strong><br>
+                            <small th:text="${schedule.getTeacher().lastName}">, </small> <small th:text="${schedule.getCabinet()}"></small>
                         </td>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
+                        <td th:if="${schedule.getDayOfWeek().ordinal() == 3}">
+                            <strong th:text="${schedule.getSubject().name}"></strong><br>
+                            <small th:text="${schedule.getTeacher().lastName}">, </small> <small th:text="${schedule.getCabinet()}"></small>
                         </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
+                        <td th:if="${schedule.getDayOfWeek().ordinal() == 4}">
+                            <strong th:text="${schedule.getSubject().name}"></strong><br>
+                            <small th:text="${schedule.getTeacher().lastName}">, </small> <small th:text="${schedule.getCabinet()}"></small>
+                        </td>
+                        <td th:if="${schedule.getDayOfWeek().ordinal() == 5}">
+                            <strong th:text="${schedule.getSubject().name}"></strong><br>
+                            <small th:text="${schedule.getTeacher().lastName}">, </small> <small th:text="${schedule.getCabinet()}"></small>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
-                        </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                    </tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>
