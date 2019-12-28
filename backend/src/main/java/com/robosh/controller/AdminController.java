@@ -175,7 +175,7 @@ public class AdminController {
         List<Schedule> schedules = scheduleService.findByGroupId(groupDto.getId());
         Map<DayOfWeek, List<Schedule>> map = scheduleService.getScheduleForEachDay(schedules);
 
-        Map<Integer, List<Schedule>> scheduleMap = getIntegerSchedule(map);
+        Map<Integer, List<Schedule>> scheduleMap = scheduleService.getIntegerSchedule(map);
 
         model.addAttribute("scheduleMap", scheduleMap);
         model.addAttribute("group", groupService.findById(groupDto.getId()));
@@ -195,30 +195,6 @@ public class AdminController {
         return "admin/schedule_group";
     }
 
-    private Map<Integer, List<Schedule>> getIntegerSchedule(Map<DayOfWeek, List<Schedule>> map) {
-
-        Map<Integer, List<Schedule>> listMap = new HashMap<>();
-        Set<DayOfWeek> dayOfWeeks = map.keySet();
-
-        if (dayOfWeeks.contains(DayOfWeek.MONDAY)) {
-            listMap.put(1, map.get(DayOfWeek.MONDAY));
-        }
-        if (dayOfWeeks.contains(DayOfWeek.TUESDAY)) {
-            listMap.put(2, map.get(DayOfWeek.TUESDAY));
-        }
-        if (dayOfWeeks.contains(DayOfWeek.WEDNESDAY)) {
-            listMap.put(3, map.get(DayOfWeek.WEDNESDAY));
-        }
-        if (dayOfWeeks.contains(DayOfWeek.THURSDAY)) {
-            listMap.put(4, map.get(DayOfWeek.THURSDAY));
-        }
-        if (dayOfWeeks.contains(DayOfWeek.FRIDAY)) {
-            listMap.put(5, map.get(DayOfWeek.FRIDAY));
-        }
-
-        return listMap;
-
-    }
 
     @GetMapping(value = {SCHEDULE_MAPPING + "/edit", SCHEDULE_MAPPING + "/edit/{groupId}/{dayOfWeek}"})
     public String createOrEditSchedule(Model model, @PathVariable Optional<Integer> dayOfWeek,

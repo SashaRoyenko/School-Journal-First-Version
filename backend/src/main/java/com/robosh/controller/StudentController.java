@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.time.DayOfWeek;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static com.robosh.common_routes.Routes.STUDENT_MAPPING;
 
@@ -82,10 +80,13 @@ public class StudentController {
         final List<Schedule> schedules = scheduleService.findByGroupId(group.getId());
         final Map<DayOfWeek, List<Schedule>> scheduleForEachDay = scheduleService.getScheduleForEachDay(schedules);
 
-        model.addAttribute("scheduleMap", scheduleForEachDay);
+
+        model.addAttribute("scheduleMap", scheduleService.getIntegerSchedule(scheduleForEachDay));
+        model.addAttribute("student", studentDto);
 
         return "student/schedule";
     }
+
 
     private StudentDto getStudentDto(Principal principal) {
         return studentService.findByEmail(principal.getName());

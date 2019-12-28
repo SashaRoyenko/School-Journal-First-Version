@@ -29,8 +29,7 @@
                     <tbody>
                     <tr>
                         <td>Понеділок</td>
-                        <td th:each="schedule : ${scheduleMap.get(1)}">
-                            <div th:if="${schedule.subject.name}">
+                        <td th:each="schedule : ${scheduleMap.get(0)}">
                                 <strong th:text="${schedule.subject.name}"></strong><br>
                                 <div class="d-inline">
                                     <p th:text="${schedule.teacher.lastName + ' ' +
@@ -38,16 +37,11 @@
                                   schedule.teacher.secondName}"></p>
                                 </div>
                                 <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
-                            </div>
-                            <div th:unless="${schedule.subject.name}">
-                                <p> </p>
-                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>Вівторок</td>
-                        <td th:each="schedule : ${scheduleMap.get(2)}">
-                            <div th:if="${schedule.subject.name}">
+                        <td th:each="schedule : ${scheduleMap.get(1)}">
                                 <strong th:text="${schedule.subject.name}"></strong><br>
                                 <div class="d-inline">
                                     <p th:text="${schedule.teacher.lastName + ' ' +
@@ -55,16 +49,11 @@
                                   schedule.teacher.secondName}"></p>
                                 </div>
                                 <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
-                            </div>
-                            <div th:unless="${schedule.subject.name}">
-                                <p> </p>
-                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>Середа</td>
-                        <td th:each="schedule : ${scheduleMap.get(3)}">
-                            <div th:if="${schedule.subject.name}">
+                        <td th:each="schedule : ${scheduleMap.get(2)}">
                                 <strong th:text="${schedule.subject.name}"></strong><br>
                                 <div class="d-inline">
                                     <p th:text="${schedule.teacher.lastName + ' ' +
@@ -72,16 +61,11 @@
                                   schedule.teacher.secondName}"></p>
                                 </div>
                                 <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
-                            </div>
-                            <div th:unless="${schedule.subject.name}">
-                                <p> </p>
-                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>Четвер</td>
-                        <td th:each="schedule : ${scheduleMap.get(4)}">
-                            <div th:if="${schedule.subject.name}">
+                        <td th:each="schedule : ${scheduleMap.get(3)}">
                                 <strong th:text="${schedule.subject.name}"></strong><br>
                                 <div class="d-inline">
                                     <p th:text="${schedule.teacher.lastName + ' ' +
@@ -89,16 +73,11 @@
                                   schedule.teacher.secondName}"></p>
                                 </div>
                                 <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
-                            </div>
-                            <div th:unless="${schedule.subject.name}">
-                                <p> </p>
-                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>П'ятниця</td>
-                        <td th:each="schedule : ${scheduleMap.get(5)}">
-                            <div th:if="${schedule.subject.name}">
+                        <td th:each="schedule : ${scheduleMap.get(4)}">
                                 <strong th:text="${schedule.subject.name}"></strong><br>
                                 <div class="d-inline">
                                     <p th:text="${schedule.teacher.lastName + ' ' +
@@ -106,10 +85,6 @@
                                   schedule.teacher.secondName}"></p>
                                 </div>
                                 <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
-                            </div>
-                            <div th:unless="${schedule.subject.name}">
-                                <p> </p>
-                            </div>
                         </td>
                     </tr>
                     </tbody>

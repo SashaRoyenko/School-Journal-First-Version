@@ -71,7 +71,7 @@ public class TeacherController {
 
         final Map<DayOfWeek, List<Schedule>> scheduleForEachDay = scheduleService.getScheduleForEachDay(schedules);
 
-        model.addAttribute("scheduleMap", scheduleForEachDay);
+        model.addAttribute("scheduleMap", scheduleService.getIntegerSchedule(scheduleForEachDay));
 
         return "teacher/schedule";
     }
