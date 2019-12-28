@@ -100,6 +100,7 @@ public class TeacherController {
         List<Group> groups = scheduleService.getGroupsByTeacherId(teacher.getId());
         model.addAttribute("groups", groups);
 
+        model.addAttribute("homeworks", homeworkService.findByGroupId(groups.get(0).getId()));
         return "teacher/hometasks";
     }
 
