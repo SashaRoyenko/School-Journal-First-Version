@@ -8,9 +8,11 @@ import com.robosh.data.repository.StudentRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,16 +23,24 @@ public class StudentService {
     private StudentRepository studentRepository;
     private StudentMapper studentMapper;
     private ModelMapper modelMapper;
+    private MailSenderService mailSenderService;
+
+    @Value("${email.registration.subject}")
+    private String emailRegistrationSubject;
+
+    @Value("${email.registration.message}")
+    private String emailRegistrationMessage;
 
     @Autowired
-    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository, ModelMapper modelMapper) {
+    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository, ModelMapper modelMapper, MailSenderService mailSenderService) {
         this.passwordEncoder = passwordEncoder;
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;
+        this.mailSenderService = mailSenderService;
         studentMapper = StudentMapper.INSTANCE;
     }
 
-    public List<StudentDto> findStudentByGroupId(Long id){
+    public List<StudentDto> findStudentByGroupId(Long id) {
         return studentMapper.studentsToDto(studentRepository.findStudentByGroupId(id));
     }
 
@@ -39,14 +49,22 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    @Transactional
     public StudentDto save(StudentDto studentDto) {
-        studentDto.setPassword(passwordEncoder.encode(studentDto.getPassword()));
-        return studentMapper.studentToDto(studentRepository.save(studentMapper.dtoToStudent(studentDto)));
+        String password = studentDto.getPassword();
+        studentDto.setPassword(passwordEncoder.encode(password));
+        studentDto = studentMapper.studentToDto(studentRepository.save(studentMapper.dtoToStudent(studentDto)));
+        String registrationMessage = String.format(emailRegistrationMessage,
+                studentDto.getLastName() + " " + studentDto.getFirstName() + " " + studentDto.getSecondName(),
+                studentDto.getEmail(),
+                password);
+        mailSenderService.send(studentDto.getEmail(), emailRegistrationSubject, registrationMessage);
+        return studentDto;
     }
 
     public Student findById(Long id) {
         return studentRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Student", "id", id)
+                () -> new ResourceNotFoundException("Student", "id", id)
         );
     }
 

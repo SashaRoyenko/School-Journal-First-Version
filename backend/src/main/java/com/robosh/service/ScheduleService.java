@@ -1,15 +1,19 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.ScheduleDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Schedule;
+import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.ScheduleMapper;
 import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.exception.ResourceNotFoundException;
+import lombok.val;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,5 +59,23 @@ public class ScheduleService {
         Schedule currentSchedule = scheduleMapper.dtoToSchedule(findById(updatedSchedule.getId()));
         modelMapper.map(updatedSchedule, currentSchedule);
         return scheduleMapper.scheduleToDto(scheduleRepository.save(currentSchedule));
+    }
+
+    public List<Subject> getSubjectsByTeacherId(Long id) {
+        List<Schedule> scheduleList = scheduleRepository.findScheduleByTeacherId(id);
+        List<Subject> subjects = new ArrayList<>();
+        for (Schedule schedule : scheduleList) {
+            subjects.add(schedule.getSubject());
+        }
+        return subjects;
+    }
+
+    public List<Group> getGroupsByTeacherId(Long id) {
+        List<Schedule> scheduleList = scheduleRepository.findScheduleByTeacherId(id);
+        List<Group> groups = new ArrayList<>();
+        for (Schedule schedule : scheduleList) {
+            groups.add(schedule.getGroup());
+        }
+        return groups;
     }
 }

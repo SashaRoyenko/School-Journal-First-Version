@@ -36,7 +36,8 @@
                     <h4 th:text="${group.groupCode}">Клас</h4>
                     <small><a th:href="@{/e-journal/admin/schedule/edit}">Змінити розклад</a></small>
                 </span>
-            <table class="table table-responsive ml-3">
+            <div class="table-responsive">
+            <table class="table ml-3">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -72,6 +73,7 @@
 
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 

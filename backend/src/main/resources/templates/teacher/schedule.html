@@ -1,15 +1,12 @@
 <!DOCTYPE HTML>
 
 <html xmlns:th="http://www.thymeleaf.org">
-
-<div th:replace="~{student/parts/head :: content}"></div>
-
+<head th:replace="~{teacher/parts/head :: head}"></head>
 <body>
 <div class="wrapper">
+    <div th:replace="~{teacher/parts/header :: header}"></div>
 
-    <div th:replace="~{student/parts/header :: content}"></div>
-
-    <div th:replace="~{student/parts/aside :: content}"></div>
+    <div th:replace="~{teacher/parts/aside :: aside}"></div>
 
     <div class="box content">
         <h2 class="mb-2">Розклад уроків</h2>
@@ -161,7 +158,7 @@
         </div>
     </div>
 </div>
-<div th:replace="~{student/parts/footer :: content}"></div>
+<footer th:replace="~{teacher/parts/footer :: footer}"></footer>
 
 </body>
 </html>
