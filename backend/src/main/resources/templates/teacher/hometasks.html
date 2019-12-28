@@ -18,12 +18,12 @@
                     <option value="3">...</option>
                     <option value="4">9-В</option>
                 </select>
-                <select class="custom-select w-25 ml-2">
+<!--                th:field="*{subject_selected_id}"-->
+                <select class="custom-select w-25 ml-2" >
                     <option selected>Виберіть предмет</option>
-                    <option value="1">Алгебра</option>
-                    <option value="2">Геометрія</option>
-                    <option value="3">...</option>
-                    <option value="4">Фізика</option>
+                    <option th:each="subject : ${subjects}" th:value="${subject.getId()}">
+                        <b th:text="${subject.name}"></b>
+                    </option>
                 </select>
             </div>
 

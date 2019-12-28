@@ -1,6 +1,8 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.entity.Subject;
+import com.robosh.service.ScheduleService;
 import com.robosh.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 import static com.robosh.common_routes.Routes.TEACHER_MAPPING;
 
@@ -17,10 +20,12 @@ import static com.robosh.common_routes.Routes.TEACHER_MAPPING;
 @RequestMapping(TEACHER_MAPPING)
 @PreAuthorize("hasAuthority('ADMIN')")
 public class TeacherController {
+    private ScheduleService scheduleService;
     private TeacherService teacherService;
 
     @Autowired
-    public TeacherController(TeacherService teacherService) {
+    public TeacherController(ScheduleService scheduleService, TeacherService teacherService) {
+        this.scheduleService = scheduleService;
         this.teacherService = teacherService;
     }
 
@@ -67,7 +72,13 @@ public class TeacherController {
     @GetMapping("/hometask")
     public String hometask(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
-
+        List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
+        System.out.println();
+        System.out.println();
+        System.out.println(subjects);
+        System.out.println();
+        System.out.println();
+        model.addAttribute("subjects", subjects);
         return "teacher/hometasks";
     }
 
