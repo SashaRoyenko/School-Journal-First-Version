@@ -94,4 +94,12 @@ public class StudentService {
     public StudentDto convertStudentToDto(Student student) {
         return studentMapper.studentToDto(student);
     }
+
+    public StudentDto findByEmail(String email) {
+        return convertStudentToDto(
+                studentRepository.findByEmail(email).orElseThrow(
+                        () -> new ResourceNotFoundException("Student", "email", email)
+                )
+        );
+    }
 }
