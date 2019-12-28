@@ -15,13 +15,13 @@
             <h3>Додати завдання</h3>
             <div class="add_mark_toolbar d-block">
                 <div class="form-group w-25">
-                    <label for="ex2">Вибір дати</label>
-                    <select class="custom-select" id="ex2">
-                        <option selected>Виберіть дату</option>
-                        <option value="1">01.09.2019</option>
-                        <option value="2">01.09.2019</option>
-                        <option value="3">01.09.2019</option>
-                    </select>
+                    <label class="form-label" for="validationDefault06">Дата</label>
+                    <input min="1900-01-01"
+                           max="2019-10-11"
+                           type="date"
+                           id="validationDefault06"
+                           class="form-control"
+                           th:field="*{.........}">
                 </div>
                 <div class="form-group w-50">
                     <label for="ex1">Вибір класу</label>
