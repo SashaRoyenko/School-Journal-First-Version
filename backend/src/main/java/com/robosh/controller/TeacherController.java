@@ -9,6 +9,7 @@ import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Subject;
 import com.robosh.service.HomeworkService;
 import com.robosh.service.ScheduleService;
+import com.robosh.service.StudentService;
 import com.robosh.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,12 +34,14 @@ public class TeacherController {
     private ScheduleService scheduleService;
     private TeacherService teacherService;
     private HomeworkService homeworkService;
+    private StudentService studentService;
 
     @Autowired
-    public TeacherController(ScheduleService scheduleService, TeacherService teacherService, HomeworkService homeworkService) {
+    public TeacherController(ScheduleService scheduleService, TeacherService teacherService, HomeworkService homeworkService, StudentService studentService) {
         this.scheduleService = scheduleService;
         this.teacherService = teacherService;
         this.homeworkService = homeworkService;
+        this.studentService = studentService;
     }
 
     private void setHeaderName(Model model, String name, String surname) {
@@ -133,6 +136,8 @@ public class TeacherController {
     @GetMapping("/rebukes/add-rebuke")
     public String addRebukesPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+
+//        model.addAttribute("students", studentService.findAll());
         return "teacher/add_rebuke";
     }
 
