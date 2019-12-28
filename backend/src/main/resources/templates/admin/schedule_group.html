@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{admin/parts/head :: content}"></div>
+
+
+<body>
+<div class="wrapper">
+    <div th:replace="~{admin/parts/header :: content}"></div>
+
+    <div th:replace="~{admin/parts/aside :: content}"></div>
+
+    <div class="bg-light box content">
+        <h2 class="mb-2">Розклад уроків</h2>
+        <div class="card">
+            <nav class="navbar navbar-expand navbar-light bg-light">
+                <div class="mr-auto navbar-nav">
+                    <a th:href="@{/e-journal/admin/schedule/edit}"
+                       class="btn btn-primary">+ Додати розклад</a>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand navbar-light bg-light">
+                <form class="form-inline" method="get" th:action="@{/e-journal/admin/schedule}" th:object="${group}">
+                    <label class="form-label" for="validationDefault02">Виберіть клас</label><br>
+                    <select id="validationDefault02" class="custom-select w-100" th:field="*{groupCode}">
+                        <option id="validationDefault08"
+                                th:each="group: ${groups}"
+                                th:value="${group.groupCode}"
+                                th:text="${group.groupCode}">
+                        </option>
+                    </select>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="submit" value="Вибрати">
+                </form>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>
