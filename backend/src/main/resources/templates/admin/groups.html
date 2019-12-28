@@ -14,7 +14,7 @@
     <div class="bg-light  box content"><h1>Клас</h1>
         <div class="card">
             <nav class="navbar navbar-expand navbar-light bg-light">
-                <div class="mr-auto navbar-nav"><a href="/admin/add_parents" class="btn btn-primary">+ Клас</a></div>
+                <div class="mr-auto navbar-nav"><a th:href="@{/admin/groups/edit}" class="btn btn-primary">+ Клас</a></div>
                 <form class="form-inline"><input placeholder="Search" type="text" class="mr-sm-2 form-control">
                     <button type="button" class="btn btn-outline-info">Пошук</button>
                 </form>
@@ -29,96 +29,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>11-A</td>
-                        <td>Сторожук Дмитро Батькович</td>
+                    <tr th:each="group : ${groupsList}">
+                        <td th:text="${group.groupCode}">Клас</td>
                         <td class="sec_col">
                             <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
+                                <a type="button" class="mr-1 btn btn-outline-warning btn-sm"
+                                   th:href="@{/e-journal/admin/groups/edit/{id}(id=${group.getId()})}">Змінити</a>
+                                <a type="button" class="btn btn-outline-danger btn-sm"
+                                   th:href="@{/e-journal/admin/groups/delete/{id}(id=${group.getId()})}">Видалити</a>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>11-Б</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>11-В</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-A</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-Б</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-В</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9-A</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9-Б</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9-В</td>
-                        <td>Сторожук Дмитро Батькович</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>

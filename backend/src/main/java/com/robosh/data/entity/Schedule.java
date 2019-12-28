@@ -1,17 +1,13 @@
 package com.robosh.data.entity;
 
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.DayOfWeek;
-import java.util.List;
 
 @Data
 @AllArgsConstructor

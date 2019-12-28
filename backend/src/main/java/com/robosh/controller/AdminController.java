@@ -1,20 +1,20 @@
 package com.robosh.controller;
 
-import com.robosh.data.dto.GroupDto;
-import com.robosh.data.dto.ParentDto;
-import com.robosh.data.dto.StudentDto;
-import com.robosh.data.dto.TeacherDto;
+import com.robosh.data.dto.*;
 import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Parent;
+import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Student;
 import com.robosh.service.*;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,20 +31,23 @@ public class AdminController {
     private static final String PARENTS_MAPPING = "/parents";
     private static final String SCHEDULE_MAPPING = "/schedule";
     private static final String GROUPS_MAPPING = "/groups";
+    private static final String SUBJECTS_MAPPING = "/subjects";
 
     private final TeacherService teacherService;
     private final StudentService studentService;
     private final ParentService parentService;
     private final ScheduleService scheduleService;
     private final GroupService groupService;
+    private final SubjectService subjectService;
 
     @Autowired
-    public AdminController(TeacherService teacherService, StudentService studentService, ParentService parentService, ScheduleService scheduleService, GroupService groupService) {
+    public AdminController(TeacherService teacherService, StudentService studentService, ParentService parentService, ScheduleService scheduleService, GroupService groupService, SubjectService subjectService) {
         this.teacherService = teacherService;
         this.studentService = studentService;
         this.parentService = parentService;
         this.scheduleService = scheduleService;
         this.groupService = groupService;
+        this.subjectService = subjectService;
     }
 
     @GetMapping(value = {"", TEACHERS_MAPPING})
@@ -166,5 +169,101 @@ public class AdminController {
         id.ifPresent(parentService::delete);
         return REDIRECT_URL + ADMIN_MAPPING + PARENTS_MAPPING;
     }
+
+    @GetMapping(value = {SCHEDULE_MAPPING, SCHEDULE_MAPPING + "/{groupId}"})
+    public String getAllSchedules(Model model, @PathVariable Optional<Long> groupId) {
+
+        if (groupId.isPresent()) {
+            model.addAttribute("IsGroupExists", false);
+        } else {
+            List<ScheduleDto> schedules = scheduleService.findByGroupId(groupId.get());
+            model.addAttribute("ScheduleList", schedules);
+        }
+
+        List<GroupDto> groups = groupService.findAll();
+        model.addAttribute("groups", groups);
+
+        return "admin/schedule";
+    }
+
+    @GetMapping(value = {SCHEDULE_MAPPING + "/edit", SCHEDULE_MAPPING + "/edit/{dayOfWeek}"})
+    public String createOrEditSchedule(Model model, @PathVariable Optional<Integer> dayOfWeek) {
+//        if (dayOfWeek.isPresent()) {
+//            List<ScheduleDto> schedules = scheduleService.findByDay(DayOfWeek.of(dayOfWeek.get()));
+//            model.addAttribute("schedules", schedules);
+//        } else {
+//            model.addAttribute("schedules", new ArrayList<ScheduleDto>(8));
+//        }
+
+        return "admin/add_schedule";
+    }
+
+    @PostMapping(value = {SCHEDULE_MAPPING + "/add"})
+    public String addSchedule(List<ScheduleDto> scheduleDtos) {
+        for (ScheduleDto schedule : scheduleDtos) {
+            if (schedule.getId() == null) {
+                scheduleService.save(schedule);
+            } else {
+                scheduleService.update(schedule);
+            }
+        }
+
+        return REDIRECT_URL + ADMIN_MAPPING + SCHEDULE_MAPPING;
+    }
+
+    @GetMapping(value = {SCHEDULE_MAPPING + "delete/{dayOfWeek}"})
+    public String deleteSchedule(Model model, @PathVariable Optional<Integer> dayOfWeek) {
+
+//        if (dayOfWeek.isPresent()) {
+//            List<ScheduleDto> schedules = scheduleService.findByDay(DayOfWeek.of(dayOfWeek.get()));
+//            for (ScheduleDto schedule : schedules) {
+//                scheduleService.delete(schedule.getId());
+//            }
+//        }
+
+        return REDIRECT_URL + ADMIN_MAPPING + SCHEDULE_MAPPING;
+
+    }
+
+    @GetMapping(value = {GROUPS_MAPPING})
+    public String getAllGroups(Model model) {
+        List<GroupDto> groups = groupService.findAll();
+        model.addAttribute("groupsList", groups);
+
+        return "admin/groups";
+    }
+
+    @GetMapping(value = {GROUPS_MAPPING + "/edit"})
+    public String createOrEditGroup(Model model) {
+
+        model.addAttribute("group", new Group());
+
+        return "admin/add_schedule";
+    }
+
+    @PostMapping(value = {GROUPS_MAPPING + "/add"})
+    public String addGroup(GroupDto groupDto) {
+
+        groupService.save(groupDto);
+
+        return REDIRECT_URL + ADMIN_MAPPING + GROUPS_MAPPING;
+    }
+
+    @GetMapping(value = {GROUPS_MAPPING + "/delete/{id}"})
+    public String deleteGroup(Model model, @PathVariable Optional<Long> id) {
+        id.ifPresent(groupService::delete);
+
+        return REDIRECT_URL + ADMIN_MAPPING + GROUPS_MAPPING;
+    }
+
+
+    @GetMapping(value = {SUBJECTS_MAPPING})
+    public String getAllSubjects(Model model) {
+        List<SubjectDto> subjects = subjectService.findAll();
+        model.addAttribute("subjectList", subjects);
+
+        return "admin/lessons";
+    }
+
 
 }
