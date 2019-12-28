@@ -1,10 +1,9 @@
 package com.robosh.controller;
 
 import com.robosh.data.dto.HomeworkDto;
-import com.robosh.data.dto.HomeworkDtoTeacher;
+import com.robosh.data.dto.RebukeDto;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Group;
-import com.robosh.data.entity.Homework;
 import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Subject;
 import com.robosh.service.HomeworkService;
@@ -15,7 +14,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -125,5 +123,13 @@ public class TeacherController {
     public String addRebukesPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/add_rebuke";
+    }
+
+    @PostMapping("/make-rebuke")
+    public String makeRebuke(RebukeDto rebuke) {
+        System.out.println();
+        System.out.println(rebuke);
+        System.out.println();
+        return "redirect:/e-journal/teacher/rebukes/add-rebuke";
     }
 }
