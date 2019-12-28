@@ -10,6 +10,6 @@ import java.util.List;
 public interface HomeworkRepository extends JpaRepository<Homework, Long> {
 
     List<Homework> findByGroupId(Long id);
-    List<Homework> findByTeacherId(Long id);
+    List<Homework> findAllByTeacherId(Long id);
     List<Homework> findByGroupIdAndSubjectId(Long groupId, Long subjectId);
 }

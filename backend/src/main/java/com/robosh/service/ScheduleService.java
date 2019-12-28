@@ -1,6 +1,7 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.ScheduleDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.ScheduleMapper;
@@ -67,5 +68,14 @@ public class ScheduleService {
             subjects.add(schedule.getSubject());
         }
         return subjects;
+    }
+
+    public List<Group> getGroupsByTeacherId(Long id) {
+        List<Schedule> scheduleList = scheduleRepository.findScheduleByTeacherId(id);
+        List<Group> groups = new ArrayList<>();
+        for (Schedule schedule : scheduleList) {
+            groups.add(schedule.getGroup());
+        }
+        return groups;
     }
 }

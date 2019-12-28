@@ -3,6 +3,7 @@ package com.robosh.service;
 import com.robosh.data.dto.HomeworkDto;
 import com.robosh.data.dto.HomeworkDtoTeacher;
 import com.robosh.data.entity.Group;
+import com.robosh.data.entity.Homework;
 import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.HomeworkMapper;
 import com.robosh.data.mapping.HomeworkTeacherMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,7 +47,7 @@ public class HomeworkService {
     }
 
     public List<HomeworkDto> findByTeacherId(Long id) {
-        return homeworkMapper.homeworkToDto(homeworkRepository.findByTeacherId(id));
+        return homeworkMapper.homeworkToDto(homeworkRepository.findAllByTeacherId(id));
     }
 
     public ResponseEntity deleteById(Long id) {
