@@ -4,15 +4,15 @@
 <body>
 <aside class="box sidebar" th:fragment="aside">
     <div class="flex-column nav">
-        <div class="nav-item"><a href="/student/profile" data-rb-event-key="/student/profile"
+        <div class="nav-item"><a th:href="@{/e-journal/student/profile}" data-rb-event-key="/student/profile"
                                  class="ml-2 text-dark active nav-link active">Ваш профіль</a></div>
-        <div class="nav-item"><a href="/admin/schedule" data-rb-event-key="/admin/schedule"
+        <div class="nav-item"><a th:href="@{/e-journal/student/schedule}" data-rb-event-key="/admin/schedule"
                                  class="ml-2 text-dark nav-link">Розклад уроків</a></div>
-        <div class="nav-item"><a href="/student/journal" data-rb-event-key="/student/journal"
+        <div class="nav-item"><a th:href="@{/e-journal/student/journal}" data-rb-event-key="/student/journal"
                                  class="ml-2 text-dark nav-link">Журнал</a></div>
-        <div class="nav-item"><a th:href="@{student/hometasks}" data-rb-event-key="/student/hometasks"
+        <div class="nav-item"><a th:href="@{/e-journal/student/hometasks}" data-rb-event-key="/student/hometasks"
                                  class="ml-2 text-dark nav-link">Домашні завдання</a></div>
-        <div class="nav-item"><a href="/student/rebuke" data-rb-event-key="/student/hometasks"
+        <div class="nav-item"><a th:href="@{/e-journal/student/rebukes}" data-rb-event-key="/student/hometasks"
                                  class="ml-2 text-dark nav-link">Зауваження</a></div>
     </div>
 </aside>

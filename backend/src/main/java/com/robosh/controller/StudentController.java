@@ -1,9 +1,12 @@
 package com.robosh.controller;
 
+import com.robosh.data.dto.GroupDto;
 import com.robosh.data.dto.HomeworkDto;
 import com.robosh.data.dto.StudentDto;
 import com.robosh.data.dto.SubjectDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Rebuke;
+import com.robosh.data.entity.Schedule;
 import com.robosh.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.robosh.common_routes.Routes.STUDENT_MAPPING;
@@ -29,6 +34,7 @@ public class StudentController {
     private static final String STUDENT_HOMEWORK = "/hometasks";
     private static final String STUDENT_JOURNAL = "/journal";
     private static final String STUDENT_REBUKE = "/rebuke";
+    private static final String STUDENT_SCHEDULE = "/schedule";
 
     private StudentService studentService;
     private ScheduleService scheduleService;
@@ -60,7 +66,20 @@ public class StudentController {
         List<Rebuke> rebukeList = rebukeService.findByStudentId(studentDto.getId());
         model.addAttribute("student", studentDto);
         model.addAttribute("rebukeList", rebukeList);
-        return "student/rebuke";
+        return "student/rebukes";
+    }
+
+    @GetMapping(value = {STUDENT_SCHEDULE})
+    public String getStudentSchedule(Model model, Principal principal){
+        StudentDto studentDto = getStudentDto(principal);
+        Group group = studentDto.getGroup();
+
+        final List<Schedule> schedules = scheduleService.findByGroupId(group.getId());
+        final Map<DayOfWeek, List<Schedule>> scheduleForEachDay = scheduleService.getScheduleForEachDay(schedules);
+
+        model.addAttribute("scheduleMap", scheduleForEachDay);
+
+        return "student/schedule";
     }
 
     private StudentDto getStudentDto(Principal principal) {
