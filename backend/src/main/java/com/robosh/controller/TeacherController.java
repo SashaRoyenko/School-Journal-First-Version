@@ -24,45 +24,67 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
+    private void setHeaderName(Model model, String name, String surname) {
+        model.addAttribute("teacherName", name + " " + surname);
+    }
+
     @GetMapping("")
     public String showTeacherProfile(Model model, Principal principal) {
-        addTeacherProfileAttributes(model, principal);
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
         return "teacher/profile";
     }
 
-    private void addTeacherProfileAttributes(Model model, Principal principal) {
+    private TeacherDto getTeacherDtoAndSetHeaderName(Model model, Principal principal) {
         TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
+        setHeaderName(model, teacher.getFirstName(), teacher.getLastName());
+        return teacher;
+    }
+
+    private void addTeacherProfileAttributes(Model model, TeacherDto teacher) {
         System.out.println(teacher.getUrl());
         model.addAttribute("teacherDto", teacher);
     }
 
+    @GetMapping("/schedule")
+    public String schedule(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        return "teacher/schedule";
+    }
+
     @GetMapping("/rebukes")
-    public String rebukes() {
+    public String rebukes(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/rebukes";
     }
 
     @GetMapping("/marks")
-    public String marks() {
+    public String marks(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/marks";
     }
 
     @GetMapping("/hometask")
-    public String hometask() {
+    public String hometask(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/hometasks";
     }
 
     @GetMapping("/marks/add-mark")
-    public String addMarkPage() {
+    public String addMarkPage(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/add_mark";
     }
 
     @GetMapping("/rebukes/add-rebuke")
-    public String addRebukesPage() {
+    public String addRebukesPage(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/add_rebuke";
     }
 
     @GetMapping("/hometask/add-hometask")
-    public String addHomeTaskPage() {
+    public String addHomeTaskPage(Model model, Principal principal) {
+        TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         return "teacher/add_hometask";
     }
 }
