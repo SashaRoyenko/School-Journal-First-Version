@@ -47,9 +47,9 @@
                     <label for="ex1">Вибір класу</label>
                     <select class="custom-select" id="ex1">
                         <option selected>Виберіть клас</option>
-                        <option value="1">10-А</option>
-                        <option value="2">10-А</option>
-                        <option value="3">10-А</option>
+                        <option th:each="group : ${groups}" th:value="${group.getId()}">
+                            <b th:text="${group.groupCode}"></b>
+                        </option>
                     </select>
                 </div>
             </div>
