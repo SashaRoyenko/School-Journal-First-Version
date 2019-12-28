@@ -2,16 +2,37 @@
 
 
 <html xmlns:th="http://www.thymeleaf.org">
+
 <div th:replace="~{teacher/parts/head :: head}"></div>
 <body>
 <div class="wrapper">
-    <div th:replace="~{teacher/parts/header :: header}"></div>
+    <header class="box header" th:fragment="header">
+        <nav class="navbar navbar-expand navbar-light"><a href=""
+                                                          class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
+                class="font-weight-light text-light navbar-text">Ви увійшли як: <a
+                class="font-weight-bold text-light" href="" th:text="${teacherName}"></a>, <a class="text-light"
+                                                                                              th:href="@{/logout}">Вийти</a></span>
+        </nav>
+    </header>
 
-    <div th:replace="~{teacher/parts/aside :: aside}"></div>
+    <aside class="box sidebar" th:fragment="aside">
+        <div class="flex-column nav">
+            <div class="nav-item "><a th:href="@{/e-journal/teacher}" class="ml-2 text-light active nav-link active">Ваш
+                профіль</a></div>
+            <div class="nav-item "><a th:href="@{/e-journal/teacher/schedule}" class="ml-2 text-light nav-link">Розклад
+                уроків</a></div>
+            <div class="nav-item "><a th:href="@{/e-journal/teacher/marks}" class="ml-2 text-light nav-link">Журнал</a>
+            </div>
+            <div class="nav-item "><a th:href="@{/e-journal/teacher/hometask}" class="ml-2 text-light nav-link">Домашні
+                завдання</a></div>
+            <div class="nav-item t"><a th:href="@{/e-journal/teacher/rebukes}" class="ml-2 text-light nav-link">Зауваження</a>
+            </div>
+        </div>
+    </aside>
 
     <div class="box content">
 
-        <form class="ml-2" th:action="@{/e-journal/teacher/hometask/add}"  th:object="${homework}" th:method="post">
+        <form class="ml-2" th:action="@{/e-journal/teacher/hometask/add}" th:object="${homework}" th:method="post">
             <h3>Додати завдання</h3>
             <div class="add_mark_toolbar d-block">
                 <div class="form-group w-25">
