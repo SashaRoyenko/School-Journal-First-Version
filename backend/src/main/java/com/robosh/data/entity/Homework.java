@@ -24,7 +24,7 @@ public class Homework {
     @NotBlank
     private String task;
 
-    private Date deadline;
+    private String deadline;
 
     @ManyToOne
     @JoinColumn(name = "id_subject")

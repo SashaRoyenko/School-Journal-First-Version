@@ -115,8 +115,6 @@ public class TeacherController {
     @PostMapping(value = "/hometask/add")
     public String addHometask(HomeworkDto homeworkDto, Principal principal) {
         TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
-
-
         List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
         homeworkDto.setSubjectId(subjects.get(0).getId());
         List<Group> groups = scheduleService.getGroupsByTeacherId(teacher.getId());
