@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Map;
 
 import static com.robosh.common_routes.Routes.REDIRECT_URL;
 import static com.robosh.common_routes.Routes.TEACHER_MAPPING;
@@ -65,8 +67,13 @@ public class TeacherController {
     @GetMapping("/schedule")
     public String schedule(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
         List<Schedule> schedules = scheduleService.getScheduleByTeacherId(teacher.getId());
-        model.addAttribute("schedule_show", schedules);
+
+        final Map<DayOfWeek, List<Schedule>> scheduleForEachDay = scheduleService.getScheduleForEachDay(schedules);
+
+        model.addAttribute("scheduleMap", scheduleForEachDay);
+
         return "teacher/schedule";
     }
 
@@ -97,6 +104,9 @@ public class TeacherController {
     @GetMapping("/hometask/add-hometask")
     public String addHomeTaskPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+
+        model.addAttribute("homework", new Homework());
+
         return "teacher/add_hometask";
     }
 
