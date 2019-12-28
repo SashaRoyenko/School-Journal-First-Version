@@ -1,5 +1,6 @@
 package com.robosh.controller;
 
+import com.robosh.data.dto.HomeworkDto;
 import com.robosh.data.dto.HomeworkDtoTeacher;
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Group;
@@ -99,19 +100,19 @@ public class TeacherController {
         return "teacher/add_hometask";
     }
 
-    @PostMapping("/hometask/add")
-    public String addHometask(@ModelAttribute("hometask") Homework dto, Principal principal) {
+    @PostMapping(value = "/hometask/add")
+    public String addHometask(HomeworkDto homeworkDto, Principal principal) {
         TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
 
 
         List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
-        dto.setSubject(subjects.get(0));
+        homeworkDto.setSubjectId(subjects.get(0).getId());
         List<Group> groups = scheduleService.getGroupsByTeacherId(teacher.getId());
-        dto.setGroup(groups.get(0));
-        dto.setTeacher(teacherService.convertDtoToTeacher(teacher));
+        homeworkDto.setGroupId(groups.get(0).getId());
+        homeworkDto.setTeacherId(teacherService.convertDtoToTeacher(teacher).getId());
 
-        homeworkService.saveHomework(dto);
-        return REDIRECT_URL + TEACHER_MAPPING + "/hometask/add";
+        homeworkService.save(homeworkDto);
+        return REDIRECT_URL + TEACHER_MAPPING + "/hometask/add-hometask";
     }
 
     @GetMapping("/marks/add-mark")

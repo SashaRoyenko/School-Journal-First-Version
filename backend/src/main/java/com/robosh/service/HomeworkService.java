@@ -6,14 +6,12 @@ import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Homework;
 import com.robosh.data.entity.Subject;
 import com.robosh.data.mapping.HomeworkMapper;
-import com.robosh.data.mapping.HomeworkTeacherMapper;
 import com.robosh.data.repository.HomeworkRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,12 +19,10 @@ public class HomeworkService {
 
     private HomeworkRepository homeworkRepository;
     private HomeworkMapper homeworkMapper;
-    private HomeworkTeacherMapper homeworkTeacherMapper;
 
     @Autowired
     public HomeworkService(HomeworkRepository homeworkRepository) {
         this.homeworkRepository = homeworkRepository;
-        this.homeworkTeacherMapper = HomeworkTeacherMapper.INSTANCE;
         this.homeworkMapper = HomeworkMapper.INSTANCE;
     }
 
@@ -57,14 +53,6 @@ public class HomeworkService {
 
     public List<HomeworkDto> findByGroupIdAndSubjectId(Long groupId, Long subjectId) {
         return homeworkMapper.homeworkToDto(homeworkRepository.findByGroupIdAndSubjectId(groupId, subjectId));
-    }
-
-    public List<HomeworkDtoTeacher> findAllHomeworkByGroupAndSubject(Group group, Subject subject) {
-        return homeworkTeacherMapper.homeworkToDto(homeworkRepository.findByGroupIdAndSubjectId(group.getId(), subject.getId()));
-    }
-
-    public void saveHomeworkTeacherDto(HomeworkDtoTeacher homeworkDtoTeacher) {
-        homeworkRepository.save(homeworkTeacherMapper.dtoToHomework(homeworkDtoTeacher));
     }
 
     public void saveHomework(Homework homework) {

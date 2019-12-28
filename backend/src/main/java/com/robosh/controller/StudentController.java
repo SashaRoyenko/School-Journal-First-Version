@@ -52,10 +52,15 @@ public class StudentController {
     @GetMapping(value = {STUDENT_HOMEWORK, STUDENT_HOMEWORK + "/{id}"})
     public String getStudentHomework(Model model, Principal principal, @PathVariable("id") Optional<Long> id) {
         StudentDto studentDto = getStudentDto(principal);
-        List<HomeworkDto> homeworkDtoList = homeworkService.findByGroupId(studentDto.getGroup().getId());
         List<SubjectDto> subjectList = subjectService.findSubjectsByGroupId(studentDto.getGroup().getId());
+        Long subjectId =  id.orElse(subjectList.get(0).getId());
+        List<HomeworkDto> homeworkDtoList = homeworkService.findByGroupIdAndSubjectId(studentDto.getGroup().getId(),
+               subjectId);
+        model.addAttribute("id", subjectId);
+        SubjectDto focusSubject = subjectService.findById(subjectId);
         model.addAttribute("student", studentDto);
         model.addAttribute("subjects", subjectList);
+        model.addAttribute("focusSubject", focusSubject);
         model.addAttribute("homeworkList", homeworkDtoList);
         return "student/hometask";
     }
