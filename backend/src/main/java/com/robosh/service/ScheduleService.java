@@ -39,8 +39,8 @@ public class ScheduleService {
         return scheduleMapper.schedulesToDto(scheduleRepository.saveAll(scheduleMapper.dtoToSchedules(scheduleDto)));
     }
 
-    public List<ScheduleDto> findByGroupId(Long id) {
-        return scheduleMapper.schedulesToDto(scheduleRepository.findByGroupId(id));
+    public List<Schedule> findByGroupId(Long id) {
+        return scheduleRepository.findByGroupId(id);
     }
 
     public ScheduleDto findById(Long id) {
@@ -88,5 +88,9 @@ public class ScheduleService {
     public Map<DayOfWeek, List<Schedule>> getScheduleForEachDay(List<Schedule> schedules) {
         return schedules.stream()
                 .collect(Collectors.groupingBy(Schedule::getDayOfWeek));
+    }
+
+    public List<Schedule> findAll(){
+        return scheduleRepository.findAll();
     }
 }
