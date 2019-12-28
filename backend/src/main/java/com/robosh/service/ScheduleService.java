@@ -78,4 +78,8 @@ public class ScheduleService {
         }
         return groups;
     }
+
+    public List<Schedule> getScheduleByTeacherId(Long id) {
+        return scheduleRepository.findScheduleByTeacherId(id);
+    }
 }

@@ -2,6 +2,7 @@ package com.robosh.controller;
 
 import com.robosh.data.dto.TeacherDto;
 import com.robosh.data.entity.Group;
+import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Subject;
 import com.robosh.service.HomeworkService;
 import com.robosh.service.ScheduleService;
@@ -58,6 +59,8 @@ public class TeacherController {
     @GetMapping("/schedule")
     public String schedule(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        List<Schedule> schedules = scheduleService.getScheduleByTeacherId(teacher.getId());
+        model.addAttribute("schedule_show", schedules);
         return "teacher/schedule";
     }
 
