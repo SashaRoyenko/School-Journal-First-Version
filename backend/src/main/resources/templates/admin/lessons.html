@@ -40,62 +40,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Математика</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Українська мова</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Фізика</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Інформатика</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Чечня</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Донбасс</td>
-                        <td class="sec_col">
-                            <div role="toolbar" class="btn-toolbar">
-                                <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Видалити</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Молдова</td>
+                    <tr th:each="subject : ${subjectList}">
+                        <td th:text="${subject.name}"></td>
                         <td class="sec_col">
                             <div role="toolbar" class="btn-toolbar">
                                 <button type="button" class="mr-1 btn btn-outline-warning btn-sm">Змінити</button>

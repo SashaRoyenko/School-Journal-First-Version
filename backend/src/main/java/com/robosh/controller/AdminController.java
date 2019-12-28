@@ -14,9 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.robosh.common_routes.Routes.ADMIN_MAPPING;
 import static com.robosh.common_routes.Routes.REDIRECT_URL;
@@ -170,15 +168,17 @@ public class AdminController {
         return REDIRECT_URL + ADMIN_MAPPING + PARENTS_MAPPING;
     }
 
-    @GetMapping(value = {SCHEDULE_MAPPING, SCHEDULE_MAPPING + "/{groupId}"})
-    public String getAllSchedules(Model model, @PathVariable Optional<Long> groupId) {
+    @GetMapping(value = {SCHEDULE_MAPPING})
+    public String getAllSchedules(Model model, Group group) {
 
-        if (groupId.isPresent()) {
-            model.addAttribute("IsGroupExists", false);
-        } else {
-            List<ScheduleDto> schedules = scheduleService.findByGroupId(groupId.get());
-            model.addAttribute("ScheduleList", schedules);
-        }
+        GroupDto groupDto = groupService.findByCodeGroup(group.getGroupCode());
+        List<Schedule> schedules = scheduleService.findByGroupId(groupDto.getId());
+        Map<DayOfWeek, List<Schedule>> map = scheduleService.getScheduleForEachDay(schedules);
+
+        Map<Integer, List<Schedule>> scheduleMap = getIntegerSchedule(map);
+
+        model.addAttribute("scheduleMap", scheduleMap);
+        model.addAttribute("group", groupService.findById(groupDto.getId()));
 
         List<GroupDto> groups = groupService.findAll();
         model.addAttribute("groups", groups);
@@ -186,14 +186,53 @@ public class AdminController {
         return "admin/schedule";
     }
 
-    @GetMapping(value = {SCHEDULE_MAPPING + "/edit", SCHEDULE_MAPPING + "/edit/{dayOfWeek}"})
-    public String createOrEditSchedule(Model model, @PathVariable Optional<Integer> dayOfWeek) {
-//        if (dayOfWeek.isPresent()) {
-//            List<ScheduleDto> schedules = scheduleService.findByDay(DayOfWeek.of(dayOfWeek.get()));
-//            model.addAttribute("schedules", schedules);
-//        } else {
-//            model.addAttribute("schedules", new ArrayList<ScheduleDto>(8));
-//        }
+    @GetMapping(value = {SCHEDULE_MAPPING + "_group"})
+    public String getSchedulesClass(Model model) {
+        List<GroupDto> groups = groupService.findAll();
+        model.addAttribute("groups", groups);
+        model.addAttribute("group", new Group());
+
+        return "admin/schedule_group";
+    }
+
+    private Map<Integer, List<Schedule>> getIntegerSchedule(Map<DayOfWeek, List<Schedule>> map) {
+
+        Map<Integer, List<Schedule>> listMap = new HashMap<>();
+        Set<DayOfWeek> dayOfWeeks = map.keySet();
+
+        if (dayOfWeeks.contains(DayOfWeek.MONDAY)) {
+            listMap.put(1, map.get(DayOfWeek.MONDAY));
+        }
+        if (dayOfWeeks.contains(DayOfWeek.TUESDAY)) {
+            listMap.put(2, map.get(DayOfWeek.TUESDAY));
+        }
+        if (dayOfWeeks.contains(DayOfWeek.WEDNESDAY)) {
+            listMap.put(3, map.get(DayOfWeek.WEDNESDAY));
+        }
+        if (dayOfWeeks.contains(DayOfWeek.THURSDAY)) {
+            listMap.put(4, map.get(DayOfWeek.THURSDAY));
+        }
+        if (dayOfWeeks.contains(DayOfWeek.FRIDAY)) {
+            listMap.put(5, map.get(DayOfWeek.FRIDAY));
+        }
+
+        return listMap;
+
+    }
+
+    @GetMapping(value = {SCHEDULE_MAPPING + "/edit", SCHEDULE_MAPPING + "/edit/{groupId}/{dayOfWeek}"})
+    public String createOrEditSchedule(Model model, @PathVariable Optional<Integer> dayOfWeek,
+                                       @PathVariable Optional<Long> groupId) {
+        if (dayOfWeek.isPresent() && groupId.isPresent()) {
+            List<Schedule> scheduleDtos = scheduleService.findByGroupId(groupId.get());
+            Map<DayOfWeek, List<Schedule>> schedulesMap = scheduleService.getScheduleForEachDay(scheduleDtos);
+
+            List<Schedule> schedules = schedulesMap.get(DayOfWeek.of(dayOfWeek.get()));
+
+            model.addAttribute("schedules", schedules);
+        } else {
+            model.addAttribute("schedules", new ArrayList<ScheduleDto>(8));
+        }
 
         return "admin/add_schedule";
     }

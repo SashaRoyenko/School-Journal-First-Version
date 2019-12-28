@@ -1,5 +1,8 @@
 package com.robosh.data.dto;
 
+import lombok.Data;
+
+@Data
 public class HomeworkDtoTeacher {
     private Long id;
 

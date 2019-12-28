@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -19,11 +20,18 @@ public class Mark {
     @Column(name = "mark_value")
     private String value;
 
-    private Long subjectId;
+    @ManyToOne
+    @JoinColumn(name = "id_subject")
+    private Subject subject;
 
-    private Long teacherId;
+    @ManyToOne
+    @JoinColumn(name = "id_teacher")
+    private Teacher teacher;
 
-    private Long studentId;
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
 
     //todo date
+    private LocalDate localDate;
 }
