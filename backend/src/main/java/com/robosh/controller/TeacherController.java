@@ -9,6 +9,7 @@ import com.robosh.data.entity.Schedule;
 import com.robosh.data.entity.Subject;
 import com.robosh.service.HomeworkService;
 import com.robosh.service.ScheduleService;
+import com.robosh.service.StudentService;
 import com.robosh.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,12 +34,14 @@ public class TeacherController {
     private ScheduleService scheduleService;
     private TeacherService teacherService;
     private HomeworkService homeworkService;
+    private StudentService studentService;
 
     @Autowired
-    public TeacherController(ScheduleService scheduleService, TeacherService teacherService, HomeworkService homeworkService) {
+    public TeacherController(ScheduleService scheduleService, TeacherService teacherService, HomeworkService homeworkService, StudentService studentService) {
         this.scheduleService = scheduleService;
         this.teacherService = teacherService;
         this.homeworkService = homeworkService;
+        this.studentService = studentService;
     }
 
     private void setHeaderName(Model model, String name, String surname) {
@@ -104,6 +107,7 @@ public class TeacherController {
         List<Group> groups = scheduleService.getGroupsByTeacherId(teacher.getId());
         model.addAttribute("groups", groups);
 
+        model.addAttribute("homeworks", homeworkService.findByGroupId(groups.get(0).getId()));
         return "teacher/hometasks";
     }
 
@@ -112,9 +116,8 @@ public class TeacherController {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
 
         addTeacherProfileAttributes(model, teacher);
-
         model.addAttribute("homework", new Homework());
-
+        model.addAttribute("groups", scheduleService.getGroupsByTeacherId(teacher.getId()));
         return "teacher/add_hometask";
     }
 
@@ -122,8 +125,6 @@ public class TeacherController {
     public String addHometask(HomeworkDto homeworkDto, Principal principal, Model model) {
         TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
         addTeacherProfileAttributes(model, teacher);
-
-
         List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
         homeworkDto.setSubjectId(subjects.get(0).getId());
         List<Group> groups = scheduleService.getGroupsByTeacherId(teacher.getId());
@@ -147,6 +148,7 @@ public class TeacherController {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
         addTeacherProfileAttributes(model, teacher);
 
+//        model.addAttribute("students", studentService.findAll());
         return "teacher/add_rebuke";
     }
 

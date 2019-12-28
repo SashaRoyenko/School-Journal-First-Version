@@ -47,17 +47,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>01.09.2019</td>
-                        <td>№225-229, зробити конспект</td>
-                    </tr>
-                    <tr>
-                        <td>02.09.2019</td>
-                        <td>№235-239, читати підручник с.45-228</td>
-                    </tr>
-                    <tr>
-                        <td>05.09.2019</td>
-                        <td>№245-249, здати ЗНО на 250 з 200</td>
+                    <tr  th:each="homework : ${homeworks}">
+                        <td th:text="${homework.deadline}"></td>
+                        <td th:text="${homework.task}"></td>
                     </tr>
                     </tbody>
                 </table>

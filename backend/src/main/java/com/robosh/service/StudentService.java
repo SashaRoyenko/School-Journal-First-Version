@@ -1,9 +1,11 @@
 package com.robosh.service;
 
 import com.robosh.data.dto.StudentDto;
+import com.robosh.data.entity.Group;
 import com.robosh.data.entity.Student;
 import com.robosh.data.entity.User;
 import com.robosh.data.mapping.StudentMapper;
+import com.robosh.data.repository.GroupRepository;
 import com.robosh.data.repository.StudentRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -24,6 +26,7 @@ public class StudentService {
     private StudentMapper studentMapper;
     private ModelMapper modelMapper;
     private MailSenderService mailSenderService;
+    private GroupRepository groupRepository;
 
     @Value("${email.registration.subject}")
     private String emailRegistrationSubject;
@@ -32,11 +35,12 @@ public class StudentService {
     private String emailRegistrationMessage;
 
     @Autowired
-    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository, ModelMapper modelMapper, MailSenderService mailSenderService) {
+    public StudentService(BCryptPasswordEncoder passwordEncoder, StudentRepository studentRepository, ModelMapper modelMapper, MailSenderService mailSenderService, GroupRepository groupRepository) {
         this.passwordEncoder = passwordEncoder;
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;
         this.mailSenderService = mailSenderService;
+        this.groupRepository = groupRepository;
         studentMapper = StudentMapper.INSTANCE;
     }
 
@@ -102,4 +106,10 @@ public class StudentService {
                 )
         );
     }
+
+//    public List<Student> getStudentByTeacherId(Long id) {
+//        List<Group> groupByTeacherId = groupRepository.findGroupByTeacherId(id);
+//        groupByTeacherId.get(0);
+//
+//    }
 }

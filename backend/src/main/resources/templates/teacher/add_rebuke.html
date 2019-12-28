@@ -21,21 +21,21 @@
                            type="date"
                            id="validationDefault06"
                            class="form-control"
-                           name="message">
+                           name="date">
                 </div>
                 <div class="form-group w-50">
                     <label for="ex1">Вибір учня</label>
                     <select class="custom-select" id="ex1">
                         <option selected>Виберіть учня</option>
-                        <option value="1">Сторожук Нікіта Батькович</option>
-                        <option value="2">Бортік Нікіта Батькович</option>
-                        <option value="3">Шмель Нікіта Батькович</option>
+                        <option th:each="student : ${students}" th:value="${student.getId()}">
+                            <b th:text="${student.firstName}"></b> <b th:text="${student.lastName}"></b>
+                        </option>
                     </select>
                 </div>
             </div>
             <div class="form-group w-50">
                 <label for="exampleFormControlTextarea1">Текст зауваження</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
             </div>
             <button type="submit" class="btn btn-md btn-success mt-2 mb-2">Підтвердити</button>
         </form>
