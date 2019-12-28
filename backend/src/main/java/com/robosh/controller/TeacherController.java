@@ -79,18 +79,25 @@ public class TeacherController {
     @GetMapping("/rebukes")
     public String rebukes(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
+
         return "teacher/rebukes";
     }
 
     @GetMapping("/marks")
     public String marks(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
+
+
         return "teacher/marks";
     }
 
     @GetMapping("/hometask")
     public String hometask(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
+
         List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
         model.addAttribute("subjects", subjects);
 
@@ -104,14 +111,17 @@ public class TeacherController {
     public String addHomeTaskPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
 
+        addTeacherProfileAttributes(model, teacher);
+
         model.addAttribute("homework", new Homework());
 
         return "teacher/add_hometask";
     }
 
     @PostMapping(value = "/hometask/add")
-    public String addHometask(HomeworkDto homeworkDto, Principal principal) {
+    public String addHometask(HomeworkDto homeworkDto, Principal principal, Model model) {
         TeacherDto teacher = teacherService.findTeacherByEmail(principal.getName());
+        addTeacherProfileAttributes(model, teacher);
 
 
         List<Subject> subjects = scheduleService.getSubjectsByTeacherId(teacher.getId());
@@ -127,12 +137,16 @@ public class TeacherController {
     @GetMapping("/marks/add-mark")
     public String addMarkPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
+
         return "teacher/add_mark";
     }
 
     @GetMapping("/rebukes/add-rebuke")
     public String addRebukesPage(Model model, Principal principal) {
         TeacherDto teacher = getTeacherDtoAndSetHeaderName(model, principal);
+        addTeacherProfileAttributes(model, teacher);
+
         return "teacher/add_rebuke";
     }
 
@@ -141,6 +155,7 @@ public class TeacherController {
         System.out.println();
         System.out.println(rebuke);
         System.out.println();
+
         return "redirect:/e-journal/teacher/rebukes/add-rebuke";
     }
 }
