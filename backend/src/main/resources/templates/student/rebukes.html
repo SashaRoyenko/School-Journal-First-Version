@@ -23,30 +23,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>01.09.2019</td>
-                    <td>Багато розмовляє</td>
-                    <td>Гагарін О.С.</td>
-                </tr>
-                <tr>
-                    <td>01.09.2019</td>
-                    <td>Багато розмовляє</td>
-                    <td>Гагарін О.С.</td>
-                </tr>
-                <tr>
-                    <td>01.09.2019</td>
-                    <td>Багато розмовляє</td>
-                    <td>Гагарін О.С.</td>
-                </tr>
-                <tr>
-                    <td>01.09.2019</td>
-                    <td>Багато розмовляє</td>
-                    <td>Гагарін О.С.</td>
-                </tr>
-                <tr>
-                    <td>01.09.2019</td>
-                    <td>Багато розмовляє</td>
-                    <td>Гагарін О.С.</td>
+                <tr th:each="rebuke : ${rebukeList}">
+                    <td th:text="${rebuke.rebukeDate}"></td>
+                    <td th:text="${rebuke.rebukeMessage}">Багато розмовляє</td>
+                    <td th:text="${rebuke.teacher.lastName + ' ' +
+                     rebuke.teacher.firstName.charAt(0) + '. ' +
+                     rebuke.teacher.secondName.charAt(0) + '.' }"></td>
                 </tr>
 
                 </tbody>

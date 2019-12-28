@@ -15,146 +15,108 @@
         <h2 class="mb-2">Розклад уроків</h2>
         <div class="card">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table ml-3">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Понеділок</th>
-                        <th scope="col">Вівторок</th>
-                        <th scope="col">Середа</th>
-                        <th scope="col">Четверг</th>
-                        <th scope="col">П'ятниця</th>
-
+                        <th scope="col">День</th>
+                        <th scope="col">1</th>
+                        <th scope="col">2</th>
+                        <th scope="col">3</th>
+                        <th scope="col">4</th>
+                        <th scope="col">5</th>
+                        <th scope="col">6</th>
+                        <th scope="col">7</th>
+                        <th scope="col">8</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
+                        <td>Понеділок</td>
+                        <td th:each="schedule : ${scheduleMap.get(1)}">
+                            <div th:if="${schedule.subject.name}">
+                                <strong th:text="${schedule.subject.name}"></strong><br>
+                                <div class="d-inline">
+                                    <p th:text="${schedule.teacher.lastName + ' ' +
+                                 schedule.teacher.firstName + ' ' +
+                                  schedule.teacher.secondName}"></p>
+                                </div>
+                                <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
+                            </div>
+                            <div th:unless="${schedule.subject.name}">
+                                <p> </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Вівторок</td>
+                        <td th:each="schedule : ${scheduleMap.get(2)}">
+                            <div th:if="${schedule.subject.name}">
+                                <strong th:text="${schedule.subject.name}"></strong><br>
+                                <div class="d-inline">
+                                    <p th:text="${schedule.teacher.lastName + ' ' +
+                                 schedule.teacher.firstName + ' ' +
+                                  schedule.teacher.secondName}"></p>
+                                </div>
+                                <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
+                            </div>
+                            <div th:unless="${schedule.subject.name}">
+                                <p> </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Середа</td>
+                        <td th:each="schedule : ${scheduleMap.get(3)}">
+                            <div th:if="${schedule.subject.name}">
+                                <strong th:text="${schedule.subject.name}"></strong><br>
+                                <div class="d-inline">
+                                    <p th:text="${schedule.teacher.lastName + ' ' +
+                                 schedule.teacher.firstName + ' ' +
+                                  schedule.teacher.secondName}"></p>
+                                </div>
+                                <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
+                            </div>
+                            <div th:unless="${schedule.subject.name}">
+                                <p> </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Четвер</td>
+                        <td th:each="schedule : ${scheduleMap.get(4)}">
+                            <div th:if="${schedule.subject.name}">
+                                <strong th:text="${schedule.subject.name}"></strong><br>
+                                <div class="d-inline">
+                                    <p th:text="${schedule.teacher.lastName + ' ' +
+                                 schedule.teacher.firstName + ' ' +
+                                  schedule.teacher.secondName}"></p>
+                                </div>
+                                <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
+                            </div>
+                            <div th:unless="${schedule.subject.name}">
+                                <p> </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>П'ятниця</td>
+                        <td th:each="schedule : ${scheduleMap.get(5)}">
+                            <div th:if="${schedule.subject.name}">
+                                <strong th:text="${schedule.subject.name}"></strong><br>
+                                <div class="d-inline">
+                                    <p th:text="${schedule.teacher.lastName + ' ' +
+                                 schedule.teacher.firstName + ' ' +
+                                  schedule.teacher.secondName}"></p>
+                                </div>
+                                <small th:text="${schedule.cabinet == null ? schedule.cabinet : ' '}"></small>
+                            </div>
+                            <div th:unless="${schedule.subject.name}">
+                                <p> </p>
+                            </div>
+                        </td>
+                    </tr>
 
-                        </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                        <td></td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                        <td>
-                            <strong>Англійська мова</strong><br>
-                            <small>Гагаріна М.К., к.308</small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>
-                            <strong>Алгебра</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізичне виховання</strong><br>
-                            <small>Михайлов С.А., к.404</small>
-                        </td>
-                        <td>
-                            <strong>Геометрія</strong><br>
-                            <small>Карлівна О.М., к.228</small>
-                        </td>
-                        <td>
-                            <strong>Фізика</strong><br>
-                            <small>Власов О.В., к.303</small>
-                        </td>
-                        <td>
-                            <strong>Українська мова</strong><br>
-                            <small>Дрон А.С., к.112</small>
-                        </td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>

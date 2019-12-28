@@ -7,7 +7,7 @@
                                                       class="mr-auto font-weight-bold text-light navbar-brand">E-JOURNAL</a><span
             class="font-weight-light text-light navbar-text">Ви увійшли як: <a
             class="font-weight-bold text-light" href=""
-            th:text="${student.firstName} + ' '  +  ${student.secondName} + ' '  + ${student.lastName}"></a>,
+            th:text="${student.lastName + ' ' + student.firstName + ' '  +  student.secondName}"></a>,
         <a class="text-light"
            th:href="@{/logout}">Вийти</a></span>
     </nav>
