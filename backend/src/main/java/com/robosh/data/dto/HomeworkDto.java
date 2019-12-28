@@ -13,7 +13,7 @@ public class HomeworkDto {
 
     private Long id;
 
-    private Date deadline;
+    private String deadline;
 
     private String task;
 
