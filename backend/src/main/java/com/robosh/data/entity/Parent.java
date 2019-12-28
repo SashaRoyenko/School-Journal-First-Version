@@ -2,6 +2,7 @@ package com.robosh.data.entity;
 
 import com.robosh.data.enumeration.Role;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;

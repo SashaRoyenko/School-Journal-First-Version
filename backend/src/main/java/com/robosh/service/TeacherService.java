@@ -5,11 +5,11 @@ import com.robosh.data.entity.Subject;
 import com.robosh.data.entity.Teacher;
 import com.robosh.data.entity.User;
 import com.robosh.data.mapping.TeacherMapper;
-import com.robosh.data.repository.ScheduleRepository;
 import com.robosh.data.repository.TeacherRepository;
 import com.robosh.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,13 +24,21 @@ public class TeacherService {
     private final BCryptPasswordEncoder passwordEncoder;
     private TeacherMapper teacherMapper;
     private ModelMapper modelMapper;
+    private MailSenderService mailSenderService;
+
+    @Value("${email.registration.subject}")
+    private String emailRegistrationSubject;
+
+    @Value("${email.registration.message}")
+    private String emailRegistrationMessage;
 
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository, ScheduleService scheduleService, BCryptPasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public TeacherService(TeacherRepository teacherRepository, ScheduleService scheduleService, BCryptPasswordEncoder passwordEncoder, ModelMapper modelMapper, MailSenderService mailSenderService) {
         this.teacherRepository = teacherRepository;
         this.scheduleService = scheduleService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
+        this.mailSenderService = mailSenderService;
         teacherMapper = TeacherMapper.INSTANCE;
     }
 
@@ -40,8 +48,15 @@ public class TeacherService {
     }
 
     public TeacherDto save(TeacherDto teacherDto) {
-        teacherDto.setPassword(passwordEncoder.encode(teacherDto.getPassword()));
-        return teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
+        String password = teacherDto.getPassword();
+        teacherDto.setPassword(passwordEncoder.encode(password));
+        teacherMapper.teacherToDto(teacherRepository.save(teacherMapper.dtoToTeacher(teacherDto)));
+        String registrationMessage = String.format(emailRegistrationMessage,
+                teacherDto.getLastName() + " " + teacherDto.getFirstName() + " " + teacherDto.getSecondName(),
+                teacherDto.getEmail(),
+                password);
+        mailSenderService.send(teacherDto.getEmail(), emailRegistrationSubject, registrationMessage);
+        return teacherDto;
     }
 
     public List<TeacherDto> findAll() {
