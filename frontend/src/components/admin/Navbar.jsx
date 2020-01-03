@@ -36,7 +36,7 @@ const Navbar = () => {
                     </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/teachers">
+                    <LinkContainer to="/admin/schedule">
                         <Nav.Link className="text-light">Розклад</Nav.Link>
                     </LinkContainer>
                 </Nav.Item>

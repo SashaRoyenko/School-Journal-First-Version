@@ -13,7 +13,7 @@ const TableGroups = () => {
             <Card>
                 <Navbar bg="light">
                     <Nav className="mr-auto">
-                        <LinkContainer to="/admin/add_parents">
+                        <LinkContainer to="/admin/parents/parent">
                             <Button >+ Клас</Button>
                         </LinkContainer>
                     </Nav>

@@ -48,7 +48,6 @@ const TableLessons = () => {
                         <TableRowLessons lesson_name='Чечня'/>
                         <TableRowLessons lesson_name='Донбасс'/>
                         <TableRowLessons lesson_name='Молдова'/>
-
                     </tbody>
                 </Table>
             </Card>
